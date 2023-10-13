@@ -239,6 +239,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvDifficulty" />
 
     <RadioGroup
+        android:id="@+id/radioGroupVehicle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="149dp"
@@ -247,13 +248,13 @@
         app:layout_constraintTop_toBottomOf="@+id/editDescription">
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioVehiclePersonal"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:text="@string/vehicle_personal" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioVehiclePublic"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:text="@string/vehicle_public" />
@@ -268,5 +269,16 @@
         android:text="@string/vehicle_use"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDesciprtion" />
+
+    <Button
+        android:id="@+id/btnTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:onClick="handleButtonClick"
+        android:text="Test"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
