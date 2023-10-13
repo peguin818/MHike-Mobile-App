@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         String strDescription = editDescription.getText().toString();
 
         verifyIfEditTextIsFilled(editHikeName, editLocation, editDate, editLength, editDescription);
+        verifyIfRadioGroupIsChecked(groupPark, groupDifficulty, groupVehicle);
     }
 
     private boolean verifyIfEditTextIsFilled(EditText... editText) {
@@ -43,9 +46,21 @@ public class MainActivity extends AppCompatActivity {
         boolean result = true;
 
         for (EditText text : editText) {
-
-            if (TextUtils.isEmpty(text.getText().toString().trim())) { //text.getText().toString().isEmpty() || text.getText().toString().length() == 0 || text.getText().toString().equals("")
+            if (TextUtils.isEmpty(text.getText().toString().trim())) {
                 text.setError("Field cannot be empty");
+                result = false;
+            }
+        }
+        return result;
+    }
+
+    private boolean verifyIfRadioGroupIsChecked(RadioGroup... radioGroups) {
+        boolean result = true;
+        int[] selectedId = new int[0];
+
+        for (RadioGroup radioGroup : radioGroups) {
+            if (radioGroup.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(getApplicationContext(), "Please select an option", Toast.LENGTH_LONG).show();
                 result = false;
             }
         }
