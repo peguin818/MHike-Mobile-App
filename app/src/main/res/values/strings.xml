@@ -3,6 +3,12 @@
     <string name="app_title">M-Hike</string>
     <string name="form_title">Hike Details</string>
     <string name="hike_name">Name of hike:</string>
+    <string name="location">Location:</string>
+    <string name="date">Date of the hike:</string>
+    <string name="park">Parking available:</string>
+    <string name="length">Length of the hike:</string>
+    <string name="difficulty">Level of difficulty:</string>
+    <string name="description">Description:</string>
     <string name="hike_name_hint">E.g. "Snowdon", "Trosley Country park", etc.</string>
     <string name="yes_radio">Yes</string>
     <string name="no_radio">No</string>
