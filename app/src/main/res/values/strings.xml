@@ -9,7 +9,10 @@
     <string name="length">Length of the hike:</string>
     <string name="difficulty">Level of difficulty:</string>
     <string name="description">Description:</string>
+    <string name="vehicle_use">Vehicle use:</string>
     <string name="hike_name_hint">E.g. "Snowdon", "Trosley Country park", etc.</string>
-    <string name="yes_radio">Yes</string>
-    <string name="no_radio">No</string>
+    <string name="park_yes_radio">Yes</string>
+    <string name="park_no_radio">No</string>
+    <string name="vehicle_personal">Personal</string>
+    <string name="vehicle_public">Public transports</string>
 </resources>

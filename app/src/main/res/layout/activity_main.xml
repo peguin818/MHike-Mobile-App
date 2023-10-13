@@ -110,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="39dp"
+        android:layout_marginTop="42dp"
         android:text="@string/length"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -156,15 +156,15 @@
 
         <RadioButton
             android:id="@+id/radioParkYes"
-            android:layout_width="64dp"
+            android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:text="@string/yes_radio" />
+            android:text="@string/park_yes_radio" />
 
         <RadioButton
             android:id="@+id/radioParkNo"
-            android:layout_width="64dp"
+            android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:text="@string/no_radio" />
+            android:text="@string/park_no_radio" />
 
     </RadioGroup>
 
@@ -178,6 +178,7 @@
         android:ems="11"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioParking" />
 
@@ -186,7 +187,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="149dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="11dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editLength">
 
@@ -220,7 +221,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="63dp"
         android:text="@string/difficulty"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -236,5 +237,36 @@
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDifficulty" />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="11dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDescription">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="@string/vehicle_personal" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="@string/vehicle_public" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvVehicle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="34dp"
+        android:text="@string/vehicle_use"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDesciprtion" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
