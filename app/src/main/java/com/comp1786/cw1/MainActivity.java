@@ -33,20 +33,12 @@ public class MainActivity extends AppCompatActivity {
     EditText editDescription;
 
     RadioGroup groupPark;
-    RadioButton radioParkYes;
-    RadioButton radioParkNo;
     RadioButton radioButtonPark;
 
-
     RadioGroup groupDifficulty;
-    RadioButton radioDiffHard;
-    RadioButton radioDiffMedium;
-    RadioButton radioDiffEasy;
     RadioButton radioButtonDifficulty;
 
     Spinner spinnerType;
-
-    Button btnTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,8 +106,10 @@ public class MainActivity extends AppCompatActivity {
                 hike.setParking(true);
             } else if (radioButtonPark.getId() == R.id.radioParkNo){
                 hike.setParking(false);
-            } else
+            } else {
+                Toast.makeText(this, "Please select at least an option", Toast.LENGTH_LONG).show();
                 return;
+            }
         }
 
         hike.setLength(Long.parseUnsignedLong(editLength.getText().toString()));
@@ -124,14 +118,16 @@ public class MainActivity extends AppCompatActivity {
             hike.setType(TrailType.RETURN);;
         } else if (spinnerType.getSelectedItem() == TrailType.LOOP.toString()) {
             hike.setType(TrailType.LOOP);
-        } else if (spinnerType.getSelectedItem() == TrailType.PACK_CARRY.toString()) {
+        } else if (spinnerType.getSelectedItem() == TrailType.PACK_CARRY.toString().replace("_", " ")) {
             hike.setType(TrailType.PACK_CARRY);
         } else if (spinnerType.getSelectedItem() == TrailType.STAGE.toString()) {
             hike.setType(TrailType.STAGE);
-        } else if(spinnerType.getSelectedItem() == TrailType.POINT_TO_POINT.toString()){
+        } else if(spinnerType.getSelectedItem() == TrailType.POINT_TO_POINT.toString().replace("_", " ")){
             hike.setType(TrailType.POINT_TO_POINT);
-        } else
+        } else {
+            Toast.makeText(this, "Please select at least an option", Toast.LENGTH_LONG).show();
             return;
+        }
 
 
         int selectedDifficultyId = groupDifficulty.getCheckedRadioButtonId();
@@ -142,8 +138,10 @@ public class MainActivity extends AppCompatActivity {
             hike.setDifficulty(Difficulty.NORMAL);
         } else if (radioButtonDifficulty.getId() == R.id.radioEasy) {
             hike.setDifficulty(Difficulty.EASY);
-        } else
+        } else {
+            Toast.makeText(this, "Please select at least an option", Toast.LENGTH_LONG).show();
             return;
+        }
 
         hike.setDescription(editDescription.getText().toString());
         hike.setContact(editEContact.getText().toString());
