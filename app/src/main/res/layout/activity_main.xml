@@ -152,7 +152,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editLocation" />
 
     <RadioGroup
-        android:id="@+id/radioParking"
+        android:id="@+id/rGroupParking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="149dp"
@@ -187,10 +187,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioParking" />
+        app:layout_constraintTop_toBottomOf="@+id/rGroupParking" />
 
     <RadioGroup
-        android:id="@+id/radioDifficulty"
+        android:id="@+id/rGroupDifficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="149dp"
@@ -199,16 +199,16 @@
         app:layout_constraintTop_toBottomOf="@+id/spinType">
 
         <RadioButton
-            android:id="@+id/radioDifficult"
+            android:id="@+id/radioHard"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
             android:text="@string/difficulty_hard_radio" />
 
         <RadioButton
-            android:id="@+id/radioMedium"
+            android:id="@+id/radioNormal"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:text="@string/difficulty_medium_radio" />
+            android:text="@string/difficulty_normal_radio" />
 
         <RadioButton
             android:id="@+id/radioEasy"
@@ -293,6 +293,6 @@
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioDifficulty" />
+        app:layout_constraintTop_toBottomOf="@+id/rGroupDifficulty" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

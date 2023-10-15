@@ -14,7 +14,7 @@
     <string name="park_yes_radio">Yes</string>
     <string name="park_no_radio">No</string>
     <string name="difficulty_hard_radio">Hard</string>
-    <string name="difficulty_medium_radio">Medium</string>
+    <string name="difficulty_normal_radio">Normal</string>
     <string name="difficulty_easy_radio">Easy</string>
     <string name="vehicle_personal">Personal</string>
     <string name="vehicle_public">Public transports</string>
