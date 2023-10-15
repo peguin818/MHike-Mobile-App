@@ -9,10 +9,19 @@
     <string name="length">Length of the hike:</string>
     <string name="difficulty">Level of difficulty:</string>
     <string name="description">Description:</string>
-    <string name="vehicle_use">Vehicle use:</string>
-    <string name="hike_name_hint">E.g. "Snowdon", "Trosley Country park", etc.</string>
+    <string name="type">Hike type:</string>
+    <string name="e_contact">Emergency contact:</string>
     <string name="park_yes_radio">Yes</string>
     <string name="park_no_radio">No</string>
+    <string name="difficulty_hard_radio">Hard</string>
+    <string name="difficulty_medium_radio">Medium</string>
+    <string name="difficulty_easy_radio">Easy</string>
     <string name="vehicle_personal">Personal</string>
     <string name="vehicle_public">Public transports</string>
+    <string name="hike_name_hint">E.g. "Snowdon", "Trosley Country park", etc.</string>
+    <string name="location_hint">E.g. "Lazarus pit", "Son Doong Cave"</string>
+    <string name="date_hint">E.g. "10/10/2023"</string>
+    <string name="length_hint">E.g. "1024"</string>
+    <string name="e_contact_hint">E.g. "0945493333"</string>
+    <string name="description_hint">E.g. "This lazarus pit is known for its mystery of reviving people from the dead"</string>
 </resources>
