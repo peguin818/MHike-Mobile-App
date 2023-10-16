@@ -3,7 +3,6 @@ package com.comp1786.cw1.dbHelper;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
 
-import java.util.Collection;
 import java.util.Date;
 
 public class Hike {
@@ -17,13 +16,13 @@ public class Hike {
     private String description;
     private TrailType type;
     private String contact;
-    private Date created_at;
-    private Date updated_at;
+    private Date createdAt;
+    private Date updatedAt;
 
     public Hike() {
     }
 
-    public Hike(long id, String hikeName, String location, String date, boolean parking, long length, Difficulty difficulty, String description, TrailType type, String contact, Date created_at, Date updated_at) {
+    public Hike(long id, String hikeName, String location, String date, boolean parking, long length, Difficulty difficulty, String description, TrailType type, String contact, Date createdAt, Date updatedAt) {
         this.id = id;
         this.hikeName = hikeName;
         this.location = location;
@@ -34,8 +33,8 @@ public class Hike {
         this.description = description;
         this.type = type;
         this.contact = contact;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public long getId() {
@@ -118,19 +117,19 @@ public class Hike {
         this.contact = contact;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

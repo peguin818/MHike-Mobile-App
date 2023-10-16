@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void saveDetails() {
+
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
 
         Hike hike = new Hike();
@@ -128,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Please select at least an option", Toast.LENGTH_LONG).show();
             return;
         }
-
 
         int selectedDifficultyId = groupDifficulty.getCheckedRadioButtonId();
         radioButtonDifficulty = findViewById(selectedDifficultyId);

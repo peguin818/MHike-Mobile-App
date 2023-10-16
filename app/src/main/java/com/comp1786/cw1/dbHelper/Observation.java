@@ -4,23 +4,20 @@ import java.util.Date;
 
 public class Observation {
     private long id;
-    private long hike_id;
+    private long hikeId;
     private String observation;
     private String comment;
-    private Date created_at;
-    private Date updated_at;
+    private Date createdAt;
+    private Date updatedAt;
 
-    public Observation(long id, long hike_id, String observation, String comment, Date created_at, Date updated_at) {
+
+    public Observation(long id, long hikeId, String observation, String comment, Date createdAt, Date updatedAt) {
         this.id = id;
-        this.hike_id = hike_id;
+        this.hikeId = hikeId;
         this.observation = observation;
         this.comment = comment;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-    }
-
-    public void setHike_id(long hike_id) {
-        this.hike_id = hike_id;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     public long getId() {
@@ -29,6 +26,14 @@ public class Observation {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getHikeId() {
+        return hikeId;
+    }
+
+    public void setHikeId(long hikeId) {
+        this.hikeId = hikeId;
     }
 
     public String getObservation() {
@@ -47,19 +52,19 @@ public class Observation {
         this.comment = comment;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getUpdated_at() {
-        return updated_at;
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public void setUpdated_at(Date updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
