@@ -1,4 +1,4 @@
-package com.comp1786.cw1.dbHelper;
+package com.comp1786.cw1.Entity;
 
 import java.util.Date;
 

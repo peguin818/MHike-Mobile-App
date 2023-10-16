@@ -6,7 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.widget.DatePicker;
+
+import com.comp1786.cw1.Entity.Hike;
 
 import java.util.Date;
 
