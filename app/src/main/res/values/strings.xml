@@ -9,8 +9,8 @@
     <string name="length">Length:</string>
     <string name="difficulty">Difficulty:</string>
     <string name="description">Description:</string>
-    <string name="type">Hike type:</string>
-    <string name="e_contact">Emergency contact:</string>
+    <string name="type">Type:</string>
+    <string name="e_contact">Emergency :</string>
     <string name="park_yes_radio">Yes</string>
     <string name="park_no_radio">No</string>
     <string name="difficulty_hard_radio">Hard</string>
@@ -23,5 +23,5 @@
     <string name="date_hint">E.g. "10/10/2023"</string>
     <string name="length_hint">E.g. "1024"</string>
     <string name="e_contact_hint">E.g. "0945493333"</string>
-    <string name="description_hint">E.g. "This lazarus pit is known for its mystery of reviving people from the dead"</string>
+    <string name="description_hint">E.g. "This lazarus pit is known for its mystery"</string>
 </resources>

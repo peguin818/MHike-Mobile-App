@@ -119,7 +119,7 @@
     <EditText
         android:id="@+id/editDescription"
         android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="149dp"
         android:layout_marginTop="11dp"
         android:layout_marginEnd="32dp"
@@ -199,18 +199,6 @@
         app:layout_constraintTop_toBottomOf="@+id/spinType">
 
         <RadioButton
-            android:id="@+id/radioHard"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="@string/difficulty_hard_radio" />
-
-        <RadioButton
-            android:id="@+id/radioNormal"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="@string/difficulty_normal_radio" />
-
-        <RadioButton
             android:id="@+id/radioEasy"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
@@ -219,10 +207,10 @@
 
     <TextView
         android:id="@+id/tvDifficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="107dp"
+        android:layout_width="69dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
         android:text="@string/difficulty"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -232,8 +220,8 @@
         android:id="@+id/tvDesciprtion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="69dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="48dp"
         android:text="@string/description"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -243,10 +231,10 @@
         android:id="@+id/tvEContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
         android:text="@string/e_contact"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDifficulty" />
 
@@ -254,9 +242,10 @@
         android:id="@+id/btnTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="8dp"
         android:text="Test"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
@@ -293,5 +282,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rGroupDifficulty" />
+
+    <RadioButton
+        android:id="@+id/radioNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="@string/difficulty_normal_radio"
+        tools:layout_editor_absoluteX="230dp"
+        tools:layout_editor_absoluteY="469dp" />
+
+    <RadioButton
+        android:id="@+id/radioHard"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:text="@string/difficulty_hard_radio"
+        tools:layout_editor_absoluteX="331dp"
+        tools:layout_editor_absoluteY="468dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
