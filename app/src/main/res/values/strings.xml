@@ -2,7 +2,7 @@
     <string name="app_name">CW1</string>
     <string name="app_title">M-Hike</string>
     <string name="form_title">Hike Details</string>
-    <string name="hike_name">Name of hike:</string>
+    <string name="hike_name">Hike name:</string>
     <string name="location">Location:</string>
     <string name="date">Date:</string>
     <string name="park">Parking:</string>
