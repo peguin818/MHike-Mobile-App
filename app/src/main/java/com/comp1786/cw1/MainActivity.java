@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
     Spinner spinnerType;
 
     Button saveButton;
-    Button detailsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
