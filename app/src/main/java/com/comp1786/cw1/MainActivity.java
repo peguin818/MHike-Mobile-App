@@ -3,7 +3,9 @@ package com.comp1786.cw1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,18 +21,22 @@ import com.comp1786.cw1.constant.TrailType;
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
+
     EditText editHikeName;
     EditText editLocation;
     EditText editDate;
     EditText editLength;
     EditText editEContact;
     EditText editDescription;
+
+    Long parsedLength;
 
     RadioGroup groupPark;
     RadioButton radioButtonPark;
@@ -39,6 +45,9 @@ public class MainActivity extends AppCompatActivity {
     RadioButton radioButtonDifficulty;
 
     Spinner spinnerType;
+
+    Button saveButton;
+    Button detailsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(MainActivity.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                new DatePickerDialog(MainActivity.this, date, myCalendar.get(Calendar.YEAR),
+                        myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH))
+                        .show();
             }
         });
 
@@ -71,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, typeStrings);
         spinnerType.setAdapter(adapter);
 
-        Button saveButton = findViewById(R.id.btnTest);
+        saveButton = findViewById(R.id.btnTest);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -98,6 +110,14 @@ public class MainActivity extends AppCompatActivity {
         hike.setHikeName(editHikeName.getText().toString());
         hike.setLocation(editLocation.getText().toString());
         hike.setDate(editDate.getText().toString());
+        hike.setDescription(editDescription.getText().toString());
+        hike.setContact(editEContact.getText().toString());
+
+        boolean hasError = false;
+
+        if (!verifyBlankEditText(editHikeName, editLocation, editDate, editLength, editDescription, editEContact)) {
+            hasError = true;
+        }
 
         int selectedParkId = groupPark.getCheckedRadioButtonId();
         radioButtonPark = findViewById(selectedParkId);
@@ -108,26 +128,23 @@ public class MainActivity extends AppCompatActivity {
                 hike.setParking(false);
             }
         } else {
-            Toast.makeText(this, "Please select at least an option", Toast.LENGTH_LONG).show();
-            return;
+            Toast.makeText(this, "Please select at least an option for Parking Availability", Toast.LENGTH_LONG).show();
+            hasError = true;
         }
 
-        hike.setLength(Long.parseUnsignedLong(editLength.getText().toString()));
-
-        if (spinnerType.getSelectedItem().equals(TrailType.RETURN.toString())) {
+        if (spinnerType.getSelectedItem().toString().equals(TrailType.RETURN.toString())) {
             hike.setType(TrailType.RETURN);
-            ;
-        } else if (spinnerType.getSelectedItem() == TrailType.LOOP.toString()) {
+        } else if (spinnerType.getSelectedItem().toString().equals(TrailType.LOOP.toString())) {
             hike.setType(TrailType.LOOP);
-        } else if (spinnerType.getSelectedItem() == TrailType.PACK_CARRY.toString().replace("_", " ")) {
+        } else if (spinnerType.getSelectedItem().toString().equals(TrailType.PACK_CARRY.toString().replace("_", " "))) {
             hike.setType(TrailType.PACK_CARRY);
-        } else if (spinnerType.getSelectedItem() == TrailType.STAGE.toString()) {
+        } else if (spinnerType.getSelectedItem().toString().equals(TrailType.STAGE.toString())) {
             hike.setType(TrailType.STAGE);
-        } else if (spinnerType.getSelectedItem() == TrailType.POINT_TO_POINT.toString().replace("_", " ")) {
+        } else if (spinnerType.getSelectedItem().toString().equals(TrailType.POINT_TO_POINT.toString().replace("_", " "))) {
             hike.setType(TrailType.POINT_TO_POINT);
         } else {
-            Toast.makeText(this, "Please select at least an option", Toast.LENGTH_LONG).show();
-            return;
+            Toast.makeText(this, "Please select at least an option for Trail Type", Toast.LENGTH_LONG).show();
+            hasError = true;
         }
 
         int selectedDifficultyId = groupDifficulty.getCheckedRadioButtonId();
@@ -141,21 +158,39 @@ public class MainActivity extends AppCompatActivity {
                 hike.setDifficulty(Difficulty.EASY);
             }
         } else {
-            Toast.makeText(this, "Please select at least an option", Toast.LENGTH_LONG).show();
-            return;
+            Toast.makeText(this, "Please select at least an option for Difficulty", Toast.LENGTH_LONG).show();
+            hasError = true;
         }
 
-        hike.setDescription(editDescription.getText().toString());
-        hike.setContact(editEContact.getText().toString());
+        try {
+            parsedLength = Long.parseUnsignedLong(editLength.getText().toString());
+            hike.setLength(parsedLength);
+        } catch (Exception e) {
+            editLength.setError("Please enter a number higher than 0");
+        }
 
-        long id = hikeDbHelper.insertHikeDetails(hike);
+        if (!hasError) {
+            long id = hikeDbHelper.insertHikeDetails(hike);
 
-        Toast.makeText(this, "Added successfully with id: " + id, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Added successfully with id: " + id, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void updateDateLabel() {
         String myFormat = "dd/MM/yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ROOT);
         editDate.setText(dateFormat.format(myCalendar.getTime()).toString());
+    }
+
+    private boolean verifyBlankEditText(EditText... editText) {
+        boolean result = true;
+
+        for (EditText text : editText) {
+            if (TextUtils.isEmpty(text.getText().toString().trim())) {
+                text.setError("Field cannot be empty");
+                result = false;
+            }
+        }
+        return result;
     }
 }
