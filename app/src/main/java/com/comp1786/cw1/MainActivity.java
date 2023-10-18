@@ -16,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.comp1786.cw1.Entity.Observation;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
 import com.comp1786.cw1.Entity.Hike;
@@ -24,6 +25,7 @@ import com.comp1786.cw1.dbHelper.HikeDbHelper;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -86,12 +88,18 @@ public class MainActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveDetails();
+                try {
+                    saveDetails();
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
 
-    private void saveDetails() {
+    private void saveDetails() throws ParseException, IllegalAccessException {
 
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
 
@@ -171,7 +179,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (!hasError) {
             long id = hikeDbHelper.insertHikeDetails(hike);
-
             Toast.makeText(this, "Added successfully with id: " + id, Toast.LENGTH_LONG).show();
         }
     }
