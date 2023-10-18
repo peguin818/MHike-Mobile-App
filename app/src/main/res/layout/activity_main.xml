@@ -119,9 +119,9 @@
     <EditText
         android:id="@+id/editDescription"
         android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="149dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="11"
         android:hint="@string/description_hint"
@@ -130,6 +130,7 @@
         android:selectAllOnFocus="true"
         android:singleLine="false"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editEContact" />
 
@@ -153,10 +154,11 @@
 
     <RadioGroup
         android:id="@+id/rGroupParking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="11dp"
+        android:layout_width="147dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDate">
 
@@ -179,30 +181,31 @@
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="149dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:ems="11"
         android:hint="@string/length_hint"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rGroupParking" />
 
     <RadioGroup
         android:id="@+id/rGroupDifficulty"
-        android:layout_width="wrap_content"
+        android:layout_width="214dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinType">
 
         <RadioButton
-            android:id="@+id/radioHard"
+            android:id="@+id/radioEasy"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:text="@string/difficulty_hard_radio" />
+            android:text="@string/difficulty_easy_radio" />
 
         <RadioButton
             android:id="@+id/radioNormal"
@@ -211,18 +214,18 @@
             android:text="@string/difficulty_normal_radio" />
 
         <RadioButton
-            android:id="@+id/radioEasy"
+            android:id="@+id/radioHard"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:text="@string/difficulty_easy_radio" />
+            android:text="@string/difficulty_hard_radio" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/tvDifficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="107dp"
+        android:layout_width="69dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="104dp"
         android:text="@string/difficulty"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -232,8 +235,8 @@
         android:id="@+id/tvDesciprtion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="69dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="52dp"
         android:text="@string/description"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -243,10 +246,10 @@
         android:id="@+id/tvEContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="53dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
         android:text="@string/e_contact"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvDifficulty" />
 
@@ -254,19 +257,18 @@
         android:id="@+id/btnTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:onClick="handleButtonClick"
+        android:layout_marginTop="32dp"
         android:text="Test"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDescription" />
 
     <Spinner
         android:id="@+id/spinType"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="16dp"
         android:spinnerMode="dropdown"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editLength" />
@@ -286,12 +288,13 @@
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="149dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="32dp"
         android:ems="11"
         android:hint="@string/e_contact_hint"
         android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rGroupDifficulty" />
 

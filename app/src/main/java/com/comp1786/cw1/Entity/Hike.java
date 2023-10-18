@@ -1,4 +1,4 @@
-package com.comp1786.cw1.dbHelper;
+package com.comp1786.cw1.Entity;
 
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
