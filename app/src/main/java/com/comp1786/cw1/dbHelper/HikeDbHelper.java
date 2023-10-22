@@ -6,13 +6,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.Entity.Observation;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -167,7 +167,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
     public List<Observation> getObservationDetails() throws ParseException {
         Cursor results = database.query("observation",
-                new String[]{"id","hike_id", "observation", "comment", "created_at", "updated_at"},
+                new String[]{"id", "hike_id", "observation", "comment", "created_at", "updated_at"},
                 null, null, null, null, "hike_id");
 
         List<Observation> observationList = new ArrayList<Observation>();
@@ -186,6 +186,70 @@ public class HikeDbHelper extends SQLiteOpenHelper {
             results.moveToNext();
         }
         return observationList;
+    }
+
+    public void updateHike(Hike hike) {
+
+        // calling a method to get writable database.
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues rowValues = new ContentValues();
+
+        // on below line we are passing all values
+        // along with its key and value pair.
+        rowValues.put(HIKE_TABLE_NAME, hike.getHikeName());
+        rowValues.put(HIKE_TABLE_LOCATION, hike.getLocation());
+        rowValues.put(HIKE_TABLE_DATEOFHIKE, hike.getDate().toString());
+        rowValues.put(HIKE_TABLE_PARKINGAVAILABILITY, hike.isParking());
+        rowValues.put(HIKE_TABLE_HIKELENGTH, hike.getLength());
+        rowValues.put(HIKE_TABLE_DIFFICULTY, hike.getDifficulty().toString());
+        rowValues.put(HIKE_TABLE_DESCRIPTION, hike.getDescription());
+        rowValues.put(HIKE_TABLE_TRAILTYPE, hike.getType().toString());
+        rowValues.put(HIKE_TABLE_EMERGENCY, hike.getContact());
+        rowValues.put(CREATEDAT_COLUMN, new Date().toString());
+        rowValues.put(UPDATEDAT_COLUMN, new Date().toString());
+
+        // on below line we are calling a update method to update our database and passing our values.
+        // and we are comparing it with name of our course which is stored in original name variable.
+        db.update(HIKE_TABLE, rowValues, "id=?", new String[]{String.valueOf(hike.getId())});
+        db.close();
+    }
+
+    public void updateObservation(Observation observation) {
+
+        // calling a method to get writable database.
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues rowValues = new ContentValues();
+
+        // on below line we are passing all values
+        // along with its key and value pair.
+        rowValues.put(OBSERVATION_TABLE_HIKE_ID, observation.getHikeId());
+        rowValues.put(OBSERVATION_TABLE_OBSERVATION, observation.getObservation());
+        rowValues.put(OBSERVATION_TABLE_COMMENT, observation.getComment());
+        rowValues.put(CREATEDAT_COLUMN, new Date().toString());
+        rowValues.put(UPDATEDAT_COLUMN, new Date().toString());
+
+        // on below line we are calling a update method to update our database and passing our values.
+        // and we are comparing it with name of our course which is stored in original name variable.
+        db.update(OBSERVATION_TABLE, rowValues, "id=?", new String[]{String.valueOf(observation.getId())});
+        db.close();
+    }
+
+    public void deleteHikeById(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // on below line we are calling a method to delete our
+        // course and we are comparing it with our course name.
+        db.delete(HIKE_TABLE, "id=?", new String[]{String.valueOf(id)});
+        db.close();
+    }
+
+    public void deleteObservationById(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // on below line we are calling a method to delete our
+        // course and we are comparing it with our course name.
+        db.delete(OBSERVATION_TABLE, "id=?", new String[]{String.valueOf(id)});
+        db.close();
     }
 
     private TrailType getTrailType(String type) throws IllegalAccessException {

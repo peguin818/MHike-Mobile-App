@@ -1,9 +1,6 @@
 package com.comp1786.cw1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,16 +13,16 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.comp1786.cw1.Entity.Observation;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
-import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -102,7 +99,6 @@ public class MainActivity extends AppCompatActivity {
     private void saveDetails() throws ParseException, IllegalAccessException {
 
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
-
         Hike hike = new Hike();
 
         editHikeName = findViewById(R.id.editHikeName);
