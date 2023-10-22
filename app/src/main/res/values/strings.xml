@@ -24,4 +24,8 @@
     <string name="length_hint">E.g. "1024"</string>
     <string name="e_contact_hint">E.g. "0945493333"</string>
     <string name="description_hint">E.g. "This lazarus pit is known for its mystery"</string>
+    <string name="observation_name">Observation name:</string>
+    <string name="observation_type">Observation type:</string>
+
+
 </resources>
