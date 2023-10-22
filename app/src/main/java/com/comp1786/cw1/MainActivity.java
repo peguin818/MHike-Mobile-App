@@ -1,9 +1,6 @@
 package com.comp1786.cw1;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,9 +13,11 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
-import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 
 import java.text.ParseException;
@@ -86,14 +85,20 @@ public class MainActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                saveDetails();
+                try {
+                    saveDetails();
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                } catch (IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
 
-    private void saveDetails() {
-        HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
+    private void saveDetails() throws ParseException, IllegalAccessException {
 
+        HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
         Hike hike = new Hike();
 
         editHikeName = findViewById(R.id.editHikeName);
@@ -170,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
 
         if (!hasError) {
             long id = hikeDbHelper.insertHikeDetails(hike);
-
             Toast.makeText(this, "Added successfully with id: " + id, Toast.LENGTH_LONG).show();
         }
     }
