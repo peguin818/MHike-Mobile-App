@@ -15,7 +15,7 @@ public class Homepage_Activity extends AppCompatActivity {
     }
     public void handleButtonClick (View view)
     {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, HikeForm.class);
         startActivity(i);
     }
 }

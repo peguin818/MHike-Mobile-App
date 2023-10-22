@@ -24,7 +24,7 @@
 
 
         <activity
-            android:name=".MainActivity"
+            android:name=".HikeForm"
             android:exported="true">
 
             <!-- <intent-filter> -->
