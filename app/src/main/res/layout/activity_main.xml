@@ -5,7 +5,7 @@
     android:id="@+id/LayoutConstraints"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".HikeForm">
 
     <TextView
         android:id="@+id/appNameTextView"
@@ -77,7 +77,7 @@
         android:layout_marginTop="11dp"
         android:layout_marginEnd="32dp"
         android:ems="11"
-        android:hint="@string/hike_name_hint"
+        android:hint="@string/location_hint"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,8 +98,8 @@
         android:id="@+id/tvParking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="32dp"
         android:text="@string/park"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -110,7 +110,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="32dp"
         android:text="@string/length"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -119,17 +119,20 @@
     <EditText
         android:id="@+id/editDescription"
         android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="149dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:ems="11"
-        android:inputType="text"
+        android:hint="@string/description_hint"
+        android:inputType="textMultiLine"
+        android:lines="4"
         android:selectAllOnFocus="true"
         android:singleLine="false"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioDifficulty" />
+        app:layout_constraintTop_toBottomOf="@+id/editEContact" />
 
     <EditText
         android:id="@+id/editDate"
@@ -138,19 +141,24 @@
         android:layout_marginStart="149dp"
         android:layout_marginTop="11dp"
         android:layout_marginEnd="32dp"
+        android:clickable="true"
+        android:cursorVisible="false"
         android:ems="11"
-        android:hint="@string/hike_name_hint"
-        android:inputType="date"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="@string/date_hint"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editLocation" />
 
     <RadioGroup
-        android:id="@+id/radioParking"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="11dp"
+        android:id="@+id/rGroupParking"
+        android:layout_width="147dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editDate">
 
@@ -173,55 +181,51 @@
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="149dp"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
         android:ems="11"
-        android:inputType="text"
+        android:hint="@string/length_hint"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioParking" />
+        app:layout_constraintTop_toBottomOf="@+id/rGroupParking" />
 
     <RadioGroup
-        android:id="@+id/radioDifficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="11dp"
+        android:id="@+id/rGroupDifficulty"
+        android:layout_width="229dp"
+        android:layout_height="23dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLength">
-
-        <RadioButton
-            android:id="@+id/radioExtreme"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="Extreme" />
-
-        <RadioButton
-            android:id="@+id/radioDifficult"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="Difficult" />
-
-        <RadioButton
-            android:id="@+id/radioMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="Medium" />
+        app:layout_constraintTop_toBottomOf="@+id/spinType">
 
         <RadioButton
             android:id="@+id/radioEasy"
             android:layout_width="wrap_content"
             android:layout_height="25dp"
-            android:text="Easy" />
+            android:text="@string/difficulty_easy_radio" />
+
+        <RadioButton
+            android:id="@+id/radioNormal"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="@string/difficulty_normal_radio" />
+
+        <RadioButton
+            android:id="@+id/radioHard"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="@string/difficulty_hard_radio" />
     </RadioGroup>
 
     <TextView
         android:id="@+id/tvDifficulty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="69dp"
+        android:layout_height="27dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="96dp"
         android:text="@string/difficulty"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -231,54 +235,68 @@
         android:id="@+id/tvDesciprtion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="52dp"
         android:text="@string/description"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDifficulty" />
-
-    <RadioGroup
-        android:id="@+id/radioGroupVehicle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="149dp"
-        android:layout_marginTop="11dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editDescription">
-
-        <RadioButton
-            android:id="@+id/radioVehiclePersonal"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="@string/vehicle_personal" />
-
-        <RadioButton
-            android:id="@+id/radioVehiclePublic"
-            android:layout_width="wrap_content"
-            android:layout_height="25dp"
-            android:text="@string/vehicle_public" />
-    </RadioGroup>
+        app:layout_constraintTop_toBottomOf="@+id/tvEContact" />
 
     <TextView
-        android:id="@+id/tvVehicle"
+        android:id="@+id/tvEContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="34dp"
-        android:text="@string/vehicle_use"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/e_contact"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDesciprtion" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDifficulty" />
 
     <Button
         android:id="@+id/btnTest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:onClick="handleButtonClick"
+        android:layout_marginTop="12dp"
         android:text="Test"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editDescription" />
+
+    <Spinner
+        android:id="@+id/spinType"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="16dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editLength" />
+
+    <TextView
+        android:id="@+id/tvType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="39dp"
+        android:text="@string/type"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvLength" />
+
+    <EditText
+        android:id="@+id/editEContact"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="32dp"
+        android:ems="11"
+        android:hint="@string/e_contact_hint"
+        android:inputType="phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rGroupDifficulty" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
