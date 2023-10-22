@@ -3,7 +3,6 @@ package com.comp1786.cw1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -21,12 +20,11 @@ import com.comp1786.cw1.constant.TrailType;
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class HikeForm extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
 
     EditText editHikeName;
@@ -54,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         editDate = (EditText) findViewById(R.id.editDate);
+        //gets current date
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(MainActivity.this, date, myCalendar.get(Calendar.YEAR),
+                new DatePickerDialog(HikeForm.this, date, myCalendar.get(Calendar.YEAR),
                         myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH))
                         .show();

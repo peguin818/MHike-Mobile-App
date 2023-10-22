@@ -146,12 +146,11 @@
         android:layout_width="251dp"
         android:layout_height="38dp"
         android:layout_marginStart="120dp"
-        android:layout_marginTop="14dp"
         android:ems="10"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editWeather" />
+        tools:layout_editor_absoluteY="293dp" />
 
     <TextView
         android:id="@+id/tvWeather"
@@ -165,18 +164,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvVegetable" />
 
-    <EditText
-        android:id="@+id/editWeather"
-        android:layout_width="251dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="13dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editVegetable" />
-
     <TextView
         android:id="@+id/tvTrail"
         android:layout_width="wrap_content"
@@ -188,5 +175,12 @@
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWeather" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="251dp"
+        android:layout_height="38dp"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="237dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
