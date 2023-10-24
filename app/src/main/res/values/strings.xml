@@ -25,4 +25,5 @@
     <string name="e_contact_hint">E.g. "0945493333"</string>
     <string name="description_hint">E.g. "This lazarus pit is known for its mystery"</string>
     <string name="button_hike_save">Save</string>
+    <string name="button_hike_add">Add</string>
 </resources>

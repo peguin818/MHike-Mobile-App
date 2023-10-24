@@ -80,7 +80,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Profile"
+                        android:text="New Hike"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
 
@@ -90,7 +90,7 @@
                         android:layout_height="70dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        android:src="@drawable/profile" />
+                        android:src="@drawable/hike" />
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
@@ -106,7 +106,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick="handleButtonClick">
+                    android:onClick="toHikeForm">
 
                     <TextView
                         android:id="@+id/mhikeHikeButton"
@@ -116,7 +116,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Hike"
+                        android:text="Hike's List"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
 
@@ -126,7 +126,7 @@
                         android:layout_height="70dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        android:src="@drawable/hike" />
+                        android:src="@drawable/list" />
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -245,7 +245,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Video Call"
+                        android:text="Observation List"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
 
@@ -255,7 +255,7 @@
                         android:layout_height="70dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        android:src="@drawable/video_call" />
+                        android:src="@drawable/observation" />
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>

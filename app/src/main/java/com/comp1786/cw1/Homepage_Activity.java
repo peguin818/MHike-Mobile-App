@@ -13,7 +13,7 @@ public class Homepage_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
     }
-    public void handleButtonClick (View view)
+    public void toHikeForm (View view)
     {
         Intent i = new Intent(this, HikeForm.class);
         startActivity(i);
