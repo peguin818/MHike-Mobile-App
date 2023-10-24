@@ -4,217 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="visible"
     tools:context=".ObservationForm">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-32dp"
-        tools:layout_editor_absoluteY="-16dp">
+    <EditText
+        android:id="@+id/editComment"
 
-        <EditText
-            android:id="@+id/editDate2"
-            android:layout_width="230dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="149dp"
-            android:layout_marginEnd="32dp"
-            android:clickable="true"
-            android:cursorVisible="false"
-            android:ems="11"
-            android:focusable="false"
-            android:focusableInTouchMode="false"
-            android:hint="@string/date_hint"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="356dp" />
+        android:layout_width="230dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="20dp"
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Date"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="356dp" />
-
-        <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="256dp"
-            android:layout_height="43dp"
-            android:layout_marginTop="52dp"
-            android:text="Observation details"
-            android:textAlignment="center"
-            android:textSize="25sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/btnReturn"
-            android:layout_width="84dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
-            android:text="Back"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/saveButton"
-            android:layout_width="161dp"
-            android:layout_height="43dp"
-            android:layout_marginStart="125dp"
-            android:layout_marginEnd="125dp"
-            android:layout_marginBottom="32dp"
-            android:text="Save"
-            android:textAlignment="center"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/editAnimal"
-            android:layout_width="251dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="42dp"
-            android:ems="10"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
-
-        <TextView
-            android:id="@+id/tvAnimal"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="49dp"
-            android:text="@string/observation_name"
-            android:textAlignment="textStart"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
-
-        <TextView
-            android:id="@+id/tvVegetable"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="31dp"
-            android:text="@string/observation_type"
-            android:textAlignment="textStart"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvAnimal" />
-
-        <EditText
-            android:id="@+id/editTrail"
-            android:layout_width="251dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="120dp"
-            android:ems="10"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="302dp" />
-
-        <EditText
-            android:id="@+id/editComment"
-            android:layout_width="251dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="120dp"
-            android:ems="10"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.6"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="467dp" />
-
-        <TextView
-            android:id="@+id/tvTime"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_marginStart="24dp"
-            android:text="Time:"
-            android:textAlignment="textStart"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="410dp" />
-
-        <EditText
-            android:id="@+id/editTime"
-            android:layout_width="251dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="120dp"
-            android:ems="10"
-            android:inputType="text"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.6"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="417dp" />
-
-        <TextView
-            android:id="@+id/tvTrail"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_marginStart="20dp"
-            android:text="Trail Cond.:"
-            android:textAlignment="textStart"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="302dp" />
-
-        <TextView
-            android:id="@+id/tvComment"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_marginStart="24dp"
-            android:text="Comments:"
-            android:textAlignment="textStart"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="459dp" />
-
-        <Spinner
-            android:id="@+id/spinWeather"
-            android:layout_width="251dp"
-            android:layout_height="38dp"
-            tools:layout_editor_absoluteX="140dp"
-            tools:layout_editor_absoluteY="239dp" />
-
-        <Spinner
-            android:id="@+id/spinObvType"
-            android:layout_width="251dp"
-            android:layout_height="38dp"
-            tools:layout_editor_absoluteX="134dp"
-            tools:layout_editor_absoluteY="186dp" />
-
-        <TextView
-            android:id="@+id/tvWeather"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
-            android:text="Weather Cond.:"
-            android:textAlignment="textStart"
-            android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvVegetable" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_marginEnd="32dp"
+        android:ems="11"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnTime" />
 
     <EditText
-        android:id="@+id/editDate5"
+        android:id="@+id/editComment2"
         android:layout_width="230dp"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_marginStart="149dp"
+        android:layout_marginTop="20dp"
+
+        android:layout_marginEnd="32dp"
+        android:ems="11"
+        android:inputType="text"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinObvType" />
+
+    <TextView
+        android:id="@+id/appNameTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="22dp"
+        android:text="@string/app_title"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editDate2"
+        android:layout_width="230dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="149dp"
+
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
         android:clickable="true"
         android:cursorVisible="false"
@@ -226,43 +68,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="356dp" />
+        app:layout_constraintTop_toBottomOf="@+id/editComment2" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/tvDate2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="70dp"
         android:text="Date"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="356dp" />
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvObvDescription" />
+
 
     <TextView
-        android:id="@+id/tvTitle4"
-        android:layout_width="256dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="52dp"
-        android:text="Observation details"
-        android:textAlignment="center"
-        android:textSize="25sp"
+        android:id="@+id/formTitleTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="168dp"
+        android:text="@string/observation_form_title"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnReturn4"
-        android:layout_width="84dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="5dp"
-        android:text="Back"
-        android:textAlignment="center"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/saveButton4"
+        android:id="@+id/btnSave"
         android:layout_width="161dp"
         android:layout_height="43dp"
         android:layout_marginStart="125dp"
@@ -276,79 +110,76 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
-        android:id="@+id/editTrail4"
-        android:layout_width="251dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="120dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="302dp" />
-
-    <EditText
-        android:id="@+id/editComment4"
-        android:layout_width="251dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="120dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="467dp" />
-
     <TextView
-        android:id="@+id/tvTime4"
+        android:id="@+id/tvObvDescription"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="57dp"
+        android:text="@string/observation_description"
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvObvType" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
         android:text="Time:"
         android:textAlignment="textStart"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="410dp" />
-
-    <EditText
-        android:id="@+id/editTime4"
-        android:layout_width="251dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="120dp"
-        android:ems="10"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="417dp" />
+        app:layout_constraintTop_toBottomOf="@id/tvDate2" />
 
     <TextView
-        android:id="@+id/tvTrail4"
+        android:id="@+id/tvComment"
         android:layout_width="wrap_content"
         android:layout_height="21dp"
-        android:layout_marginStart="20dp"
-        android:text="Trail Cond.:"
-        android:textAlignment="textStart"
-        android:textSize="14sp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="302dp" />
-
-    <TextView
-        android:id="@+id/tvComment4"
-        android:layout_width="wrap_content"
-        android:layout_height="21dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="60dp"
         android:text="Comments:"
         android:textAlignment="textStart"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="459dp" />
+        app:layout_constraintTop_toBottomOf="@id/tvTime" />
 
     <Spinner
-        android:id="@+id/spinWeather4"
-        android:layout_width="251dp"
-        android:layout_height="38dp"
-        tools:layout_editor_absoluteX="140dp"
-        tools:layout_editor_absoluteY="239dp" />
+        android:id="@+id/spinObvType"
+        android:layout_width="230dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="20dp"
+        android:spinnerMode="dropdown"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/formTitleTextView2" />
+
+    <TextView
+        android:id="@+id/tvObvType"
+        android:layout_width="wrap_content"
+        android:layout_height="21dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="78dp"
+        android:text="@string/observation_type"
+
+        android:textAlignment="textStart"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appNameTextView2" />
+
+    <Button
+        android:id="@+id/btnTime"
+        android:layout_width="230dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:ems="11"
+        android:onClick="popTimePicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/editDate2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

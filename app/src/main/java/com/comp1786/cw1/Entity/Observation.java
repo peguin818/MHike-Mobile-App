@@ -1,20 +1,61 @@
 package com.comp1786.cw1.Entity;
 
+import com.comp1786.cw1.constant.ObservationType;
+
+import java.sql.Time;
 import java.util.Date;
 
 public class Observation {
     private long id;
     private long hikeId;
-    private String observation;
+    private ObservationType type;
+    private String description;
+    private String date;
+    private String time;
     private String comment;
     private Date createdAt;
     private Date updatedAt;
 
 
-    public Observation(long id, long hikeId, String observation, String comment, Date createdAt, Date updatedAt) {
+    public ObservationType getType() {
+        return type;
+    }
+
+    public void setType(ObservationType type) {
+        this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public Observation(long id, long hikeId, ObservationType type, String description, String date, String time, String comment, Date createdAt, Date updatedAt) {
         this.id = id;
         this.hikeId = hikeId;
-        this.observation = observation;
+        this.type = type;
+        this.description = description;
+        this.date = date;
+        this.time = time;
         this.comment = comment;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -34,14 +75,6 @@ public class Observation {
 
     public void setHikeId(long hikeId) {
         this.hikeId = hikeId;
-    }
-
-    public String getObservation() {
-        return observation;
-    }
-
-    public void setObservation(String observation) {
-        this.observation = observation;
     }
 
     public String getComment() {
