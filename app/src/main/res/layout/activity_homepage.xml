@@ -27,13 +27,13 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/mhikeDesc"
+            android:id="@+id/mhikeSlogan"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
-            android:text="Hiking from A to Z"
+            android:text="Hike more, worry less"
             android:textColor="@color/dark_blue"
-            android:textSize="20sp"
+            android:textSize="19.5dp"
             app:layout_constraintEnd_toStartOf="@+id/mhikeImage"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/mhikeName" />
@@ -80,7 +80,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Profile"
+                        android:text="New Hike"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
 
@@ -90,43 +90,43 @@
                         android:layout_height="70dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        android:src="@drawable/profile" />
+                        android:src="@drawable/hike" />
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="20dp">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp" android:onClick="toHikeList">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:onClick="handleButtonClick">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:onClick="toHikeList">
 
                     <TextView
-                        android:id="@+id/mhikeHikeButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/mhikeHikeImage"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Hike"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="20sp" />
+                            android:id="@+id/mhikeHikeButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/mhikeHikeImage"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Hike's List"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="20sp"/>
 
                     <ImageView
-                        android:id="@+id/mhikeHikeImage"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
-                        android:src="@drawable/hike" />
+                            android:id="@+id/mhikeHikeImage"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/list"/>
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
@@ -245,7 +245,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="Video Call"
+                        android:text="Observation List"
                         android:textColor="@color/dark_blue"
                         android:textSize="20sp" />
 
@@ -255,7 +255,7 @@
                         android:layout_height="70dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="15dp"
-                        android:src="@drawable/video_call" />
+                        android:src="@drawable/observation" />
                 </RelativeLayout>
 
             </androidx.cardview.widget.CardView>

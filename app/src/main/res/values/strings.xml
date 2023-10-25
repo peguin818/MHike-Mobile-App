@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">CW1</string>
     <string name="app_title">M-Hike</string>
-    <string name="form_title">Hike Details</string>
+    <string name="form_title">List of Hikes</string>
     <string name="form_title2">Observations List</string>
     <string name="hike_name">Hike name:</string>
     <string name="location">Location:</string>
