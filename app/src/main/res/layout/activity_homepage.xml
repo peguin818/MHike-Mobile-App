@@ -96,37 +96,37 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="20dp">
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="20dp" android:onClick="toHikeList">
 
                 <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:onClick="toHikeForm">
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:onClick="toHikeList">
 
                     <TextView
-                        android:id="@+id/mhikeHikeButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/mhikeHikeImage"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/poppins_semibold"
-                        android:text="Hike's List"
-                        android:textColor="@color/dark_blue"
-                        android:textSize="20sp" />
+                            android:id="@+id/mhikeHikeButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/mhikeHikeImage"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:text="Hike's List"
+                            android:textColor="@color/dark_blue"
+                            android:textSize="20sp"/>
 
                     <ImageView
-                        android:id="@+id/mhikeHikeImage"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_marginTop="15dp"
-                        android:src="@drawable/list" />
+                            android:id="@+id/mhikeHikeImage"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"
+                            android:src="@drawable/list"/>
 
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>

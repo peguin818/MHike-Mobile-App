@@ -1,6 +1,7 @@
 package com.comp1786.cw1;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,10 +13,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.comp1786.cw1.Entity.Hike;
+import com.comp1786.cw1.HikeList.HikeListActivity;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
@@ -46,6 +46,12 @@ public class HikeForm extends AppCompatActivity {
     Spinner spinnerType;
 
     Button saveButton;
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(this, HikeListActivity.class);
+        startActivity(i);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -177,7 +183,10 @@ public class HikeForm extends AppCompatActivity {
         if (!hasError) {
             long id = hikeDbHelper.insertHikeDetails(hike);
             Toast.makeText(this, "Added successfully with id: " + id, Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, HikeListActivity.class);
+            startActivity(i);
         }
+
     }
 
     private void updateDateLabel() {

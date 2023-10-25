@@ -257,11 +257,11 @@ public class HikeDbHelper extends SQLiteOpenHelper {
             return TrailType.RETURN;
         } else if (type.equals(TrailType.LOOP.toString())) {
             return TrailType.LOOP;
-        } else if (type.equals(TrailType.PACK_CARRY.toString().replace("_", " "))) {
+        } else if (type.equals(TrailType.PACK_CARRY.toString())) {
             return TrailType.PACK_CARRY;
         } else if (type.equals(TrailType.STAGE.toString())) {
             return TrailType.STAGE;
-        } else if (type.equals(TrailType.POINT_TO_POINT.toString().replace("_", " "))) {
+        } else if (type.equals(TrailType.POINT_TO_POINT.toString())) {
             return TrailType.POINT_TO_POINT;
         } else {
             throw new IllegalAccessException("Unknown type");
