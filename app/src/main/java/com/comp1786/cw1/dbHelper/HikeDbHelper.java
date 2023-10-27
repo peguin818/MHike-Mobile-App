@@ -137,7 +137,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         Cursor results = database.query("hike",
                 new String[]{"id", "name", "location", "date_of_hike", "parking_availability", "hike_length", "difficulty",
                         "description", "trail_type", "emergency_contact", "created_at", "updated_at"},
-                null, null, null, null, "name");
+                null, null, null, null, "date_of_hike");
 
         List<Hike> hikeList = new ArrayList<>();
         results.moveToFirst();
@@ -165,24 +165,28 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         return hikeList;
     }
 
-    public List<Observation> getObservationDetails() throws ParseException {
+    public List<Observation> getObservationByHikeId(Long hikeId) throws ParseException {
+
         Cursor results = database.query("observation",
                 new String[]{"id", "hike_id", "observation", "comment", "created_at", "updated_at"},
-                null, null, null, null, "hike_id");
+                "hike_id =?", new String[]{String.valueOf(hikeId)} , null, null, "created_at");
 
         List<Observation> observationList = new ArrayList<Observation>();
 
         results.moveToFirst();
         while (!results.isAfterLast()) {
-            long id = results.getLong(0);
-            long hike_id = results.getLong(1);
-            String observation = results.getString(2);
-            String comment = results.getString(3);
-            Date created_at = new Date(results.getString(4));
-            Date updated_at = new Date(results.getString(5));
+            if(hikeId.equals(results.getLong(1))){
+                long id = results.getLong(0);
+                long hike_id = results.getLong(1);
+                String observation = results.getString(2);
+                String comment = results.getString(3);
+                Date created_at = new Date(results.getString(4));
+                Date updated_at = new Date(results.getString(5));
 
-            Observation ob = new Observation(id, hike_id, observation, comment, created_at, updated_at);
-            observationList.add(ob);
+                Observation ob = new Observation(id, hike_id, observation, comment, created_at, updated_at);
+                observationList.add(ob);
+            }
+
             results.moveToNext();
         }
         return observationList;
