@@ -8,20 +8,20 @@
     tools:context=".ObservationForm">
 
     <EditText
-        android:id="@+id/editComment"
-
+        android:id="@+id/editObvDescription"
         android:layout_width="230dp"
         android:layout_height="80dp"
         android:layout_marginStart="149dp"
         android:layout_marginTop="20dp"
-
         android:layout_marginEnd="32dp"
         android:ems="11"
         android:inputType="text"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnTime" />
+        app:layout_constraintTop_toBottomOf="@+id/spinObvType"
+        tools:visibility="visible" />
 
     <EditText
         android:id="@+id/editComment2"
@@ -29,7 +29,6 @@
         android:layout_height="80dp"
         android:layout_marginStart="149dp"
         android:layout_marginTop="20dp"
-
         android:layout_marginEnd="32dp"
         android:ems="11"
         android:inputType="text"
@@ -37,7 +36,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinObvType" />
+        app:layout_constraintTop_toBottomOf="@id/editTime"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/appNameTextView2"
@@ -49,26 +49,6 @@
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editDate2"
-        android:layout_width="230dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="149dp"
-
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="32dp"
-        android:clickable="true"
-        android:cursorVisible="false"
-        android:ems="11"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="@string/date_hint"
-        android:inputType="text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editComment2" />
 
     <TextView
         android:id="@+id/tvDate2"
@@ -169,17 +149,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appNameTextView2" />
 
-    <Button
-        android:id="@+id/btnTime"
+    <EditText
+        android:id="@+id/editTime"
         android:layout_width="230dp"
         android:layout_height="48dp"
         android:layout_marginStart="149dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
+        android:clickable="true"
+        android:cursorVisible="false"
         android:ems="11"
-        android:onClick="popTimePicker"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="text"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/editDate2" />
+        app:layout_constraintTop_toBottomOf="@+id/editDate2" />
+
+    <EditText
+        android:id="@+id/editDate2"
+        android:layout_width="230dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:clickable="true"
+        android:cursorVisible="false"
+        android:ems="11"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:inputType="text"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editObvDescription"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
