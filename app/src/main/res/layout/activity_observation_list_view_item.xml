@@ -21,14 +21,15 @@
                 android:layout_height="match_parent">
 
             <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginStart="30dp"
-                    android:text="Hike 1"
-                    android:textSize="30dp" android:layout_alignParentTop="true"
-                    android:id="@+id/hikeListViewItemName"/>
+                android:id="@+id/obsListViewItemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Observation 1"
+                android:textSize="30dp" />
 
             <ImageView
                     android:id="@+id/mhikeDetails_1"

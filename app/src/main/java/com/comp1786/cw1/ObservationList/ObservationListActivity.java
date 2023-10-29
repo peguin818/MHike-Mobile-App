@@ -1,14 +1,16 @@
-package com.comp1786.cw1;
+package com.comp1786.cw1.ObservationList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class ObservationsListActivity extends AppCompatActivity {
+import com.comp1786.cw1.R;
+
+public class ObservationListActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_observations_list);
+        setContentView(R.layout.activity_observation_list);
     }
 }
