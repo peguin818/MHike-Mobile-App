@@ -40,12 +40,12 @@ public class ObservationForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_observation_form);
         editDate2 = (EditText) findViewById(R.id.editDate2);
-        Calendar c =  Calendar.getInstance();
-        int y = c.get(Calendar.YEAR);
-        int m = c.get(Calendar.MONTH);
-        int d = c.get(Calendar.DAY_OF_MONTH);
-        int h = c.get(Calendar.HOUR_OF_DAY);
-        int mi = c.get(Calendar.MINUTE);
+
+        int y = myCalendar.get(Calendar.YEAR);
+        int m = myCalendar.get(Calendar.MONTH);
+        int d = myCalendar.get(Calendar.DAY_OF_MONTH);
+        int h = myCalendar.get(Calendar.HOUR_OF_DAY);
+        int mi = myCalendar.get(Calendar.MINUTE);
 
 
         editDate2.setText(d + "/" + (m+1) + "/" +y);
@@ -135,13 +135,13 @@ public class ObservationForm extends AppCompatActivity {
             hasError = true;
         }
 
-        if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Animal_Sighting.toString())) {
+        if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Animal_Sighting.toString().replace("_", " "))) {
             observation.setType(ObservationType.Animal_Sighting);
-        } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Vegetation_Sighting.toString())) {
+        } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Vegetation_Sighting.toString().replace("_", " "))) {
             observation.setType(ObservationType.Vegetation_Sighting);
         } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Weather_Condition.toString().replace("_", " "))) {
             observation.setType(ObservationType.Weather_Condition);
-        } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Trail_Condition.toString())) {
+        } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Trail_Condition.toString().replace("_", " "))) {
             observation.setType(ObservationType.Trail_Condition);
         } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Other.toString().replace("_", " "))) {
             observation.setType(ObservationType.Other);
@@ -177,4 +177,11 @@ public class ObservationForm extends AppCompatActivity {
         }
         return result;
     }
+/*    public DateTime(int year,
+                    int monthOfYear,
+                    int dayOfMonth,
+                    int hourOfDay,
+                    int minuteOfHour){
+
+    }*/
 }

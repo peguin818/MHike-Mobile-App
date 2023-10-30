@@ -49,6 +49,9 @@ public class Observation {
         this.time = time;
     }
 
+    public Observation() {
+    }
+
     public Observation(long id, long hikeId, ObservationType type, String description, String date, String time, String comment, Date createdAt, Date updatedAt) {
         this.id = id;
         this.hikeId = hikeId;
