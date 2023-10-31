@@ -16,7 +16,7 @@ import java.util.List;
 public class ObservationListViewAdapter extends BaseAdapter {
 
     Context context;
-    Observation<Observation> obsList;
+    List<Observation> obsList;
     LayoutInflater layoutInflater;
 
     public ObservationListViewAdapter(Context context, List<Observation> obsList) {
@@ -24,10 +24,10 @@ public class ObservationListViewAdapter extends BaseAdapter {
         this.obsList = obsList;
         layoutInflater = LayoutInflater.from(context);
     }
-//    @Override
-//    public int getCount() {
-//        return obsList.size();
-//    }
+    @Override
+    public int getCount() {
+        return obsList.size();
+    }
 
     @Override
     public Object getItem(int i) {
@@ -43,7 +43,7 @@ public class ObservationListViewAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         view = layoutInflater.inflate(R.layout.activity_observation_list_view_item, null);
         TextView textView = (TextView) view.findViewById(R.id.obsListViewItemName);
-//        textView.setText(obsList.get(position).getObsName());
+        textView.setText(obsList.get(position).getObservation());
         return view;
     }
 }

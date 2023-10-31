@@ -50,4 +50,11 @@ public class HikeListActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+/*
+    public void toHikeDetails(View view) {
+        Intent j = new Intent(this, HikeDetails.class);
+        startActivity(j);
+    }
+*/
+
 }

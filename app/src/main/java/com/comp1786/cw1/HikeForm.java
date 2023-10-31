@@ -206,4 +206,9 @@ public class HikeForm extends AppCompatActivity {
         }
         return result;
     }
+
+    public void toHikeHomepage(View view) {
+        Intent i = new Intent(this,Homepage_Activity.class);
+        startActivity(i);
+    }
 }
