@@ -43,7 +43,7 @@ public class ObservationListViewAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         view = layoutInflater.inflate(R.layout.activity_observation_list_view_item, null);
         TextView textView = (TextView) view.findViewById(R.id.obsListViewItemName);
-        textView.setText(obsList.get(position).getObservation());
+        textView.setText((int) obsList.get(position).getId());
         return view;
     }
 }

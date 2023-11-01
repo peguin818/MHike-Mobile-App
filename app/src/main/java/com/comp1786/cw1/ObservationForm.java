@@ -25,6 +25,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class ObservationForm extends AppCompatActivity {
+    public long id;
     final Calendar myCalendar = Calendar.getInstance();
     EditText editObvDescription;
     EditText editDate2;
@@ -39,6 +40,15 @@ public class ObservationForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_observation_form);
+
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            id = extras.getLong("DATA");
+        }
+        System.out.println(id);
+
+
         editDate2 = (EditText) findViewById(R.id.editDate2);
 
         int y = myCalendar.get(Calendar.YEAR);

@@ -1,12 +1,16 @@
 package com.comp1786.cw1.HikeList;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.comp1786.cw1.Entity.Hike;
+import com.comp1786.cw1.Homepage_Activity;
 import com.comp1786.cw1.R;
 
 import java.util.List;
@@ -29,12 +33,12 @@ public class HikeListViewAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return hikeList.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
@@ -44,4 +48,6 @@ public class HikeListViewAdapter extends BaseAdapter {
         textView.setText(hikeList.get(position).getHikeName());
         return view;
     }
+
+
 }

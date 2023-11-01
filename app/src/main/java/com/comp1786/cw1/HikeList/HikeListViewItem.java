@@ -15,7 +15,9 @@ public class HikeListViewItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hike_list_view_item);
+
     }
+
 
     public void toHikeHomepage(View view) {
         Intent i = new Intent(this,Homepage_Activity.class);
