@@ -48,4 +48,11 @@
     <string name="hint_e_contact">E.g. "0945493333"</string>
     <string name="hint_description">E.g. "This lazarus pit is known for its mystery"</string>
     <string name="hint_search_bar">Search for your desired hikes.</string>
+
+    <!--Menu-->
+    <string name="menuHome">Home</string>
+    <string name="menuList">List</string>
+    <string name="menuProfile">Profile</string>
+    <string name="menuAdd">Add</string>
+    <string name="menuInfo">Info</string>
 </resources>
