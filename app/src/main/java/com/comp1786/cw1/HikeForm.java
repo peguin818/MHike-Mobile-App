@@ -13,7 +13,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.HikeList.HikeListActivity;
 import com.comp1786.cw1.constant.Difficulty;
@@ -56,7 +58,7 @@ public class HikeForm extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_hike_form);
 
         editDate = (EditText) findViewById(R.id.editDate);
         //gets current date
@@ -72,10 +74,7 @@ public class HikeForm extends AppCompatActivity {
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(HikeForm.this, date, myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH))
-                        .show();
+                new DatePickerDialog(HikeForm.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -200,7 +199,7 @@ public class HikeForm extends AppCompatActivity {
 
         for (EditText text : editText) {
             if (TextUtils.isEmpty(text.getText().toString().trim())) {
-                text.setError("Field cannot be empty");
+                text.setError("This field cannot be empty.");
                 result = false;
             }
         }
@@ -208,7 +207,7 @@ public class HikeForm extends AppCompatActivity {
     }
 
     public void toHikeHomepage(View view) {
-        Intent i = new Intent(this,Homepage_Activity.class);
+        Intent i = new Intent(this, Homepage_Activity.class);
         startActivity(i);
     }
 }

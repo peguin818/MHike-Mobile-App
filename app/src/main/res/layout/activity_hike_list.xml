@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_header"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintBottom_toTopOf="@+id/svHikeList"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -76,9 +76,10 @@
                 android:layout_height="30dp"
                 android:background="@drawable/bg_icon_search"
                 android:contentDescription="@string/description_search_bar"
-                android:padding="5dp"
+                android:onClick="searchHikeList"
+                android:padding="3dp"
                 android:src="@drawable/icon_search"
-                app:tint="@color/green" />
+                app:tint="@color/sky_blue" />
 
             <EditText
                 android:layout_width="0dp"
@@ -90,6 +91,7 @@
                 android:imeOptions="actionSearch"
                 android:importantForAutofill="no"
                 android:inputType="text"
+                android:onClick="searchHikeList"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/grey"
@@ -101,10 +103,10 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ScrollView
-        android:id="@+id/scrollView2"
+        android:id="@+id/svHikeList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/white_accent"
+        android:background="@color/colorBackground"
         android:overScrollMode="never"
         android:scrollbars="none"
         app:layout_constraintBottom_toTopOf="@id/viewDivider"
@@ -149,7 +151,6 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:itemIconSize="30dp"
-        app:itemIconTint="@color/green_accent"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -159,8 +160,8 @@
     <View
         android:id="@+id/viewDivider"
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@color/viewDivider"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
         app:layout_constraintBottom_toTopOf="@id/menuBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
