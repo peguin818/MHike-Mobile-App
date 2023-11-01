@@ -148,7 +148,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         Cursor results = database.query("hike",
                 new String[]{"id", "name", "location", "date_of_hike", "parking_availability", "hike_length", "difficulty",
                         "description", "trail_type", "emergency_contact", "created_at", "updated_at"},
-                null, null, null, null, "name");
+                null, null, null, null, "date_of_hike");
 
         List<Hike> hikeList = new ArrayList<>();
         results.moveToFirst();
@@ -176,16 +176,18 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         return hikeList;
     }
 
-    public List<Observation> getObservationDetails() throws IllegalAccessException {
+    public List<Observation> getObservationByHikeId(Long hikeId) throws ParseException {
+
         Cursor results = database.query("observation",
                 new String[]{"id", "hike_id", "type", "description","date", "time","comment", "created_at", "updated_at"},
-                null, null, null, null, "hike_id");
+                "hike_id =?", new String[]{String.valueOf(hikeId)} , null, null, "created_at");
 
         List<Observation> observationList = new ArrayList<Observation>();
 
         results.moveToFirst();
         while (!results.isAfterLast()) {
-            long id = results.getLong(0);
+            if(hikeId.equals(results.getLong(1))){
+             long id = results.getLong(0);
             long hike_id = results.getLong(1);
             ObservationType type = getObservationType(results.getString(2));
             String description = results.getString(3);
@@ -197,6 +199,8 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
             Observation ob = new Observation(id, hike_id, type, description, date, time, comment, created_at, updated_at);
             observationList.add(ob);
+            }
+
             results.moveToNext();
         }
         return observationList;
