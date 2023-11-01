@@ -20,4 +20,9 @@ public class Homepage_Activity extends AppCompatActivity {
         Intent i = new Intent(this, HikeListActivity.class);
         startActivity(i);
     }
+    public void handleButtonClick2 (View view)
+    {
+        Intent i = new Intent(this, ObservationForm.class);
+        startActivity(i);
+    }
 }

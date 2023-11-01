@@ -10,6 +10,7 @@ import android.util.Log;
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.Entity.Observation;
 import com.comp1786.cw1.constant.Difficulty;
+import com.comp1786.cw1.constant.ObservationType;
 import com.comp1786.cw1.constant.TrailType;
 
 import java.text.ParseException;
@@ -38,11 +39,14 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
 
     // OBSERVATION TABLE
-    private static final String OBSERVATION_TABLE = "observation";
     private static final String OBSERVATION_TABLE_HIKE_ID = "hike_id";
-    private static final String OBSERVATION_TABLE_OBSERVATION = "observation";
+    private static final String OBSERVATION_TABLE = "observation";
+    private static final String OBSERVATION_TABLE_TYPE = "type";
+    private static final String OBSERVATION_TABLE_DESCRIPTION = "description";
+    private static final String OBSERVATION_TABLE_DATE = "date";
+    private static final String OBSERVATION_TABLE_TIME = "time";
     private static final String OBSERVATION_TABLE_COMMENT = "comment";
-    private static final String DATABASE_CREATE_QUERY = String.format(
+    private static final String CREATE_TABLE_HIKE = String.format(
             "CREATE TABLE %s (" +
                     "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "%s TEXT NOT NULL, " +
@@ -56,9 +60,9 @@ public class HikeDbHelper extends SQLiteOpenHelper {
                     "%s TEXT NOT NULL, " +
                     "%s TEXT NOT NULL, " +
                     "%s TEXT NOT NULL)",
-            HIKE_TABLE, ID_COLUMN_NAME, HIKE_TABLE_NAME, HIKE_TABLE_LOCATION, HIKE_TABLE_DATEOFHIKE,
-            HIKE_TABLE_PARKINGAVAILABILITY, HIKE_TABLE_HIKELENGTH, HIKE_TABLE_DIFFICULTY, HIKE_TABLE_DESCRIPTION,
-            HIKE_TABLE_TRAILTYPE, HIKE_TABLE_EMERGENCY, CREATEDAT_COLUMN, UPDATEDAT_COLUMN
+            HIKE_TABLE, ID_COLUMN_NAME, HIKE_TABLE_NAME, HIKE_TABLE_LOCATION, HIKE_TABLE_DATEOFHIKE, //5 biến mỗi hàng
+            HIKE_TABLE_PARKINGAVAILABILITY, HIKE_TABLE_HIKELENGTH, HIKE_TABLE_DIFFICULTY, HIKE_TABLE_DESCRIPTION,HIKE_TABLE_TRAILTYPE,
+            HIKE_TABLE_EMERGENCY, CREATEDAT_COLUMN, UPDATEDAT_COLUMN
             //Create Database query
     );
     //SQLiteDatabase: a built-in class to represent a database, to help database manipulation
@@ -67,12 +71,16 @@ public class HikeDbHelper extends SQLiteOpenHelper {
                     "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "%s INTEGER NOT NULL, " +
                     "%s TEXT NOT NULL, " +
-                    "%s TEXT, " +
+                    "%s TEXT NOT NULL, " +
+                    "%s TEXT NOT NULL, " +
+                    "%s TEXT NOT NULL, " +
+                    "%s TEXT, " + //comment
                     "%s TEXT NOT NULL, " +
                     "%s TEXT NOT NULL, " +
                     "FOREIGN KEY (%s) REFERENCES %s (%s) )",
-            OBSERVATION_TABLE, ID_COLUMN_NAME, OBSERVATION_TABLE_HIKE_ID, OBSERVATION_TABLE_OBSERVATION, OBSERVATION_TABLE_COMMENT
-            , CREATEDAT_COLUMN, UPDATEDAT_COLUMN, OBSERVATION_TABLE_HIKE_ID, HIKE_TABLE, ID_COLUMN_NAME
+            OBSERVATION_TABLE, ID_COLUMN_NAME, OBSERVATION_TABLE_HIKE_ID, OBSERVATION_TABLE_TYPE, OBSERVATION_TABLE_DESCRIPTION,
+            OBSERVATION_TABLE_DATE, OBSERVATION_TABLE_TIME, OBSERVATION_TABLE_COMMENT, CREATEDAT_COLUMN, UPDATEDAT_COLUMN,
+            OBSERVATION_TABLE_HIKE_ID, HIKE_TABLE, ID_COLUMN_NAME
             //Create Observation query
     );
     private SQLiteDatabase database;
@@ -85,7 +93,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(DATABASE_CREATE_QUERY);
+        db.execSQL(CREATE_TABLE_HIKE);
         db.execSQL(CREATE_TABLE_OBSERVATION);
         //create DB by executing query
     }
@@ -125,7 +133,10 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         ContentValues rowValues = new ContentValues(); //Create a new row
 
         rowValues.put(OBSERVATION_TABLE_HIKE_ID, observation.getHikeId());
-        rowValues.put(OBSERVATION_TABLE_OBSERVATION, observation.getObservation());
+        rowValues.put(OBSERVATION_TABLE_TYPE, observation.getType().toString());
+        rowValues.put(OBSERVATION_TABLE_DESCRIPTION, observation.getDescription());
+        rowValues.put(OBSERVATION_TABLE_DATE, observation.getDate().toString());
+        rowValues.put(OBSERVATION_TABLE_TIME, observation.getTime().toString());
         rowValues.put(OBSERVATION_TABLE_COMMENT, observation.getComment());
         rowValues.put(CREATEDAT_COLUMN, new Date().toString());
         rowValues.put(UPDATEDAT_COLUMN, new Date().toString());
@@ -165,9 +176,9 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         return hikeList;
     }
 
-    public List<Observation> getObservationDetails() throws ParseException {
+    public List<Observation> getObservationDetails() throws IllegalAccessException {
         Cursor results = database.query("observation",
-                new String[]{"id", "hike_id", "observation", "comment", "created_at", "updated_at"},
+                new String[]{"id", "hike_id", "type", "description","date", "time","comment", "created_at", "updated_at"},
                 null, null, null, null, "hike_id");
 
         List<Observation> observationList = new ArrayList<Observation>();
@@ -176,12 +187,15 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         while (!results.isAfterLast()) {
             long id = results.getLong(0);
             long hike_id = results.getLong(1);
-            String observation = results.getString(2);
-            String comment = results.getString(3);
-            Date created_at = new Date(results.getString(4));
-            Date updated_at = new Date(results.getString(5));
+            ObservationType type = getObservationType(results.getString(2));
+            String description = results.getString(3);
+            String date = results.getString(4);
+            String time = results.getString(5);
+            String comment = results.getString(6);
+            Date created_at = new Date(results.getString(7));
+            Date updated_at = new Date(results.getString(8));
 
-            Observation ob = new Observation(id, hike_id, observation, comment, created_at, updated_at);
+            Observation ob = new Observation(id, hike_id, type, description, date, time, comment, created_at, updated_at);
             observationList.add(ob);
             results.moveToNext();
         }
@@ -223,7 +237,10 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         // on below line we are passing all values
         // along with its key and value pair.
         rowValues.put(OBSERVATION_TABLE_HIKE_ID, observation.getHikeId());
-        rowValues.put(OBSERVATION_TABLE_OBSERVATION, observation.getObservation());
+        rowValues.put(OBSERVATION_TABLE_TYPE, observation.getType().toString());
+        rowValues.put(OBSERVATION_TABLE_DESCRIPTION, observation.getDescription());
+        rowValues.put(OBSERVATION_TABLE_DATE, observation.getDate().toString());
+        rowValues.put(OBSERVATION_TABLE_TIME, observation.getTime().toString());
         rowValues.put(OBSERVATION_TABLE_COMMENT, observation.getComment());
         rowValues.put(CREATEDAT_COLUMN, new Date().toString());
         rowValues.put(UPDATEDAT_COLUMN, new Date().toString());
@@ -251,7 +268,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         db.delete(OBSERVATION_TABLE, "id=?", new String[]{String.valueOf(id)});
         db.close();
     }
-
+    //for Hike
     private TrailType getTrailType(String type) throws IllegalAccessException {
         if (type.equals(TrailType.RETURN.toString())) {
             return TrailType.RETURN;
@@ -285,6 +302,22 @@ public class HikeDbHelper extends SQLiteOpenHelper {
             return true;
         } else {
             return false;
+        }
+    }
+    //for Observation
+    private ObservationType getObservationType(String type) throws IllegalAccessException {
+        if (type.equals(ObservationType.Animal_Sighting.toString())) {
+            return ObservationType.Animal_Sighting;
+        } else if (type.equals(ObservationType.Vegetation_Sighting.toString())) {
+            return ObservationType.Vegetation_Sighting;
+        } else if (type.equals(ObservationType.Weather_Condition.toString().replace("_", " "))) {
+            return ObservationType.Weather_Condition;
+        } else if (type.equals(ObservationType.Trail_Condition.toString())) {
+            return ObservationType.Trail_Condition;
+        } else if (type.equals(ObservationType.Other.toString().replace("_", " "))) {
+            return ObservationType.Other;
+        } else {
+            throw new IllegalAccessException("Unknown type");
         }
     }
 }

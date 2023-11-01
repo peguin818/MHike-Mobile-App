@@ -188,7 +188,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:onClick="handleButtonClick2">
 
                     <TextView
                         android:id="@+id/mhikeMessages"

@@ -112,7 +112,7 @@ public class HikeForm extends AppCompatActivity {
         editLocation = findViewById(R.id.editLocation);
         editDate = findViewById(R.id.editDate);
         editLength = findViewById(R.id.editLength);
-        editDescription = findViewById(R.id.editDescription);
+        editDescription = findViewById(R.id.editObvDescription);
         editEContact = findViewById(R.id.editEContact);
 
         groupPark = findViewById(R.id.rGroupParking);
