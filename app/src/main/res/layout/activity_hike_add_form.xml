@@ -5,7 +5,7 @@
     android:id="@+id/LayoutConstraints"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HikeForm">
+    tools:context=".hikeDetails.HikeAddForm">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
@@ -379,7 +379,7 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnTest"
+                    android:id="@+id/btnDeleteHike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="150dp"

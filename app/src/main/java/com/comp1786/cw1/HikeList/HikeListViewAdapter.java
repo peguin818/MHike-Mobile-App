@@ -32,13 +32,13 @@ public class HikeListViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public Hike getItem(int i) {
         return hikeList.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return i;
+        return hikeList.get(i).getId();
     }
 
     @Override

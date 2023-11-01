@@ -1,4 +1,4 @@
-package com.comp1786.cw1;
+package com.comp1786.cw1.hikeDetails;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
@@ -16,7 +16,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.HikeList.HikeListActivity;
-import com.comp1786.cw1.Entity.Observation;
+import com.comp1786.cw1.Homepage_Activity;
+import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
@@ -24,10 +25,9 @@ import com.comp1786.cw1.dbHelper.HikeDbHelper;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
-public class HikeForm extends AppCompatActivity {
+public class HikeAddForm extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
 
     EditText editHikeName;
@@ -36,17 +36,12 @@ public class HikeForm extends AppCompatActivity {
     EditText editLength;
     EditText editEContact;
     EditText editDescription;
-
     Long parsedLength;
-
     RadioGroup groupPark;
     RadioButton radioButtonPark;
-
     RadioGroup groupDifficulty;
     RadioButton radioButtonDifficulty;
-
     Spinner spinnerType;
-
     Button saveButton;
 
     @Override
@@ -58,7 +53,7 @@ public class HikeForm extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_hike_add_form);
 
         editDate = (EditText) findViewById(R.id.editDate);
         //gets current date
@@ -74,7 +69,7 @@ public class HikeForm extends AppCompatActivity {
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(HikeForm.this, date, myCalendar.get(Calendar.YEAR),
+                new DatePickerDialog(HikeAddForm.this, date, myCalendar.get(Calendar.YEAR),
                         myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH))
                         .show();
@@ -90,7 +85,7 @@ public class HikeForm extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, typeStrings);
         spinnerType.setAdapter(adapter);
 
-        saveButton = findViewById(R.id.btnTest);
+        saveButton = findViewById(R.id.btnDeleteHike);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -211,7 +206,7 @@ public class HikeForm extends AppCompatActivity {
     }
 
     public void toHikeHomepage(View view) {
-        Intent i = new Intent(this,Homepage_Activity.class);
+        Intent i = new Intent(this, Homepage_Activity.class);
         startActivity(i);
     }
 }

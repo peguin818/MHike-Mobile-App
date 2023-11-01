@@ -41,14 +41,6 @@ public class ObservationForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_observation_form);
 
-
-        Bundle extras = getIntent().getExtras();
-        if(extras != null){
-            id = extras.getLong("DATA");
-        }
-        System.out.println(id);
-
-
         editDate2 = (EditText) findViewById(R.id.editDate2);
 
         int y = myCalendar.get(Calendar.YEAR);
@@ -187,11 +179,4 @@ public class ObservationForm extends AppCompatActivity {
         }
         return result;
     }
-/*    public DateTime(int year,
-                    int monthOfYear,
-                    int dayOfMonth,
-                    int hourOfDay,
-                    int minuteOfHour){
-
-    }*/
 }

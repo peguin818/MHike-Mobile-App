@@ -158,7 +158,6 @@ public class HikeDbHelper extends SQLiteOpenHelper {
             String location = results.getString(2);
             String date_of_hike = results.getString(3);
             Boolean parking_availability = getParkingAvailability(results.getInt(4));
-            ;
             long hike_length = results.getLong(5);
             Difficulty difficulty = getDifficulty(results.getString(6));
             String description = results.getString(7);
@@ -176,7 +175,31 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         return hikeList;
     }
 
-    public List<Observation> getObservationByHikeId(Long hikeId) throws ParseException {
+    public Hike getHikeById (long hike_id ) throws IllegalAccessException {
+        Cursor results = database.query("hike",
+                new String[]{"id", "name", "location", "date_of_hike", "parking_availability", "hike_length", "difficulty",
+                        "description", "trail_type", "emergency_contact", "created_at", "updated_at"},
+                "id =?", new String[]{String.valueOf(hike_id)}, null, null, null, "1");
+        results.moveToFirst();
+
+        long id = results.getLong(0);
+        String name = results.getString(1);
+        String location = results.getString(2);
+        String date_of_hike = results.getString(3);
+        Boolean parking_availability = getParkingAvailability(results.getInt(4));
+        long hike_length = results.getLong(5);
+        Difficulty difficulty = getDifficulty(results.getString(6));
+        String description = results.getString(7);
+        TrailType trail_type = getTrailType(results.getString(8));
+        String emergency_contact = results.getString(9);
+        Date created_at = new Date(results.getString(10));
+        Date updated_at = new Date(results.getString(11));
+
+        return new Hike(id, name, location, date_of_hike, parking_availability, hike_length,difficulty, description, trail_type, emergency_contact,created_at, updated_at);
+
+    }
+
+    public List<Observation> getObservationByHikeId(Long hikeId) throws ParseException, IllegalAccessException {
 
         Cursor results = database.query("observation",
                 new String[]{"id", "hike_id", "type", "description","date", "time","comment", "created_at", "updated_at"},

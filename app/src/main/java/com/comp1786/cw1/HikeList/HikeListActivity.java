@@ -9,10 +9,11 @@ import android.widget.ListView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.comp1786.cw1.Entity.Hike;
-import com.comp1786.cw1.HikeForm;
+import com.comp1786.cw1.hikeDetails.HikeAddForm;
 import com.comp1786.cw1.ObservationForm;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
+import com.comp1786.cw1.hikeDetails.HikeDetailsForm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +49,7 @@ public class HikeListActivity extends AppCompatActivity {
                 long data = listView.getAdapter().getItemId(position);
 
                 // Create an Intent to start the ViewDetailsActivity
-                Intent intent = new Intent(HikeListActivity.this, ObservationForm.class);
+                Intent intent = new Intent(HikeListActivity.this, HikeDetailsForm.class);
 
                 // Pass the data to the ViewDetailsActivity
                 intent.putExtra("DATA", data);
@@ -68,7 +69,7 @@ public class HikeListActivity extends AppCompatActivity {
     }
 
     public void toHikeAddForm(View view) {
-        Intent i = new Intent(this, HikeForm.class);
+        Intent i = new Intent(this, HikeAddForm.class);
         startActivity(i);
     }
 }
