@@ -21,7 +21,6 @@ public class HikeDetailsForm extends AppCompatActivity {
 
     private HikeDbHelper hikeDbHelper;
     private Hike hike;
-
     TextView hikeName;
     TextView location;
     TextView date;
@@ -63,7 +62,6 @@ public class HikeDetailsForm extends AppCompatActivity {
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(hike);
 
         // Load data to view
         hikeName.setText(hike.getHikeName());
@@ -71,16 +69,26 @@ public class HikeDetailsForm extends AppCompatActivity {
         date.setText(hike.getDate());
         parking.setText(String.valueOf(hike.isParking()));
         length.setText(String.valueOf(hike.getLength()));
-        type.setText(String.valueOf(hike.getType()));
+        type.setText(hike.getType().toString().replace("_", " "));
         difficulty.setText(String.valueOf(hike.getDifficulty()));
         eContact.setText(hike.getContact());
         description.setText(hike.getDescription());
+
 
         deleteHikeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 if(hike != null){
                     deleteHike();
+                }
+
+            }
+        });
+        editHikeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                if(hike != null){
+                    editHike();
                 }
 
             }
@@ -92,5 +100,10 @@ public class HikeDetailsForm extends AppCompatActivity {
         Toast.makeText(this, "Deleted HIKE successfully with id: " + hike.getId(), Toast.LENGTH_LONG).show();
         Intent i = new Intent(this, HikeListActivity.class);
         startActivity(i);
+    }
+    public void editHike(){
+        Intent intent = new Intent(this, HikeEditForm.class);
+        intent.putExtra("DATA", hike.getId());
+        startActivity(intent);
     }
 }

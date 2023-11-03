@@ -4,6 +4,7 @@
 
     <!--Form-->
     <string name="hike_form">Hike Creating</string>
+    <string name="hike_form_edit">Hike Editing</string>
     <string name="hike_form_details">Hike Details</string>
     <string name="obs_form">Observation Creating</string>
     <string name="hike_form_desc">Another day, another hike.</string>
