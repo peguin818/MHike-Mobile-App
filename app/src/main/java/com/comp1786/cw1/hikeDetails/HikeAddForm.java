@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -43,6 +44,7 @@ public class HikeAddForm extends AppCompatActivity {
     RadioButton radioButtonDifficulty;
     Spinner spinnerType;
     Button saveButton;
+    ImageView btnBack;
 
     @Override
     public void onBackPressed() {
@@ -56,6 +58,13 @@ public class HikeAddForm extends AppCompatActivity {
         setContentView(R.layout.activity_hike_add_form);
 
         editDate = (EditText) findViewById(R.id.editDate);
+        btnBack= findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         //gets current date
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {

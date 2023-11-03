@@ -47,7 +47,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="@string/description_btnBack"
-            android:onClick="toHikeHomepage"
             android:src="@drawable/icon_back"
             app:layout_constraintBottom_toBottomOf="@+id/tvHikeList"
             app:layout_constraintStart_toStartOf="parent"
@@ -104,12 +103,11 @@
         app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
 
     <ImageView
-        android:id="@+id/mhikeAdd"
+        android:id="@+id/btnAdd"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="344dp"
-        android:layout_marginTop="816dp"
-        android:onClick="toHikeAddForm"
+        android:layout_marginStart="332dp"
+        android:layout_marginTop="740dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/add" />

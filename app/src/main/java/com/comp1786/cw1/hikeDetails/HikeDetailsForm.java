@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -32,7 +33,7 @@ public class HikeDetailsForm extends AppCompatActivity {
     TextView description;
     Button deleteHikeButton;
     Button editHikeButton;
-
+    ImageView btnBack;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,13 @@ public class HikeDetailsForm extends AppCompatActivity {
         description = findViewById(R.id.desciprtion);
         deleteHikeButton = findViewById(R.id.btnDeleteHike);
         editHikeButton = findViewById(R.id.editHikeName);
+         btnBack= findViewById(R.id.btnBack);
+         btnBack.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 onBackPressed();
+             }
+         });
 
         //extract data form list
         Bundle extras = getIntent().getExtras();

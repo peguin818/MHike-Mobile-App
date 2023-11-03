@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -46,6 +47,7 @@ public class HikeEditForm extends AppCompatActivity {
     Long parsedLength;
     private HikeDbHelper hikeDbHelper;
     private Hike hike;
+    ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,13 @@ public class HikeEditForm extends AppCompatActivity {
         groupDifficulty = findViewById(R.id.rGroupDifficulty);
         editEContact = findViewById(R.id.editEContact);
         editDescription = findViewById(R.id.editDescription);
+        btnBack= findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         //extract data form list
         Bundle extras = getIntent().getExtras();
