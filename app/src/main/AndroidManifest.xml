@@ -13,6 +13,21 @@
         android:theme="@style/Theme.CW1"
         tools:targetApi="31">
         <activity
+            android:name=".hikeDetails.HikeEditForm"
+            android:exported="false" />
+        <activity
+            android:name=".hikeDetails.HikeDetailsForm"
+            android:exported="false" />
+        <activity
+            android:name=".test"
+            android:exported="false" />
+        <activity
+            android:name=".HikeList.HikeListViewItem"
+            android:exported="false" />
+        <activity
+            android:name=".HikeList.HikeListActivity"
+            android:exported="false" />
+        <activity
             android:name=".Homepage_Activity"
             android:exported="true">
             <intent-filter>
@@ -21,10 +36,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
-            android:name=".HikeForm"
+            android:name=".hikeDetails.HikeAddForm"
             android:exported="true">
 
             <!-- <intent-filter> -->
@@ -34,6 +47,9 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
+        <activity
+            android:name=".ObservationForm"
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.comp1786.cw1.HikeList.HikeListActivity;
+
 public class Homepage_Activity extends AppCompatActivity {
 
     @Override
@@ -13,9 +15,14 @@ public class Homepage_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
     }
-    public void handleButtonClick (View view)
+
+    public void toHikeList(View view) {
+        Intent i = new Intent(this, HikeListActivity.class);
+        startActivity(i);
+    }
+    public void handleButtonClick2 (View view)
     {
-        Intent i = new Intent(this, HikeForm.class);
+        Intent i = new Intent(this, ObservationForm.class);
         startActivity(i);
     }
 }
