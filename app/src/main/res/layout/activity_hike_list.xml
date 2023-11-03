@@ -13,6 +13,9 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_header"
         android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/svHikeList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -23,6 +26,7 @@
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvHikeListDesc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -63,6 +67,8 @@
             android:background="@drawable/bg_white_rectangle"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvHikeListDesc">
 
             <ImageView
@@ -70,9 +76,10 @@
                 android:layout_height="30dp"
                 android:background="@drawable/bg_icon_search"
                 android:contentDescription="@string/description_search_bar"
-                android:padding="5dp"
+                android:onClick="searchHikeList"
+                android:padding="3dp"
                 android:src="@drawable/icon_search"
-                app:tint="@color/green" />
+                app:tint="@color/sky_blue" />
 
             <EditText
                 android:layout_width="0dp"
@@ -84,34 +91,79 @@
                 android:imeOptions="actionSearch"
                 android:importantForAutofill="no"
                 android:inputType="text"
+                android:onClick="searchHikeList"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/grey"
-                android:textSize="15sp" />
+                android:textSize="15sp"
+                android:textStyle="italic" />
 
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ListView
-        android:id="@+id/hikeListView"
-        android:layout_width="393dp"
-        android:layout_height="550dp"
-        android:layout_marginTop="50dp"
+    <ScrollView
+        android:id="@+id/svHikeList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/colorBackground"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toTopOf="@id/viewDivider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader">
 
-    <ImageView
-        android:id="@+id/mhikeAdd"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="344dp"
-        android:layout_marginTop="816dp"
-        android:onClick="toHikeAddForm"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:id="@+id/layoutHikeList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_white_rectangle"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintDimensionRatio="H,1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ListView
+                    android:id="@+id/hikeListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="660dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.444"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/menuBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="unlabeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/add" />
+        app:menu="@menu/nav_menu" />
+
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintBottom_toTopOf="@id/menuBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

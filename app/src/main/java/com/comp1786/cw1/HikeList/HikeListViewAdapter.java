@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.Homepage_Activity;
 import com.comp1786.cw1.R;
@@ -26,6 +27,7 @@ public class HikeListViewAdapter extends BaseAdapter {
         this.hikeList = hikeList;
         layoutInflater = LayoutInflater.from(context);
     }
+
     @Override
     public int getCount() {
         return hikeList.size();
