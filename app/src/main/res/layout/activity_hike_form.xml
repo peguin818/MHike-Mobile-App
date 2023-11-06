@@ -93,7 +93,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -121,7 +121,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -148,7 +148,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -179,7 +179,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -217,7 +217,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -244,7 +244,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -263,12 +263,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="20dp"
-                        android:spinnerMode="dialog" />
+                        android:spinnerMode="dropdown" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -311,7 +311,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -342,7 +342,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tvDesciprtion"
+                        android:id="@+id/tvDescription"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
@@ -368,16 +368,16 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="80dp"
                     android:orientation="horizontal">
 
                     <Button
-                        android:id="@+id/btnTest"
+                        android:id="@+id/btnSave"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="150dp"
                         android:layout_marginTop="20dp"
-                        android:text="@string/button_hike_save" />
+                        android:text="@string/button_save" />
                 </LinearLayout>
 
             </LinearLayout>

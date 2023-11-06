@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_header"
         android:padding="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/svObsList"
+        app:layout_constraintBottom_toTopOf="@+id/layoutDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -51,7 +51,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="@string/description_btnBack"
-            android:onClick="toHikeHomepage"
+            android:onClick="toObsHomepage"
             android:src="@drawable/icon_back"
             app:layout_constraintBottom_toBottomOf="@+id/tvObsList"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +102,15 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <LinearLayout
+        android:id="@+id/layoutDivider"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/colorBackground"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/svObsList"
+        app:layout_constraintTop_toBottomOf="@id/layoutHeader" />
+
     <ScrollView
         android:id="@+id/svObsList"
         android:layout_width="match_parent"
@@ -109,10 +118,10 @@
         android:background="@color/colorBackground"
         android:overScrollMode="never"
         android:scrollbars="none"
-        app:layout_constraintBottom_toTopOf="@id/viewDivider"
+        app:layout_constraintBottom_toTopOf="@id/layoutObsAdd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layoutHeader">
+        app:layout_constraintTop_toBottomOf="@id/layoutDivider">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -122,7 +131,6 @@
                 android:id="@+id/layoutObsList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:background="@drawable/bg_white_rectangle"
                 android:gravity="center"
                 android:orientation="vertical"
@@ -134,17 +142,54 @@
                 <ListView
                     android:id="@+id/obsListView"
                     android:layout_width="match_parent"
-                    android:layout_height="660dp"
+                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.444"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/layoutHeader" />
+                    app:layout_constraintStart_toStartOf="parent" />
 
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layoutObsAdd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBackground"
+        android:gravity="end|center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@id/viewDivider"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/svObsList">
+
+        <ImageView
+            android:id="@+id/obsListAdd"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/bg_button"
+            android:onClick="toObsAddForm"
+            android:src="@drawable/icon_add_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.444"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/viewDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        app:layout_constraintBottom_toTopOf="@id/menuBottom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/menuBottom"
@@ -157,14 +202,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/nav_menu" />
-
-    <View
-        android:id="@+id/viewDivider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorDivider"
-        app:layout_constraintBottom_toTopOf="@id/menuBottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
