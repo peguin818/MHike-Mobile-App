@@ -71,32 +71,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvObsListDesc">
 
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/bg_icon_search"
-                android:contentDescription="@string/description_search_bar"
-                android:onClick="searchObsList"
-                android:padding="3dp"
-                android:src="@drawable/icon_search"
-                app:tint="@color/sky_blue" />
-
-            <EditText
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/obsSearchView"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
-                android:background="@null"
-                android:contentDescription="@string/description_search_bar"
-                android:hint="@string/hint_search_bar"
-                android:imeOptions="actionSearch"
                 android:importantForAutofill="no"
                 android:inputType="text"
-                android:onClick="searchObsList"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
                 android:textColor="@color/grey"
                 android:textSize="15sp"
-                android:textStyle="italic" />
+                android:textStyle="italic"
+                app:iconifiedByDefault="false"
+                app:queryHint="@string/hint_search_bar" />
 
         </LinearLayout>
 
