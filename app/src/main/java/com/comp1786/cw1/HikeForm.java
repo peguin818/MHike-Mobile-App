@@ -87,7 +87,7 @@ public class HikeForm extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, typeStrings);
         spinnerType.setAdapter(adapter);
 
-        saveButton = findViewById(R.id.btnTest);
+        saveButton = findViewById(R.id.btnSave);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
