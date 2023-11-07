@@ -1,6 +1,6 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!--App-->
-    <string name="app_name">CW1</string>
+    <string name="app_name" tools:ignore="Typos">CW1</string>
     <string name="app_title">M-Hike</string>
     <string name="app_desc">Hike more, worry less.</string>
 
@@ -43,8 +43,8 @@
     <string name="vehicle_public">Public transports</string>
 
     <!--Button-->
-    <string name="button_hike_save">Save</string>
-    <string name="button_hike_add">Add</string>
+    <string name="button_save">Save</string>
+    <string name="button_add">Add</string>
 
     <!--Description-->
     <string name="description_btnBack">Click to go back.</string>
@@ -65,5 +65,14 @@
     <string name="menuProfile">Profile</string>
     <string name="menuAdd">Add</string>
     <string name="menuInfo">Info</string>
+
+    <!--Undefined-->
+    <string name="obs_description">Description</string>
+    <string name="obs_type">Type</string>
+    <string name="obs_name">Obs. name:</string>
+    <string name="comment">Comment:</string>
+    <string name="hint_comment">There is no hint.</string>
+    <string name="hint_time">E.g. 11:11:11</string>
+    <string name="time">Time:</string>
 
 </resources>

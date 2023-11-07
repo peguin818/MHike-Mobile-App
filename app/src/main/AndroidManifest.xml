@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" >
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -11,12 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CW1"
-        tools:targetApi="31" >
+        tools:targetApi="31">
         <activity
-            android:name=".hikeDetails.HikeDetailsForm"
-            android:exported="false" />
-        <activity
-            android:name=".test"
+            android:name=".ObservationForm"
             android:exported="false" />
         <activity
             android:name=".HikeList.HikeListViewItem"
@@ -26,7 +23,7 @@
             android:exported="false" />
         <activity
             android:name=".Homepage_Activity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,8 +31,8 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".hikeDetails.HikeAddForm"
-            android:exported="true" >
+            android:name=".HikeForm"
+            android:exported="true">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -44,9 +41,6 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity
-            android:name=".ObservationForm"
-            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
