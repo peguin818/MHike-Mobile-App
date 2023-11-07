@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ObservationList.ObservationListViewItem">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mhikeCard"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        app:cardCornerRadius="40dp"
+        app:cardElevation="20dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_white_rectangle">
+
+            <TextView
+                android:id="@+id/obsListViewItemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="45dp"
+                android:text="Name"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/obsListViewItemDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/obsListViewItemName"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="15dp"
+                android:text="Date"
+                android:textSize="20sp"
+                android:textStyle="italic" />
+
+            <ImageView
+                android:id="@+id/mhikeDetails"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="310dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:contentDescription="@string/description_search_bar"
+                android:onClick="toObsDetails"
+                android:src="@drawable/icon_details"
+                app:tint="@color/sky_blue" />
+
+            <ImageView
+                android:id="@+id/mhikeRemove"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="340dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:contentDescription="@string/description_search_bar"
+                android:onClick="deleteListItem"
+                android:src="@drawable/icon_delete"
+                app:tint="@color/red" />
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

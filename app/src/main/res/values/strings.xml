@@ -1,18 +1,78 @@
-<resources>
-    <string name="app_name">CW1</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--App-->
+    <string name="app_name" tools:ignore="Typos">CW1</string>
     <string name="app_title">M-Hike</string>
-    <string name="form_title">Hike Details</string>
-    <string name="hike_name">Name of hike:</string>
+    <string name="app_desc">Hike more, worry less.</string>
+
+    <!--Homepage-->
+    <string name="homepage_new_hike">New Hike</string>
+    <string name="homepage_hike_list">Hike\'s List</string>
+    <string name="homepage_obs_list">Observation List</string>
+    <string name="homepage_voice_call">Voice Call</string>
+    <string name="homepage_mail">Mail</string>
+    <string name="homepage_messages">Messages</string>
+
+    <!--Form-->
+    <string name="hike_form">Hike Creating</string>
+    <string name="obs_form">Observation Creating</string>
+    <string name="hike_form_desc">Another day, another hike.</string>
+    <string name="obs_form_desc">Hike more, observe more.</string>
+    <string name="hike_list">List of Hikes</string>
+    <string name="obs_list">List of Observations</string>
+    <string name="hike_list_desc">Where your journeys remain.</string>
+    <string name="obs_list_desc">Traces of your journey.</string>
+
+    <!--TextView-->
+    <string name="hike_name">Hike name:</string>
     <string name="location">Location:</string>
-    <string name="date">Date of the hike:</string>
-    <string name="park">Parking available:</string>
-    <string name="length">Length of the hike:</string>
-    <string name="difficulty">Level of difficulty:</string>
+    <string name="date">Date:</string>
+    <string name="park">Parking:</string>
+    <string name="length">Length:</string>
+    <string name="difficulty">Difficulty:</string>
     <string name="description">Description:</string>
-    <string name="vehicle_use">Vehicle use:</string>
-    <string name="hike_name_hint">E.g. "Snowdon", "Trosley Country park", etc.</string>
+    <string name="type">Type:</string>
+    <string name="e_contact">Emergency:</string>
+
+    <!--Option-->
     <string name="park_yes_radio">Yes</string>
     <string name="park_no_radio">No</string>
+    <string name="difficulty_hard_radio">Hard</string>
+    <string name="difficulty_normal_radio">Normal</string>
+    <string name="difficulty_easy_radio">Easy</string>
     <string name="vehicle_personal">Personal</string>
     <string name="vehicle_public">Public transports</string>
+
+    <!--Button-->
+    <string name="button_save">Save</string>
+    <string name="button_add">Add</string>
+
+    <!--Description-->
+    <string name="description_btnBack">Click to go back.</string>
+    <string name="description_search_bar">Type to search.</string>
+
+    <!--Hint-->
+    <string name="hint_hike_name">E.g. "Snowdon", "Trosley Country park", etc.</string>
+    <string name="hint_location">E.g. "Lazarus pit", "Son Doong Cave"</string>
+    <string name="hint_date">E.g. "10/10/2023"</string>
+    <string name="hint_length">E.g. "1024"</string>
+    <string name="hint_e_contact">E.g. "0945493333"</string>
+    <string name="hint_description">E.g. "This lazarus pit is known for its mystery"</string>
+    <string name="hint_search_bar">Search for your desired hikes.</string>
+
+    <!--Menu-->
+    <string name="menuHome">Home</string>
+    <string name="menuList">List</string>
+    <string name="menuProfile">Profile</string>
+    <string name="menuAdd">Add</string>
+    <string name="menuInfo">Info</string>
+
+    <!--Undefined-->
+    <string name="obs_description">Description</string>
+    <string name="obs_type">Type</string>
+    <string name="obs_name">Obs. name:</string>
+    <string name="comment">Comment:</string>
+    <string name="hint_comment">There is no hint.</string>
+    <string name="hint_time">E.g. 11:11:11</string>
+    <string name="time">Time:</string>
+
 </resources>
