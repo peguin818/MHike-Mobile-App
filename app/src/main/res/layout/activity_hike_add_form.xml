@@ -384,7 +384,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="150dp"
                     android:layout_marginTop="20dp"
-                    android:text="@string/button_hike_save" />
+                    android:text="@string/button_save" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

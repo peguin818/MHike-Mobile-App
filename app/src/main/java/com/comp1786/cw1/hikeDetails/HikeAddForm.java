@@ -13,14 +13,16 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.HikeList.HikeListActivity;
 import com.comp1786.cw1.Homepage_Activity;
-import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
+import com.comp1786.cw1.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -109,7 +111,7 @@ public class HikeAddForm extends AppCompatActivity {
         editLocation = findViewById(R.id.editLocation);
         editDate = findViewById(R.id.editDate);
         editLength = findViewById(R.id.editLength);
-        editDescription = findViewById(R.id.editObvDescription);
+        editDescription = findViewById(R.id.editDescription);
         editEContact = findViewById(R.id.editEContact);
 
         groupPark = findViewById(R.id.rGroupParking);

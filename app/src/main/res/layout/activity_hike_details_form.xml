@@ -309,23 +309,25 @@
             </LinearLayout>
 
             <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:orientation="horizontal">
-
-                <Button android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="80dp"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/button_hike_edit" android:id="@+id/editHikeName"/>
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:orientation="horizontal">
 
                 <Button
-                        android:id="@+id/btnDeleteHike"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="80dp"
-                        android:layout_marginTop="20dp"
-                        android:text="@string/button_hike_delete"/>
+                    android:id="@+id/editHikeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/button_edit" />
+
+                <Button
+                    android:id="@+id/btnDeleteHike"
+                    android:layout_width="147dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/button_delete" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

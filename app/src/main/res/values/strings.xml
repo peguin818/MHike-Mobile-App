@@ -45,6 +45,10 @@
     <!--Button-->
     <string name="button_save">Save</string>
     <string name="button_add">Add</string>
+    <string name="button_edit">Edit</string>
+    <string name="button_delete">Delete</string>
+
+
 
     <!--Description-->
     <string name="description_btnBack">Click to go back.</string>
@@ -74,5 +78,6 @@
     <string name="hint_comment">There is no hint.</string>
     <string name="hint_time">E.g. 11:11:11</string>
     <string name="time">Time:</string>
+    <string name="hike_form_details">Hike Details\n</string>
 
 </resources>

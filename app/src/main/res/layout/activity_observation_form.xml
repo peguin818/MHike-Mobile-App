@@ -251,7 +251,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/editComment"
+                        android:id="@+id/editObvComment"
                         android:layout_width="230dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"

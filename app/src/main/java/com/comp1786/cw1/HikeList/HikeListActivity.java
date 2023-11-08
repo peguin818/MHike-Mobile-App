@@ -11,10 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import com.comp1786.cw1.Entity.Hike;
-import com.comp1786.cw1.HikeForm;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 import com.comp1786.cw1.hikeDetails.HikeDetailsForm;
+import com.comp1786.cw1.hikeDetails.HikeAddForm;
+
 
 import java.util.ArrayList;
 import java.util.List;

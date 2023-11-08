@@ -28,7 +28,7 @@ public class ObservationForm extends AppCompatActivity {
     public long id;
     final Calendar myCalendar = Calendar.getInstance();
     EditText editObvDescription;
-    EditText editDate2;
+    EditText editDate;
     EditText editComment;
     Spinner spinnerObvType;
     Button saveButton;
@@ -41,7 +41,7 @@ public class ObservationForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_observation_form);
 
-        editDate2 = (EditText) findViewById(R.id.editDate2);
+        editDate = (EditText) findViewById(R.id.editDate);
 
         int y = myCalendar.get(Calendar.YEAR);
         int m = myCalendar.get(Calendar.MONTH);
@@ -50,7 +50,7 @@ public class ObservationForm extends AppCompatActivity {
         int mi = myCalendar.get(Calendar.MINUTE);
 
 
-        editDate2.setText(d + "/" + (m+1) + "/" +y);
+        editDate.setText(d + "/" + (m+1) + "/" +y);
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -61,7 +61,7 @@ public class ObservationForm extends AppCompatActivity {
                 updateDateLabel();
             }
         };
-        editDate2.setOnClickListener(new View.OnClickListener() {
+        editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new DatePickerDialog(ObservationForm.this, date, myCalendar.get(Calendar.YEAR),
@@ -91,7 +91,7 @@ public class ObservationForm extends AppCompatActivity {
                         .show();
             }
         });
-        spinnerObvType = findViewById(R.id.spinObvType);
+        spinnerObvType = findViewById(R.id.spinType);
         ObservationType[] items = ObservationType.values();
         String[] obvTypeStrings = new String[items.length];
         for (int i = 0; i < items.length; i++) {
@@ -121,19 +121,19 @@ public class ObservationForm extends AppCompatActivity {
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
         Observation observation = new Observation();
 
-        editObvDescription = findViewById(R.id.editObvDescription);
-        editDate2 = findViewById(R.id.editDate2);
+        editObvDescription = findViewById(R.id.editDescription);
+        editDate = findViewById(R.id.editDate);
         editTime = findViewById(R.id.editTime);
-        editComment = findViewById(R.id.editComment2);
+        editComment = findViewById(R.id.editObvComment);
 
         observation.setDescription(editObvDescription.getText().toString());
-        observation.setDate(editDate2.getText().toString());
+        observation.setDate(editDate.getText().toString());
         observation.setTime(editTime.getText().toString());
         observation.setComment(editComment.getText().toString());
 
         boolean hasError = false;
 
-        if (!verifyBlankEditText(editObvDescription, editDate2, editTime, editComment)) {
+        if (!verifyBlankEditText(editObvDescription, editDate, editTime, editComment)) {
             hasError = true;
         }
 
@@ -161,7 +161,7 @@ public class ObservationForm extends AppCompatActivity {
         private void updateDateLabel() {
         String myFormat = "dd/MM/yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ROOT);
-        editDate2.setText(dateFormat.format(myCalendar.getTime()).toString());
+        editDate.setText(dateFormat.format(myCalendar.getTime()).toString());
     }
     private void updateTimeLabel() {
         String myFormat = "HH:mm";
