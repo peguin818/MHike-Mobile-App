@@ -19,47 +19,50 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.HikeList.HikeListActivity;
-import com.comp1786.cw1.Homepage_Activity;
+import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
-import com.comp1786.cw1.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class HikeAddForm extends AppCompatActivity {
-    final Calendar myCalendar = Calendar.getInstance();
+public class HikeEditForm extends AppCompatActivity {
 
+    final Calendar myCalendar = Calendar.getInstance();
     EditText editHikeName;
     EditText editLocation;
     EditText editDate;
     EditText editLength;
     EditText editEContact;
     EditText editDescription;
-    Long parsedLength;
-    RadioGroup groupPark;
+    RadioGroup groupParking;
     RadioButton radioButtonPark;
     RadioGroup groupDifficulty;
     RadioButton radioButtonDifficulty;
     Spinner spinnerType;
     Button saveButton;
+    Long parsedLength;
+    private HikeDbHelper hikeDbHelper;
+    private Hike hike;
     ImageView btnBack;
-
-    @Override
-    public void onBackPressed() {
-        Intent i = new Intent(this, HikeListActivity.class);
-        startActivity(i);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hike_add_form);
+        setContentView(R.layout.activity_hike_edit_form);
 
-        editDate = (EditText) findViewById(R.id.editDate);
+        editHikeName = findViewById(R.id.editHikeName);
+        editLocation = findViewById(R.id.editLocation);
+        editDate = findViewById(R.id.editDate);
+        groupParking = findViewById(R.id.rGroupParking);
+        editLength = findViewById(R.id.editLength);
+        spinnerType = findViewById(R.id.spinType);
+        groupDifficulty = findViewById(R.id.rGroupDifficulty);
+        editEContact = findViewById(R.id.editEContact);
+        editDescription = findViewById(R.id.editDescription);
         btnBack= findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +70,48 @@ public class HikeAddForm extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        //extract data form list
+        Bundle extras = getIntent().getExtras();
+        long id = 0;
+        if (extras != null) {
+            id = extras.getLong("DATA");
+        }
+
+        //get Hike from database
+        hikeDbHelper = new HikeDbHelper(getApplicationContext());
+        try {
+            hike = hikeDbHelper.getHikeById(id);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+
+        editHikeName.setText(hike.getHikeName());
+        editLocation.setText(hike.getLocation());
+        editDate.setText(hike.getDate());
+        editLength.setText(String.valueOf(hike.getLength()));
+        editEContact.setText(hike.getContact());
+        editDescription.setText(hike.getDescription());
+
+        //set Parking
+        if(hike.isParking() == true){
+            radioButtonPark = findViewById(R.id.radioParkYes);
+        }else if(hike.isParking() == false){
+            radioButtonPark = findViewById(R.id.radioParkNo);
+        }
+        radioButtonPark.setChecked(true);
+
+        //set difficulty
+        if(hike.getDifficulty() == Difficulty.EASY){
+            radioButtonDifficulty = findViewById(R.id.radioEasy);
+        }else if(hike.getDifficulty() == Difficulty.NORMAL){
+            radioButtonDifficulty = findViewById(R.id.radioNormal);
+        }else if(hike.getDifficulty() == Difficulty.HARD){
+            radioButtonDifficulty = findViewById(R.id.radioHard);
+        }
+
+        radioButtonDifficulty.setChecked(true);
+
 
         //gets current date
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -81,13 +126,11 @@ public class HikeAddForm extends AppCompatActivity {
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(HikeAddForm.this, date, myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH))
-                        .show();
+                new DatePickerDialog(HikeEditForm.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
+        // set Trail Type
         spinnerType = findViewById(R.id.spinType);
         TrailType[] items = TrailType.values();
         String[] typeStrings = new String[items.length];
@@ -96,6 +139,9 @@ public class HikeAddForm extends AppCompatActivity {
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, typeStrings);
         spinnerType.setAdapter(adapter);
+        int spinnerPosition = adapter.getPosition(hike.getType().toString().replace("_", " "));
+        spinnerType.setSelection(spinnerPosition);
+
 
         saveButton = findViewById(R.id.btnDeleteHike);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -110,28 +156,20 @@ public class HikeAddForm extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void saveDetails() throws ParseException, IllegalAccessException {
 
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
-        Hike hike = new Hike();
+        Hike updatedHike = new Hike();
 
-        editHikeName = findViewById(R.id.editHikeName);
-        editLocation = findViewById(R.id.editLocation);
-        editDate = findViewById(R.id.editDate);
-        editLength = findViewById(R.id.editLength);
-        editDescription = findViewById(R.id.editDescription);
-        editEContact = findViewById(R.id.editEContact);
-
-        groupPark = findViewById(R.id.rGroupParking);
-        groupDifficulty = findViewById(R.id.rGroupDifficulty);
-
-        hike.setHikeName(editHikeName.getText().toString());
-        hike.setLocation(editLocation.getText().toString());
-        hike.setDate(editDate.getText().toString());
-        hike.setDescription(editDescription.getText().toString());
-        hike.setContact(editEContact.getText().toString());
+        updatedHike.setId(this.hike.getId());
+        updatedHike.setHikeName(editHikeName.getText().toString());
+        updatedHike.setLocation(editLocation.getText().toString());
+        updatedHike.setDate(editDate.getText().toString());
+        updatedHike.setDescription(editDescription.getText().toString());
+        updatedHike.setContact(editEContact.getText().toString());
 
         boolean hasError = false;
 
@@ -139,13 +177,13 @@ public class HikeAddForm extends AppCompatActivity {
             hasError = true;
         }
 
-        int selectedParkId = groupPark.getCheckedRadioButtonId();
+        int selectedParkId = groupParking.getCheckedRadioButtonId();
         radioButtonPark = findViewById(selectedParkId);
         if (radioButtonPark != null) {
             if (radioButtonPark.getId() == R.id.radioParkYes) {
-                hike.setParking(true);
+                updatedHike.setParking(true);
             } else if (radioButtonPark.getId() == R.id.radioParkNo) {
-                hike.setParking(false);
+                updatedHike.setParking(false);
             }
         } else {
             Toast.makeText(this, "Please select at least an option for Parking Availability", Toast.LENGTH_LONG).show();
@@ -153,15 +191,15 @@ public class HikeAddForm extends AppCompatActivity {
         }
 
         if (spinnerType.getSelectedItem().toString().equals(TrailType.RETURN.toString())) {
-            hike.setType(TrailType.RETURN);
+            updatedHike.setType(TrailType.RETURN);
         } else if (spinnerType.getSelectedItem().toString().equals(TrailType.LOOP.toString())) {
-            hike.setType(TrailType.LOOP);
+            updatedHike.setType(TrailType.LOOP);
         } else if (spinnerType.getSelectedItem().toString().equals(TrailType.PACK_CARRY.toString().replace("_", " "))) {
-            hike.setType(TrailType.PACK_CARRY);
+            updatedHike.setType(TrailType.PACK_CARRY);
         } else if (spinnerType.getSelectedItem().toString().equals(TrailType.STAGE.toString())) {
-            hike.setType(TrailType.STAGE);
+            updatedHike.setType(TrailType.STAGE);
         } else if (spinnerType.getSelectedItem().toString().equals(TrailType.POINT_TO_POINT.toString().replace("_", " "))) {
-            hike.setType(TrailType.POINT_TO_POINT);
+            updatedHike.setType(TrailType.POINT_TO_POINT);
         } else {
             Toast.makeText(this, "Please select at least an option for Trail Type", Toast.LENGTH_LONG).show();
             hasError = true;
@@ -171,11 +209,11 @@ public class HikeAddForm extends AppCompatActivity {
         radioButtonDifficulty = findViewById(selectedDifficultyId);
         if (radioButtonDifficulty != null) {
             if (radioButtonDifficulty.getId() == R.id.radioHard) {
-                hike.setDifficulty(Difficulty.HARD);
+                updatedHike.setDifficulty(Difficulty.HARD);
             } else if (radioButtonDifficulty.getId() == R.id.radioNormal) {
-                hike.setDifficulty(Difficulty.NORMAL);
+                updatedHike.setDifficulty(Difficulty.NORMAL);
             } else if (radioButtonDifficulty.getId() == R.id.radioEasy) {
-                hike.setDifficulty(Difficulty.EASY);
+                updatedHike.setDifficulty(Difficulty.EASY);
             }
         } else {
             Toast.makeText(this, "Please select at least an option for Difficulty", Toast.LENGTH_LONG).show();
@@ -184,19 +222,20 @@ public class HikeAddForm extends AppCompatActivity {
 
         try {
             parsedLength = Long.parseUnsignedLong(editLength.getText().toString());
-            hike.setLength(parsedLength);
+            updatedHike.setLength(parsedLength);
         } catch (Exception e) {
             editLength.setError("Please enter a number higher than 0");
         }
 
         if (!hasError) {
-            long id = hikeDbHelper.insertHikeDetails(hike);
+            boolean updateStatus = hikeDbHelper.updateHike(updatedHike);
+            if(updateStatus){
+                Toast.makeText(this, "Updated successfully with id: " + hike.getId(), Toast.LENGTH_LONG).show();
+                Intent i = new Intent(this, HikeListActivity.class);
+                startActivity(i);
+            }
 
-            Toast.makeText(this, "Added successfully with id: " + id, Toast.LENGTH_LONG).show();
-            Intent i = new Intent(this, HikeListActivity.class);
-            startActivity(i);
         }
-
     }
 
     private void updateDateLabel() {
@@ -215,10 +254,5 @@ public class HikeAddForm extends AppCompatActivity {
             }
         }
         return result;
-    }
-
-    public void toHikeHomepage(View view) {
-        Intent i = new Intent(this, Homepage_Activity.class);
-        startActivity(i);
     }
 }

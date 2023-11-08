@@ -87,7 +87,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
     public HikeDbHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
-        database = getWritableDatabase();
+        database = this.getWritableDatabase();
         //get database object
     }
 
@@ -229,14 +229,14 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         return observationList;
     }
 
-    public void updateHike(Hike hike) {
+    public boolean updateHike(Hike hike) {
 
         // calling a method to get writable database.
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues rowValues = new ContentValues();
 
         // on below line we are passing all values
         // along with its key and value pair.
+        rowValues.put(ID_COLUMN_NAME, hike.getId());
         rowValues.put(HIKE_TABLE_NAME, hike.getHikeName());
         rowValues.put(HIKE_TABLE_LOCATION, hike.getLocation());
         rowValues.put(HIKE_TABLE_DATEOFHIKE, hike.getDate().toString());
@@ -251,14 +251,13 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
         // on below line we are calling a update method to update our database and passing our values.
         // and we are comparing it with name of our course which is stored in original name variable.
-        db.update(HIKE_TABLE, rowValues, "id=?", new String[]{String.valueOf(hike.getId())});
-        db.close();
+        int row =  database.update(HIKE_TABLE, rowValues, "id=?", new String[]{hike.getId() + ""});
+        return (row>0);
     }
 
-    public void updateObservation(Observation observation) {
+    public int updateObservation(Observation observation) {
 
         // calling a method to get writable database.
-        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues rowValues = new ContentValues();
 
         // on below line we are passing all values
@@ -274,8 +273,8 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
         // on below line we are calling a update method to update our database and passing our values.
         // and we are comparing it with name of our course which is stored in original name variable.
-        db.update(OBSERVATION_TABLE, rowValues, "id=?", new String[]{String.valueOf(observation.getId())});
-        db.close();
+        return database.update(OBSERVATION_TABLE, rowValues, "id=?", new String[]{String.valueOf(observation.getId())});
+
     }
 
     public void deleteHikeById(long id) {

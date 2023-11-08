@@ -16,6 +16,12 @@
             android:name=".ObservationForm"
             android:exported="false" />
         <activity
+            android:name=".hikeDetails.HikeEditForm"
+            android:exported="false" />
+        <activity
+            android:name=".hikeDetails.HikeDetailsForm"
+            android:exported="false" />
+        <activity
             android:name=".HikeList.HikeListViewItem"
             android:exported="false" />
         <activity
@@ -41,6 +47,9 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
+        <activity
+            android:name=".test"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

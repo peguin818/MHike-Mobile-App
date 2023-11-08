@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -11,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import com.comp1786.cw1.Entity.Hike;
+import com.comp1786.cw1.Homepage_Activity;
+import com.comp1786.cw1.hikeDetails.HikeAddForm;
+import com.comp1786.cw1.ObservationForm;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 import com.comp1786.cw1.hikeDetails.HikeDetailsForm;
@@ -26,6 +30,8 @@ public class HikeListActivity extends AppCompatActivity {
     ListView listView;
     SearchView searchView;
     HikeListViewAdapter hikeListViewAdapter;
+    ImageView btnBack;
+    ImageView btnAdd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,15 +39,31 @@ public class HikeListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_hike_list);
 
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
-
+        btnBack= findViewById(R.id.btnBack);
+        btnAdd= findViewById(R.id.btnAdd);
         try {
-            hikeList = hikeDbHelper.getHikeDetails();
+            testList = hikeDbHelper.getHikeDetails();
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
 
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toHikeList();
+            }
+        });
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toHikeAddForm();
+            }
+        });
+
+
         listView = (ListView) findViewById(R.id.hikeListView);
-        hikeListViewAdapter = new HikeListViewAdapter(getApplicationContext(), hikeList);
+        HikeListViewAdapter hikeListViewAdapter = new HikeListViewAdapter(getApplicationContext(), testList);
         listView.setAdapter(hikeListViewAdapter);
 
 
@@ -82,12 +104,16 @@ public class HikeListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         listView = (ListView) findViewById(R.id.hikeListView);
-        hikeListViewAdapter = new HikeListViewAdapter(getApplicationContext(), hikeList);
+        HikeListViewAdapter hikeListViewAdapter = new HikeListViewAdapter(getApplicationContext(), testList);
         listView.setAdapter(hikeListViewAdapter);
     }
 
     public void toHikeAddForm(View view) {
         Intent i = new Intent(this, HikeAddForm.class);
+        startActivity(i);
+    }
+    private void toHikeList(){
+        Intent i = new Intent(this, Homepage_Activity.class);
         startActivity(i);
     }
 
