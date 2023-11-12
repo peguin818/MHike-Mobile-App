@@ -44,7 +44,7 @@ public class HikeListViewAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return hikeList.get(i).getId();
     }
 
     @Override

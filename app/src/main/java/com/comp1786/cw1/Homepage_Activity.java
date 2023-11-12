@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.comp1786.cw1.HikeList.HikeListActivity;
+import com.comp1786.cw1.ObservationList.ObservationListActivity;
+import com.comp1786.cw1.obsDetails.ObservationAddForm;
 
 public class Homepage_Activity extends AppCompatActivity {
 
@@ -20,9 +22,13 @@ public class Homepage_Activity extends AppCompatActivity {
         Intent i = new Intent(this, HikeListActivity.class);
         startActivity(i);
     }
-    public void handleButtonClick2 (View view)
+    public void toObvForm (View view)
     {
-        Intent i = new Intent(this, ObservationForm.class);
+        Intent i = new Intent(this, ObservationAddForm.class);
+        startActivity(i);
+    }
+    public void toObvList(View view) {
+        Intent i = new Intent(this, ObservationListActivity.class);
         startActivity(i);
     }
 }

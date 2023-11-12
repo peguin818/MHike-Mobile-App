@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".hikeDetails.HikeEditForm">
+    tools:context=".obsDetails.ObservationDetailsForm">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
@@ -19,13 +19,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="111dp"
             android:layout_marginEnd="156dp"
-            android:text="@string/hike_form_edit"
+            android:text="@string/hike_form_details"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btnBack"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <ImageView
             android:id="@+id/btnBack"
@@ -35,57 +35,20 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:contentDescription="@string/description_btnBack"
-            android:onClick="toHikeHomepage"
+            android:onClick="toHikeList"
             android:src="@drawable/icon_back"
             app:layout_constraintBottom_toBottomOf="@+id/tvHikeForm"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tvHikeForm"
             app:tint="@color/white" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:background="@drawable/bg_white_rectangle"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHikeForm">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@drawable/bg_icon_search"
-                android:contentDescription="@string/description_search_bar"
-                android:padding="5dp"
-                android:src="@drawable/icon_search"
-                app:tint="@color/green" />
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:contentDescription="@string/description_search_bar"
-                android:hint="@string/hint_search_bar"
-                android:imeOptions="actionSearch"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:paddingStart="5dp"
-                android:paddingEnd="5dp"
-                android:textColor="@color/grey"
-                android:textSize="15sp" />
-
-        </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <ScrollView
         android:id="@+id/scollview4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="407dp"
+        android:layout_height="776dp"
         android:layout_marginTop="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -109,10 +72,10 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/hike_name"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
-                <EditText
-                    android:id="@+id/btnEditHike"
+                <TextView
+                    android:id="@+id/hikeName"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -121,7 +84,7 @@
                     android:ems="11"
                     android:hint="@string/hint_hike_name"
                     android:inputType="text"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"/>
             </LinearLayout>
 
             <LinearLayout
@@ -137,10 +100,10 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/location"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
-                <EditText
-                    android:id="@+id/editLocation"
+                <TextView
+                    android:id="@+id/location"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -148,7 +111,7 @@
                     android:ems="11"
                     android:hint="@string/hint_location"
                     android:inputType="text"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"/>
             </LinearLayout>
 
             <LinearLayout
@@ -164,10 +127,10 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/date"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
-                <EditText
-                    android:id="@+id/editDate"
+                <TextView
+                    android:id="@+id/date"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -179,7 +142,7 @@
                     android:focusableInTouchMode="false"
                     android:hint="@string/hint_date"
                     android:inputType="text"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"/>
             </LinearLayout>
 
             <LinearLayout
@@ -195,29 +158,17 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/park"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
-                <RadioGroup
-                    android:id="@+id/rGroupParking"
-                    android:layout_width="140dp"
+                <TextView android:id="@+id/parking"
+                    android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/radioParkYes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:text="@string/park_yes_radio" />
-
-                    <RadioButton
-                        android:id="@+id/radioParkNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:text="@string/park_no_radio" />
-
-                </RadioGroup>
+                    android:layout_marginTop="10dp"
+                    android:ems="11"
+                    android:hint="@string/hint_location"
+                    android:inputType="text"
+                    android:textStyle="italic"/>
             </LinearLayout>
 
             <LinearLayout
@@ -233,10 +184,10 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/length"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
-                <EditText
-                    android:id="@+id/editLength"
+                <TextView
+                    android:id="@+id/length"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -244,7 +195,7 @@
                     android:ems="11"
                     android:hint="@string/hint_length"
                     android:inputType="number"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"/>
             </LinearLayout>
 
             <LinearLayout
@@ -260,15 +211,18 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/type"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
-                <Spinner
-                    android:id="@+id/spinType"
-                    android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/type"
+                    android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:spinnerMode="dialog" />
+                    android:layout_marginTop="10dp"
+                    android:ems="11"
+                    android:hint="@string/type"
+                    android:inputType="number"
+                    android:textStyle="italic"/>
             </LinearLayout>
 
             <LinearLayout
@@ -284,34 +238,18 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/difficulty"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
-
-                <RadioGroup
-                    android:id="@+id/rGroupDifficulty"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/difficulty"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="10dp"
+                    android:ems="11"
+                    android:hint="@string/type"
+                    android:inputType="number"
+                    android:textStyle="italic"/>
 
-                    <RadioButton
-                        android:id="@+id/radioEasy"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:text="@string/difficulty_easy_radio" />
-
-                    <RadioButton
-                        android:id="@+id/radioNormal"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:text="@string/difficulty_normal_radio" />
-
-                    <RadioButton
-                        android:id="@+id/radioHard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="25dp"
-                        android:text="@string/difficulty_hard_radio" />
-                </RadioGroup>
             </LinearLayout>
 
             <LinearLayout
@@ -327,10 +265,10 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/e_contact"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
-                <EditText
-                    android:id="@+id/editEContact"
+                <TextView
+                    android:id="@+id/eContact"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
@@ -338,7 +276,7 @@
                     android:ems="11"
                     android:hint="@string/hint_e_contact"
                     android:inputType="phone"
-                    android:textStyle="italic" />
+                    android:textStyle="italic"/>
             </LinearLayout>
 
             <LinearLayout
@@ -354,35 +292,40 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/description"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"/>
 
-                <EditText
-                    android:id="@+id/editDescription"
+                <TextView
+                    android:id="@+id/desciprtion"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:ems="11"
-                    android:hint="@string/hint_description"
-                    android:inputType="textMultiLine"
-                    android:lines="4"
-                    android:selectAllOnFocus="true"
-                    android:singleLine="false"
-                    android:textStyle="italic" />
+                    android:hint="@string/hint_e_contact"
+                    android:inputType="phone"
+                    android:textStyle="italic"/>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="80dp"
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/btnDeleteHike"
+                    android:id="@+id/btnEditHike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="150dp"
+                    android:layout_marginStart="80dp"
                     android:layout_marginTop="20dp"
-                    android:text="@string/button_save" />
+                    android:text="@string/button_edit" />
+
+                <Button
+                    android:id="@+id/btnDeleteHike"
+                    android:layout_width="147dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/button_delete" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

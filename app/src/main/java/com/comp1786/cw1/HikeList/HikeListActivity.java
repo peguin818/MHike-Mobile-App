@@ -14,11 +14,9 @@ import androidx.appcompat.widget.SearchView;
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.Homepage_Activity;
 import com.comp1786.cw1.hikeDetails.HikeAddForm;
-import com.comp1786.cw1.ObservationForm;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 import com.comp1786.cw1.hikeDetails.HikeDetailsForm;
-import com.comp1786.cw1.hikeDetails.HikeAddForm;
 
 
 import java.util.ArrayList;
@@ -40,9 +38,9 @@ public class HikeListActivity extends AppCompatActivity {
 
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
         btnBack= findViewById(R.id.btnBack);
-        btnAdd= findViewById(R.id.btnAdd);
+        btnAdd= findViewById(R.id.hikeListAdd);
         try {
-            testList = hikeDbHelper.getHikeDetails();
+            hikeList = hikeDbHelper.getHikeList();
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -63,7 +61,7 @@ public class HikeListActivity extends AppCompatActivity {
 
 
         listView = (ListView) findViewById(R.id.hikeListView);
-        HikeListViewAdapter hikeListViewAdapter = new HikeListViewAdapter(getApplicationContext(), testList);
+        hikeListViewAdapter = new HikeListViewAdapter(getApplicationContext(), hikeList);
         listView.setAdapter(hikeListViewAdapter);
 
 
@@ -104,11 +102,11 @@ public class HikeListActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         listView = (ListView) findViewById(R.id.hikeListView);
-        HikeListViewAdapter hikeListViewAdapter = new HikeListViewAdapter(getApplicationContext(), testList);
+        hikeListViewAdapter = new HikeListViewAdapter(getApplicationContext(), hikeList);
         listView.setAdapter(hikeListViewAdapter);
     }
 
-    public void toHikeAddForm(View view) {
+    public void toHikeAddForm() {
         Intent i = new Intent(this, HikeAddForm.class);
         startActivity(i);
     }
@@ -131,12 +129,4 @@ public class HikeListActivity extends AppCompatActivity {
             hikeListViewAdapter.filterList(filteredHikeList);
         }
     }
-
-/*
-    public void toHikeDetails(View view) {
-        Intent j = new Intent(this, HikeDetails.class);
-        startActivity(j);
-    }
-*/
-
 }

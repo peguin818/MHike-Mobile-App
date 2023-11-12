@@ -314,20 +314,30 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/editHikeName"
+                    android:id="@+id/btnEditHike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="80dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/button_edit" />
 
                 <Button
                     android:id="@+id/btnDeleteHike"
-                    android:layout_width="147dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="80dp"
+                    android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/button_delete" />
+
+                <Button
+                    android:id="@+id/btnObservation"
+                    android:layout_width="106dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_weight="1"
+                    android:text="Observations" />
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

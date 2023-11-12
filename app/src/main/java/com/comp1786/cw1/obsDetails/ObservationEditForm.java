@@ -1,4 +1,4 @@
-package com.comp1786.cw1;
+package com.comp1786.cw1.obsDetails;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,11 +11,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.comp1786.cw1.Entity.Observation;
+import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.ObservationType;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 
@@ -24,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class ObservationForm extends AppCompatActivity {
+public class ObservationEditForm extends AppCompatActivity {
     public long id;
     final Calendar myCalendar = Calendar.getInstance();
     EditText editObvDescription;
@@ -33,13 +35,14 @@ public class ObservationForm extends AppCompatActivity {
     Spinner spinnerObvType;
     Button saveButton;
     EditText editTime;
-/*
-    int hour, minute;
-*/
+    private HikeDbHelper hikeDbHelper;
+    private Observation observation;
+    ImageView btnBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_observation_form);
+        setContentView(R.layout.activity_observation_edit_form);
 
         editDate = (EditText) findViewById(R.id.editDate);
 
@@ -49,8 +52,20 @@ public class ObservationForm extends AppCompatActivity {
         int h = myCalendar.get(Calendar.HOUR_OF_DAY);
         int mi = myCalendar.get(Calendar.MINUTE);
 
+        editDate.setText(d + "/" + (m + 1) + "/" + y);
 
-        editDate.setText(d + "/" + (m+1) + "/" +y);
+        //get Obs from database
+        hikeDbHelper = new HikeDbHelper(getApplicationContext());
+        try {
+            observation = hikeDbHelper.getObservationByID(id);
+        } catch (IllegalAccessException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        editObvDescription.setText(observation.getDescription());
+        editTime.setText(observation.getTime());
+        editDate.setText(observation.getDate());
+        editComment.setText(observation.getComment());
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -61,10 +76,16 @@ public class ObservationForm extends AppCompatActivity {
                 updateDateLabel();
             }
         };
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(ObservationForm.this, date, myCalendar.get(Calendar.YEAR),
+                new DatePickerDialog(ObservationEditForm.this, date, myCalendar.get(Calendar.YEAR),
                         myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH))
                         .show();
@@ -82,12 +103,12 @@ public class ObservationForm extends AppCompatActivity {
                 updateTimeLabel();
             }
         };
-        editTime.setOnClickListener(new View.OnClickListener(){
+        editTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new TimePickerDialog(ObservationForm.this, time,
+                new TimePickerDialog(ObservationEditForm.this, time,
                         myCalendar.get(Calendar.HOUR_OF_DAY),
-                        myCalendar.get(Calendar.MINUTE),true)
+                        myCalendar.get(Calendar.MINUTE), true)
                         .show();
             }
         });
@@ -158,7 +179,7 @@ public class ObservationForm extends AppCompatActivity {
         }
     }
 
-        private void updateDateLabel() {
+    private void updateDateLabel() {
         String myFormat = "dd/MM/yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ROOT);
         editDate.setText(dateFormat.format(myCalendar.getTime()).toString());

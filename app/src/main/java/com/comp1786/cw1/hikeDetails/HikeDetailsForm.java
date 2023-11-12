@@ -1,14 +1,9 @@
 package com.comp1786.cw1.hikeDetails;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,11 +28,14 @@ public class HikeDetailsForm extends AppCompatActivity {
     TextView description;
     Button deleteHikeButton;
     Button editHikeButton;
+    Button toObsButton;
+
     ImageView btnBack;
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hike_details_form);
+
         hikeName = findViewById(R.id.hikeName);
         location = findViewById(R.id.location);
         date = findViewById(R.id.date);
@@ -48,13 +46,21 @@ public class HikeDetailsForm extends AppCompatActivity {
         eContact = findViewById(R.id.eContact);
         description = findViewById(R.id.desciprtion);
         deleteHikeButton = findViewById(R.id.btnDeleteHike);
-        editHikeButton = findViewById(R.id.editHikeName);
+        editHikeButton = findViewById(R.id.btnEditHike);
+        toObsButton = findViewById(R.id.btnObservation);
          btnBack= findViewById(R.id.btnBack);
          btnBack.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
                  onBackPressed();
              }
+         });
+         toObsButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 if(hike != null){
+                     toObsList();
+                 }}
          });
 
         //extract data form list
@@ -88,9 +94,7 @@ public class HikeDetailsForm extends AppCompatActivity {
             public void onClick(View view) {
                 if(hike != null){
                     deleteHike();
-                }
-
-            }
+                }}
         });
         editHikeButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -113,5 +117,8 @@ public class HikeDetailsForm extends AppCompatActivity {
         Intent intent = new Intent(this, HikeEditForm.class);
         intent.putExtra("DATA", hike.getId());
         startActivity(intent);
+    }
+    public void toObsList(){
+
     }
 }

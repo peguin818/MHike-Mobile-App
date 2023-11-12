@@ -117,7 +117,7 @@ public class HikeAddForm extends AppCompatActivity {
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
         Hike hike = new Hike();
 
-        editHikeName = findViewById(R.id.editHikeName);
+        editHikeName = findViewById(R.id.btnEditHike);
         editLocation = findViewById(R.id.editLocation);
         editDate = findViewById(R.id.editDate);
         editLength = findViewById(R.id.editLength);

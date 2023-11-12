@@ -109,7 +109,7 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:onClick="toHikeList">
+                    >
 
                     <TextView
                         android:id="@+id/mhikeHikeButton"
@@ -156,7 +156,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:onClick="toObvForm">
 
                     <TextView
                         android:id="@+id/mhikeVideoCall"
@@ -166,7 +167,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="@string/homepage_obs_list"
+                        android:text="ObsForm"
                         android:textColor="@color/navy_blue"
                         android:textSize="20sp" />
 
@@ -191,7 +192,8 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:onClick="toObvList">
 
                     <TextView
                         android:id="@+id/mhikeVoiceCall"
@@ -201,7 +203,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/poppins_semibold"
-                        android:text="@string/homepage_voice_call"
+                        android:text="@string/homepage_obs_list"
                         android:textColor="@color/navy_blue"
                         android:textSize="20sp" />
 

@@ -54,7 +54,7 @@ public class HikeEditForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hike_edit_form);
 
-        editHikeName = findViewById(R.id.editHikeName);
+        editHikeName = findViewById(R.id.btnEditHike);
         editLocation = findViewById(R.id.editLocation);
         editDate = findViewById(R.id.editDate);
         groupParking = findViewById(R.id.rGroupParking);

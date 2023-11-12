@@ -46,4 +46,5 @@ public class ObservationListViewAdapter extends BaseAdapter {
         textView.setText((int) obsList.get(position).getId());
         return view;
     }
+
 }
