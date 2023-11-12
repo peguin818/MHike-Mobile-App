@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.comp1786.cw1.HikeList.HikeListActivity;
 import com.comp1786.cw1.ObservationList.ObservationListActivity;
+import com.comp1786.cw1.dbHelper.HikeDbHelper;
 import com.comp1786.cw1.hikeDetails.HikeAddForm;
 import com.comp1786.cw1.obsDetails.ObservationAddForm;
 
@@ -17,6 +18,8 @@ public class Homepage_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+
+        HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
     }
 
     public void toHikeList(View view) {

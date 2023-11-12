@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,6 +18,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.comp1786.cw1.Entity.Observation;
+import com.comp1786.cw1.HikeList.HikeListActivity;
+import com.comp1786.cw1.ObservationList.ObservationListActivity;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.ObservationType;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
@@ -52,6 +55,7 @@ public class ObservationAddForm extends AppCompatActivity {
         int d = myCalendar.get(Calendar.DAY_OF_MONTH);
         int h = myCalendar.get(Calendar.HOUR_OF_DAY);
         int mi = myCalendar.get(Calendar.MINUTE);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             hikeID = extras.getLong("DATA");
@@ -170,6 +174,10 @@ public class ObservationAddForm extends AppCompatActivity {
         if (!hasError) {
             long id = hikeDbHelper.insertObservationDetails(observation);
             Toast.makeText(this, "Added successfully with id: " + id, Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, ObservationListActivity.class);
+            // Pass the data to the ViewDetailsActivity
+            i.putExtra("DATA", hikeID);
+            startActivity(i);
         }
     }
 

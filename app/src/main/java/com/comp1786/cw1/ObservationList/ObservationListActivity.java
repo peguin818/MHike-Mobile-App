@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.comp1786.cw1.Entity.Observation;
 import com.comp1786.cw1.Homepage_Activity;
+import com.comp1786.cw1.hikeDetails.HikeDetailsForm;
 import com.comp1786.cw1.obsDetails.ObservationDetailsForm;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
@@ -55,7 +56,7 @@ public class ObservationListActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toObsList();
+                toHIkeDetailsPage();
             }
         });
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -111,10 +112,11 @@ public class ObservationListActivity extends AppCompatActivity {
 
     public void toObsAdd() {
         Intent i = new Intent(this, ObservationAddForm.class);
+        i.putExtra("DATA", hikeID);
         startActivity(i);
     }
-    private void toObsList(){
-        Intent intent = new Intent(this, Homepage_Activity.class);
+    private void toHIkeDetailsPage(){
+        Intent intent = new Intent(this, HikeDetailsForm.class);
         intent.putExtra("DATA", hikeID);
         startActivity(intent);
     }

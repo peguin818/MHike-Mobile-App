@@ -55,7 +55,7 @@ public class HikeDetailsForm extends AppCompatActivity {
          btnBack.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View view) {
-                 onBackPressed();
+                 toHikeList();
              }
          });
          toObsButton.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +123,11 @@ public class HikeDetailsForm extends AppCompatActivity {
     public void toObsList(){
         Intent intent = new Intent(this, ObservationListActivity.class);
         intent.putExtra("DATA", hikeID);
+        startActivity(intent);
+    }
+    public void toHikeList(){
+        Intent intent = new Intent(this, HikeListActivity.class);
+
         startActivity(intent);
     }
 }

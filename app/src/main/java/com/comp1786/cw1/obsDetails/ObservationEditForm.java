@@ -26,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class ObservationEditForm extends AppCompatActivity {
+public class    ObservationEditForm extends AppCompatActivity {
     public long id;
     final Calendar myCalendar = Calendar.getInstance();
     EditText editObvDescription;

@@ -33,7 +33,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
     private static final String HIKE_TABLE_PARKINGAVAILABILITY = "parking_availability";
     private static final String HIKE_TABLE_HIKELENGTH = "hike_length";
     private static final String HIKE_TABLE_DIFFICULTY = "difficulty";
-    private static final String HIKE_TABLE_DESCRIPTION = "name";
+    private static final String HIKE_TABLE_DESCRIPTION = "description";
     private static final String HIKE_TABLE_TRAILTYPE = "trail_type";
     private static final String HIKE_TABLE_EMERGENCY = "emergency_contact";
 
@@ -42,7 +42,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
     private static final String OBSERVATION_TABLE_HIKE_ID = "hike_id";
     private static final String OBSERVATION_TABLE = "observation";
     private static final String OBSERVATION_TABLE_TYPE = "type";
-    private static final String OBSERVATION_TABLE_DESCRIPTION = "name";
+    private static final String OBSERVATION_TABLE_NAME = "name";
     private static final String OBSERVATION_TABLE_DATE = "date";
     private static final String OBSERVATION_TABLE_TIME = "time";
     private static final String OBSERVATION_TABLE_COMMENT = "comment";
@@ -78,7 +78,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
                     "%s TEXT NOT NULL, " +
                     "%s TEXT NOT NULL, " +
                     "FOREIGN KEY (%s) REFERENCES %s (%s) )",
-            OBSERVATION_TABLE, ID_COLUMN_NAME, OBSERVATION_TABLE_HIKE_ID, OBSERVATION_TABLE_TYPE, OBSERVATION_TABLE_DESCRIPTION,
+            OBSERVATION_TABLE, ID_COLUMN_NAME, OBSERVATION_TABLE_HIKE_ID, OBSERVATION_TABLE_TYPE, OBSERVATION_TABLE_NAME,
             OBSERVATION_TABLE_DATE, OBSERVATION_TABLE_TIME, OBSERVATION_TABLE_COMMENT, CREATEDAT_COLUMN, UPDATEDAT_COLUMN,
             OBSERVATION_TABLE_HIKE_ID, HIKE_TABLE, ID_COLUMN_NAME
             //Create Observation query
@@ -134,7 +134,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
         rowValues.put(OBSERVATION_TABLE_HIKE_ID, observation.getHikeId());
         rowValues.put(OBSERVATION_TABLE_TYPE, observation.getType().toString());
-        rowValues.put(OBSERVATION_TABLE_DESCRIPTION, observation.getName());
+        rowValues.put(OBSERVATION_TABLE_NAME, observation.getName());
         rowValues.put(OBSERVATION_TABLE_DATE, observation.getDate());
         rowValues.put(OBSERVATION_TABLE_TIME, observation.getTime());
         rowValues.put(OBSERVATION_TABLE_COMMENT, observation.getComment());
@@ -285,7 +285,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         // along with its key and value pair.
         rowValues.put(OBSERVATION_TABLE_HIKE_ID, observation.getHikeId());
         rowValues.put(OBSERVATION_TABLE_TYPE, observation.getType().toString());
-        rowValues.put(OBSERVATION_TABLE_DESCRIPTION, observation.getName());
+        rowValues.put(OBSERVATION_TABLE_NAME, observation.getName());
         rowValues.put(OBSERVATION_TABLE_DATE, observation.getDate());
         rowValues.put(OBSERVATION_TABLE_TIME, observation.getTime());
         rowValues.put(OBSERVATION_TABLE_COMMENT, observation.getComment());
