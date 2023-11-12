@@ -2,14 +2,13 @@ package com.comp1786.cw1.Entity;
 
 import com.comp1786.cw1.constant.ObservationType;
 
-import java.sql.Time;
 import java.util.Date;
 
 public class Observation {
     private long id;
     private long hikeId;
     private ObservationType type;
-    private String description;
+    private String name;
     private String date;
     private String time;
     private String comment;
@@ -25,12 +24,12 @@ public class Observation {
         this.type = type;
     }
 
-    public String getDescription() {
-        return description;
+    public String getName() {
+        return name;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDate() {
@@ -52,11 +51,11 @@ public class Observation {
     public Observation() {
     }
 
-    public Observation(long id, long hikeId, ObservationType type, String description, String date, String time, String comment, Date createdAt, Date updatedAt) {
+    public Observation(long id, long hikeId, ObservationType type, String name, String date, String time, String comment, Date createdAt, Date updatedAt) {
         this.id = id;
         this.hikeId = hikeId;
         this.type = type;
-        this.description = description;
+        this.name = name;
         this.date = date;
         this.time = time;
         this.comment = comment;

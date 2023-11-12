@@ -62,7 +62,7 @@ public class HikeEditForm extends AppCompatActivity {
         spinnerType = findViewById(R.id.spinType);
         groupDifficulty = findViewById(R.id.rGroupDifficulty);
         editEContact = findViewById(R.id.editEContact);
-        editDescription = findViewById(R.id.editDescription);
+        editDescription = findViewById(R.id.editObsName);
         btnBack= findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override

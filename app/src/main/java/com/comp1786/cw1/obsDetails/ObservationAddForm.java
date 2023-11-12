@@ -29,12 +29,13 @@ import java.util.Locale;
 public class ObservationAddForm extends AppCompatActivity {
     public long id;
     final Calendar myCalendar = Calendar.getInstance();
-    EditText editObvDescription;
+    EditText editObsName;
     EditText editDate;
     EditText editComment;
     Spinner spinnerObvType;
     Button saveButton;
     EditText editTime;
+    long hikeID;
     private HikeDbHelper hikeDbHelper;
     private Observation observation;
     ImageView btnBack;
@@ -51,6 +52,10 @@ public class ObservationAddForm extends AppCompatActivity {
         int d = myCalendar.get(Calendar.DAY_OF_MONTH);
         int h = myCalendar.get(Calendar.HOUR_OF_DAY);
         int mi = myCalendar.get(Calendar.MINUTE);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            hikeID = extras.getLong("DATA");
+        }
 
         editDate.setText(d + "/" + (m+1) + "/" +y);
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -130,19 +135,20 @@ public class ObservationAddForm extends AppCompatActivity {
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
         Observation observation = new Observation();
 
-        editObvDescription = findViewById(R.id.editDescription);
+        editObsName = findViewById(R.id.editObsName);
         editDate = findViewById(R.id.editDate);
         editTime = findViewById(R.id.editTime);
         editComment = findViewById(R.id.editObvComment);
 
-        observation.setDescription(editObvDescription.getText().toString());
+        observation.setHikeId(hikeID);
+        observation.setName(editObsName.getText().toString());
         observation.setDate(editDate.getText().toString());
         observation.setTime(editTime.getText().toString());
         observation.setComment(editComment.getText().toString());
 
         boolean hasError = false;
 
-        if (!verifyBlankEditText(editObvDescription, editDate, editTime, editComment)) {
+        if (!verifyBlankEditText(editObsName, editDate, editTime, editComment)) {
             hasError = true;
         }
 

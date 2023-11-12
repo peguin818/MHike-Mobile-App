@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.HikeList.HikeListActivity;
+import com.comp1786.cw1.ObservationList.ObservationListActivity;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 
@@ -29,6 +30,8 @@ public class HikeDetailsForm extends AppCompatActivity {
     Button deleteHikeButton;
     Button editHikeButton;
     Button toObsButton;
+    long hikeID;
+
 
     ImageView btnBack;
      @Override
@@ -37,14 +40,14 @@ public class HikeDetailsForm extends AppCompatActivity {
         setContentView(R.layout.activity_hike_details_form);
 
         hikeName = findViewById(R.id.hikeName);
-        location = findViewById(R.id.location);
-        date = findViewById(R.id.date);
-        parking = findViewById(R.id.parking);
-        length = findViewById(R.id.length);
-        type = findViewById(R.id.type);
-        difficulty = findViewById(R.id.difficulty);
-        eContact = findViewById(R.id.eContact);
-        description = findViewById(R.id.desciprtion);
+        location = findViewById(R.id.hikeLocation);
+        date = findViewById(R.id.hikeDate);
+        parking = findViewById(R.id.hikeParking);
+        length = findViewById(R.id.hikeLength);
+        type = findViewById(R.id.hikeType);
+        difficulty = findViewById(R.id.hikeDifficulty);
+        eContact = findViewById(R.id.hikeEmergency);
+        description = findViewById(R.id.hikeDescription);
         deleteHikeButton = findViewById(R.id.btnDeleteHike);
         editHikeButton = findViewById(R.id.btnEditHike);
         toObsButton = findViewById(R.id.btnObservation);
@@ -65,14 +68,13 @@ public class HikeDetailsForm extends AppCompatActivity {
 
         //extract data form list
         Bundle extras = getIntent().getExtras();
-        long id = 0;
         if (extras != null) {
-            id = extras.getLong("DATA");
+            hikeID = extras.getLong("DATA");
         }
         //get Hike from database
         hikeDbHelper = new HikeDbHelper(getApplicationContext());
         try {
-            hike = hikeDbHelper.getHikeById(id);
+            hike = hikeDbHelper.getHikeById(hikeID);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -115,10 +117,12 @@ public class HikeDetailsForm extends AppCompatActivity {
     }
     public void editHike(){
         Intent intent = new Intent(this, HikeEditForm.class);
-        intent.putExtra("DATA", hike.getId());
+        intent.putExtra("DATA", hikeID);
         startActivity(intent);
     }
     public void toObsList(){
-
+        Intent intent = new Intent(this, ObservationListActivity.class);
+        intent.putExtra("DATA", hikeID);
+        startActivity(intent);
     }
 }

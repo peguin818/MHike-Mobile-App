@@ -16,6 +16,7 @@ import com.comp1786.cw1.R;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 import com.comp1786.cw1.obsDetails.ObservationAddForm;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,8 @@ public class ObservationListActivity extends AppCompatActivity {
     ObservationListViewAdapter observationListViewAdapter;
     ImageView btnBack;
     ImageView btnAdd;
+    long hikeID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,9 +38,18 @@ public class ObservationListActivity extends AppCompatActivity {
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
         btnBack= findViewById(R.id.btnBack);
         btnAdd= findViewById(R.id.obsListAdd);
+
+        //extract data form list
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            hikeID = extras.getLong("DATA");
+        }
+
         try {
-            observationList = hikeDbHelper.getObservationList(long hikeId);
+            observationList = hikeDbHelper.getObservationList(hikeID);
         } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (ParseException e) {
             throw new RuntimeException(e);
         }
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -102,8 +114,9 @@ public class ObservationListActivity extends AppCompatActivity {
         startActivity(i);
     }
     private void toObsList(){
-        Intent i = new Intent(this, Homepage_Activity.class);
-        startActivity(i);
+        Intent intent = new Intent(this, Homepage_Activity.class);
+        intent.putExtra("DATA", hikeID);
+        startActivity(intent);
     }
 
 /*    private void filter(String text) {

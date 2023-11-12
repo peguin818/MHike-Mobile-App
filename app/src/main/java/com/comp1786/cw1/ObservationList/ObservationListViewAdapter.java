@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.Entity.Observation;
 import com.comp1786.cw1.R;
 
@@ -31,19 +30,23 @@ public class ObservationListViewAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int i) {
-        return null;
+        return obsList.get(i);
     }
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return obsList.get(i).getId();
     }
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         view = layoutInflater.inflate(R.layout.activity_observation_list_view_item, null);
         TextView textView = (TextView) view.findViewById(R.id.obsListViewItemName);
-        textView.setText((int) obsList.get(position).getId());
+        TextView textView1 = (TextView) view.findViewById(R.id.obsListViewItemDate);
+
+        textView.setText(obsList.get(position).getName());
+        textView1.setText(obsList.get(position).getDate());
+
         return view;
     }
 

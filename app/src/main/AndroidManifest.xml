@@ -16,6 +16,12 @@
             android:name=".obsDetails.ObservationDetailsForm"
             android:exported="false" />
         <activity
+            android:name=".ObservationList.ObservationListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ObservationList.ObservationListViewItem"
+            android:exported="false" />
+        <activity
             android:name=".obsDetails.ObservationAddForm"
             android:exported="false" />
         <activity

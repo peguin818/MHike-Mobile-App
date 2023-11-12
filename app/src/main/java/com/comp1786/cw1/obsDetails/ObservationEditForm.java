@@ -62,7 +62,7 @@ public class ObservationEditForm extends AppCompatActivity {
             throw new RuntimeException(e);
         }
 
-        editObvDescription.setText(observation.getDescription());
+        editObvDescription.setText(observation.getName());
         editTime.setText(observation.getTime());
         editDate.setText(observation.getDate());
         editComment.setText(observation.getComment());
@@ -142,12 +142,12 @@ public class ObservationEditForm extends AppCompatActivity {
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
         Observation observation = new Observation();
 
-        editObvDescription = findViewById(R.id.editDescription);
+        editObvDescription = findViewById(R.id.editObsName);
         editDate = findViewById(R.id.editDate);
         editTime = findViewById(R.id.editTime);
         editComment = findViewById(R.id.editObvComment);
 
-        observation.setDescription(editObvDescription.getText().toString());
+        observation.setName(editObvDescription.getText().toString());
         observation.setDate(editDate.getText().toString());
         observation.setTime(editTime.getText().toString());
         observation.setComment(editComment.getText().toString());

@@ -49,7 +49,7 @@ public class HikeListActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toHikeList();
+                toHomePage();
             }
         });
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -110,7 +110,7 @@ public class HikeListActivity extends AppCompatActivity {
         Intent i = new Intent(this, HikeAddForm.class);
         startActivity(i);
     }
-    private void toHikeList(){
+    private void toHomePage(){
         Intent i = new Intent(this, Homepage_Activity.class);
         startActivity(i);
     }

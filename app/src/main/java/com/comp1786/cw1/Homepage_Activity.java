@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.comp1786.cw1.HikeList.HikeListActivity;
 import com.comp1786.cw1.ObservationList.ObservationListActivity;
+import com.comp1786.cw1.hikeDetails.HikeAddForm;
 import com.comp1786.cw1.obsDetails.ObservationAddForm;
 
 public class Homepage_Activity extends AppCompatActivity {
@@ -20,6 +21,10 @@ public class Homepage_Activity extends AppCompatActivity {
 
     public void toHikeList(View view) {
         Intent i = new Intent(this, HikeListActivity.class);
+        startActivity(i);
+    }
+    public void toHikeForm(View view) {
+        Intent i = new Intent(this, HikeAddForm.class);
         startActivity(i);
     }
     public void toObvForm (View view)
