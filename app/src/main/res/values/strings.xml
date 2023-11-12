@@ -80,5 +80,7 @@
     <string name="hint_comment">There is no hint.</string>
     <string name="hint_time">E.g. 11:11:11</string>
     <string name="time">Time:</string>
+    <string name="button_observations">Observations</string>
+    <string name="obs_form_details">Observation Details</string>
 
 </resources>

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="111dp"
             android:layout_marginEnd="156dp"
-            android:text="@string/hike_form_details"
+            android:text="@string/obs_form_details"
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold|italic"
@@ -75,7 +75,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
                     android:id="@+id/obsName"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
                     android:id="@+id/obsDate"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
@@ -134,7 +134,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
                     android:id="@+id/obsTime"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
@@ -165,13 +165,20 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <Spinner
+                <TextView
                     android:id="@+id/obsType"
-                    android:layout_width="wrap_content"
+                    android:layout_width="230dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
-                    android:spinnerMode="dropdown" />
+                    android:clickable="true"
+                    android:cursorVisible="false"
+                    android:ems="11"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:hint="@string/hint_time"
+                    android:inputType="text"
+                    android:textStyle="italic" />
             </LinearLayout>
 
             <LinearLayout
@@ -189,7 +196,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
                     android:id="@+id/obsDescription"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
@@ -198,7 +205,7 @@
                     android:ems="11"
                     android:hint="@string/hint_description"
                     android:inputType="textMultiLine"
-                    android:lines="4"
+                    android:lines="2"
                     android:selectAllOnFocus="true"
                     android:singleLine="false"
                     android:textStyle="italic" />
@@ -219,7 +226,7 @@
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
-                <EditText
+                <TextView
                     android:id="@+id/obsComment"
                     android:layout_width="230dp"
                     android:layout_height="wrap_content"
@@ -228,7 +235,7 @@
                     android:ems="11"
                     android:hint="@string/hint_comment"
                     android:inputType="textMultiLine"
-                    android:lines="4"
+                    android:lines="2"
                     android:selectAllOnFocus="true"
                     android:singleLine="false"
                     android:textStyle="italic" />
@@ -243,7 +250,7 @@
                     android:id="@+id/btnEditHike"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="108dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/button_edit" />
 
@@ -254,15 +261,6 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/button_delete" />
-
-                <Button
-                    android:id="@+id/btnObservation"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_weight="1"
-                    android:text="Observations" />
 
             </LinearLayout>
 
