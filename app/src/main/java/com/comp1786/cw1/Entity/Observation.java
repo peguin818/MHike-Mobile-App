@@ -12,9 +12,32 @@ public class Observation {
     private String date;
     private String time;
     private String comment;
+    private String location;
     private Date createdAt;
     private Date updatedAt;
 
+    public Observation() {
+    }
+    public Observation(long id, long hikeId, ObservationType type, String name, String date, String time, String comment, String location, Date createdAt, Date updatedAt) {
+        this.id = id;
+        this.hikeId = hikeId;
+        this.type = type;
+        this.name = name;
+        this.date = date;
+        this.time = time;
+        this.comment = comment;
+        this.location = location;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
 
     public ObservationType getType() {
         return type;
@@ -46,21 +69,6 @@ public class Observation {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    public Observation() {
-    }
-
-    public Observation(long id, long hikeId, ObservationType type, String name, String date, String time, String comment, Date createdAt, Date updatedAt) {
-        this.id = id;
-        this.hikeId = hikeId;
-        this.type = type;
-        this.name = name;
-        this.date = date;
-        this.time = time;
-        this.comment = comment;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     public long getId() {

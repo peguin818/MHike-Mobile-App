@@ -221,7 +221,7 @@
                         android:textStyle="bold" />
 
                     <EditText
-                        android:id="@+id/editObvComment"
+                        android:id="@+id/editObsLocation"
                         android:layout_width="230dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -247,12 +247,12 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:text="@string/comment"
+                        android:text="Location"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/editObsLocation"
+                        android:id="@+id/addObsLocation"
                         android:layout_width="252dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"

@@ -46,6 +46,8 @@ public class HikeDbHelper extends SQLiteOpenHelper {
     private static final String OBSERVATION_TABLE_DATE = "date";
     private static final String OBSERVATION_TABLE_TIME = "time";
     private static final String OBSERVATION_TABLE_COMMENT = "comment";
+    private static final String OBSERVATION_TABLE_LOCATION = "location";
+
     private static final String CREATE_TABLE_HIKE = String.format(
             "CREATE TABLE %s (" +
                     "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -77,9 +79,10 @@ public class HikeDbHelper extends SQLiteOpenHelper {
                     "%s TEXT, " + //comment
                     "%s TEXT NOT NULL, " +
                     "%s TEXT NOT NULL, " +
+                    "%s TEXT NOT NULL, " +
                     "FOREIGN KEY (%s) REFERENCES %s (%s) )",
             OBSERVATION_TABLE, ID_COLUMN_NAME, OBSERVATION_TABLE_HIKE_ID, OBSERVATION_TABLE_TYPE, OBSERVATION_TABLE_NAME,
-            OBSERVATION_TABLE_DATE, OBSERVATION_TABLE_TIME, OBSERVATION_TABLE_COMMENT, CREATEDAT_COLUMN, UPDATEDAT_COLUMN,
+            OBSERVATION_TABLE_DATE, OBSERVATION_TABLE_TIME, OBSERVATION_TABLE_COMMENT, OBSERVATION_TABLE_LOCATION, CREATEDAT_COLUMN, UPDATEDAT_COLUMN,
             OBSERVATION_TABLE_HIKE_ID, HIKE_TABLE, ID_COLUMN_NAME
             //Create Observation query
     );
@@ -138,6 +141,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         rowValues.put(OBSERVATION_TABLE_DATE, observation.getDate());
         rowValues.put(OBSERVATION_TABLE_TIME, observation.getTime());
         rowValues.put(OBSERVATION_TABLE_COMMENT, observation.getComment());
+        rowValues.put(OBSERVATION_TABLE_LOCATION, observation.getLocation());
         rowValues.put(CREATEDAT_COLUMN, new Date().toString());
         rowValues.put(UPDATEDAT_COLUMN, new Date().toString());
 
@@ -202,7 +206,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
     public List<Observation> getObservationList(Long hikeId) throws ParseException, IllegalAccessException {
 
         Cursor results = database.query("observation",
-                new String[]{"id", "hike_id", "type", "name", "date", "time", "comment", "created_at", "updated_at"},
+                new String[]{"id", "hike_id", "type", "name", "date", "time", "comment", "location", "created_at", "updated_at"},
                 "hike_id=?", new String[]{String.valueOf(hikeId)}, null, null, "created_at");
 
         List<Observation> observationList = new ArrayList<Observation>();
@@ -217,10 +221,11 @@ public class HikeDbHelper extends SQLiteOpenHelper {
                 String date = results.getString(4);
                 String time = results.getString(5);
                 String comment = results.getString(6);
-                Date created_at = new Date(results.getString(7));
-                Date updated_at = new Date(results.getString(8));
+                String location = results.getString(7);
+                Date created_at = new Date(results.getString(8));
+                Date updated_at = new Date(results.getString(9));
 
-                Observation ob = new Observation(id, hike_id, type, name, date, time, comment, created_at, updated_at);
+                Observation ob = new Observation(id, hike_id, type, name, date, time, comment, location, created_at, updated_at);
                 observationList.add(ob);
 
             results.moveToNext();
@@ -231,7 +236,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
     public Observation getObservationByID(Long observationId) throws ParseException, IllegalAccessException {
 
         Cursor results = database.query("observation",
-                new String[]{"id", "hike_id", "type", "name", "date", "time", "comment", "created_at", "updated_at"},
+                new String[]{"id", "hike_id", "type", "name", "date", "time", "comment", "location", "created_at", "updated_at"},
                 "hike_id =?", new String[]{String.valueOf(observationId)}, null, null, "created_at");
 
         List<Observation> observationList = new ArrayList<Observation>();
@@ -243,10 +248,11 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         String date = results.getString(4);
         String time = results.getString(5);
         String comment = results.getString(6);
-        Date created_at = new Date(results.getString(7));
-        Date updated_at = new Date(results.getString(8));
+        String location = results.getString(7);
+        Date created_at = new Date(results.getString(8));
+        Date updated_at = new Date(results.getString(9));
 
-        Observation ob = new Observation(id, hike_id, type, name, date, time, comment, created_at, updated_at);
+        Observation ob = new Observation(id, hike_id, type, name, date, time, comment, location, created_at, updated_at);
         return ob;
     }
 
@@ -289,6 +295,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         rowValues.put(OBSERVATION_TABLE_DATE, observation.getDate());
         rowValues.put(OBSERVATION_TABLE_TIME, observation.getTime());
         rowValues.put(OBSERVATION_TABLE_COMMENT, observation.getComment());
+        rowValues.put(OBSERVATION_TABLE_LOCATION, observation.getLocation());
         rowValues.put(CREATEDAT_COLUMN, new Date().toString());
         rowValues.put(UPDATEDAT_COLUMN, new Date().toString());
 

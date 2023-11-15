@@ -145,7 +145,7 @@ public class    ObservationEditForm extends AppCompatActivity {
         editObvDescription = findViewById(R.id.editObsName);
         editDate = findViewById(R.id.editDate);
         editTime = findViewById(R.id.editTime);
-        editComment = findViewById(R.id.editObvComment);
+        editComment = findViewById(R.id.editObsLocation);
 
         observation.setName(editObvDescription.getText().toString());
         observation.setDate(editDate.getText().toString());

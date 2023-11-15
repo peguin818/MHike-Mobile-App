@@ -24,7 +24,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.comp1786.cw1.Entity.Observation;
-import com.comp1786.cw1.HikeList.HikeListActivity;
 import com.comp1786.cw1.ObservationList.ObservationListActivity;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.ObservationType;
@@ -64,7 +63,7 @@ public class ObservationAddForm extends AppCompatActivity {
 
 
         //location
-        editLocation = findViewById(R.id.editObsLocation);
+        editLocation = findViewById(R.id.addObsLocation);
         locationClient = LocationServices.getFusedLocationProviderClient(this);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSION_FINE_LOCATION);
@@ -181,7 +180,7 @@ public class ObservationAddForm extends AppCompatActivity {
             @Override
             public void onSuccess(Location location) {
                 if (location != null) {
-                    editLocation.setText("Current Location is:\nLat: " + location.getLatitude() + "\nLong: " + location.getLongitude());
+                    editLocation.setText("Latitude: " + location.getLatitude() + "\nLongtitude: " + location.getLongitude());
                 }else{
                     editLocation.setText("Cannot find the location");
                 }
@@ -197,13 +196,15 @@ public class ObservationAddForm extends AppCompatActivity {
         editObsName = findViewById(R.id.editObsName);
         editDate = findViewById(R.id.editDate);
         editTime = findViewById(R.id.editTime);
-        editComment = findViewById(R.id.editObvComment);
+        editComment = findViewById(R.id.editObsLocation);
+        editLocation = findViewById(R.id.addObsLocation);
 
         observation.setHikeId(hikeID);
         observation.setName(editObsName.getText().toString());
         observation.setDate(editDate.getText().toString());
         observation.setTime(editTime.getText().toString());
         observation.setComment(editComment.getText().toString());
+        observation.setLocation(editLocation.getText().toString());
 
         boolean hasError = false;
 
