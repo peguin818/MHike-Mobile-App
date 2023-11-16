@@ -52,7 +52,6 @@ public class ObservationAddForm extends AppCompatActivity {
     private HikeDbHelper hikeDbHelper;
     private Observation observation;
     ImageView btnBack;
-
     private TextView editLocation;
     private FusedLocationProviderClient locationClient;
     private final int REQUEST_PERMISSION_FINE_LOCATION = 1;

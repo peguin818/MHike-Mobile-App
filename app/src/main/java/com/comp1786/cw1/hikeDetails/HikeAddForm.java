@@ -20,10 +20,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.comp1786.cw1.Entity.Hike;
 import com.comp1786.cw1.HikeList.HikeListActivity;
 import com.comp1786.cw1.Homepage_Activity;
+import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
-import com.comp1786.cw1.R;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,7 +32,6 @@ import java.util.Locale;
 
 public class HikeAddForm extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
-
     EditText editHikeName;
     EditText editLocation;
     EditText editDate;
@@ -60,7 +59,7 @@ public class HikeAddForm extends AppCompatActivity {
         setContentView(R.layout.activity_hike_add_form);
 
         editDate = (EditText) findViewById(R.id.editDate);
-        btnBack= findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,10 +80,7 @@ public class HikeAddForm extends AppCompatActivity {
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(HikeAddForm.this, date, myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH))
-                        .show();
+                new DatePickerDialog(HikeAddForm.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
 
@@ -133,11 +129,7 @@ public class HikeAddForm extends AppCompatActivity {
         hike.setDescription(editDescription.getText().toString());
         hike.setContact(editEContact.getText().toString());
 
-        boolean hasError = false;
-
-        if (!verifyBlankEditText(editHikeName, editLocation, editDate, editLength, editDescription, editEContact)) {
-            hasError = true;
-        }
+        boolean hasError = !verifyBlankEditText(editHikeName, editLocation, editDate, editLength, editDescription, editEContact);
 
         int selectedParkId = groupPark.getCheckedRadioButtonId();
         radioButtonPark = findViewById(selectedParkId);
@@ -202,7 +194,7 @@ public class HikeAddForm extends AppCompatActivity {
     private void updateDateLabel() {
         String myFormat = "dd/MM/yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ROOT);
-        editDate.setText(dateFormat.format(myCalendar.getTime()).toString());
+        editDate.setText(dateFormat.format(myCalendar.getTime()));
     }
 
     private boolean verifyBlankEditText(EditText... editText) {

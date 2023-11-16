@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -17,20 +18,24 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.comp1786.cw1.Entity.Observation;
+import com.comp1786.cw1.HikeList.HikeListActivity;
+import com.comp1786.cw1.ObservationList.ObservationListActivity;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.ObservationType;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
+import com.comp1786.cw1.hikeDetails.HikeEditForm;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class    ObservationEditForm extends AppCompatActivity {
-    public long id;
+public class ObservationEditForm extends AppCompatActivity {
+    public long obsID;
     final Calendar myCalendar = Calendar.getInstance();
     EditText editObvDescription;
     EditText editDate;
+    EditText editLocation;
     EditText editComment;
     Spinner spinnerObvType;
     Button saveButton;
@@ -43,7 +48,7 @@ public class    ObservationEditForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_observation_edit_form);
-
+        editLocation = findViewById(R.id.editObsLocation);
         editDate = (EditText) findViewById(R.id.editDate);
 
         int y = myCalendar.get(Calendar.YEAR);
@@ -57,11 +62,12 @@ public class    ObservationEditForm extends AppCompatActivity {
         //get Obs from database
         hikeDbHelper = new HikeDbHelper(getApplicationContext());
         try {
-            observation = hikeDbHelper.getObservationByID(id);
+            observation = hikeDbHelper.getObservationByID(obsID);
         } catch (IllegalAccessException | ParseException e) {
             throw new RuntimeException(e);
         }
 
+        editLocation.setText(observation.getLocation());
         editObvDescription.setText(observation.getName());
         editTime.setText(observation.getTime());
         editDate.setText(observation.getDate());
@@ -137,6 +143,7 @@ public class    ObservationEditForm extends AppCompatActivity {
         });
 
     }
+
     private void saveDetails() throws ParseException, IllegalAccessException {
 
         HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
@@ -145,7 +152,7 @@ public class    ObservationEditForm extends AppCompatActivity {
         editObvDescription = findViewById(R.id.editObsName);
         editDate = findViewById(R.id.editDate);
         editTime = findViewById(R.id.editTime);
-        editComment = findViewById(R.id.editObsLocation);
+        editComment = findViewById(R.id.editObsComment);
 
         observation.setName(editObvDescription.getText().toString());
         observation.setDate(editDate.getText().toString());

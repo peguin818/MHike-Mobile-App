@@ -56,7 +56,7 @@ public class ObservationListActivity extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toHIkeDetailsPage();
+                toHikeDetailsPage();
             }
         });
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +115,7 @@ public class ObservationListActivity extends AppCompatActivity {
         i.putExtra("DATA", hikeID);
         startActivity(i);
     }
-    private void toHIkeDetailsPage(){
+    private void toHikeDetailsPage(){
         Intent intent = new Intent(this, HikeDetailsForm.class);
         intent.putExtra("DATA", hikeID);
         startActivity(intent);
