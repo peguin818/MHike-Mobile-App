@@ -237,9 +237,9 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
         Cursor results = database.query("observation",
                 new String[]{"id", "hike_id", "type", "name", "date", "time", "comment", "location", "created_at", "updated_at"},
-                "hike_id =?", new String[]{String.valueOf(observationId)}, null, null, "created_at");
+                "hike_id=?", new String[]{String.valueOf(observationId)}, null, null, "created_at", "1");
 
-        List<Observation> observationList = new ArrayList<Observation>();
+        results.moveToFirst();
 
         long id = results.getLong(0);
         long hike_id = results.getLong(1);
