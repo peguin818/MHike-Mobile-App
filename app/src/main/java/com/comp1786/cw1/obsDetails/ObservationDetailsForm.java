@@ -92,12 +92,12 @@ public class ObservationDetailsForm extends AppCompatActivity {
 
     private void toObsList() {
         Intent intent = new Intent(this, ObservationListActivity.class);
-
+        intent.putExtra("DATA", obsID);
         startActivity(intent);
     }
 
     public void deleteObs() {
-        hikeDbHelper.deleteHikeById(observation.getId());
+        hikeDbHelper.deleteObservationById(observation.getId());
         Toast.makeText(this, "Deleted Observation successfully with id: " + observation.getId(), Toast.LENGTH_LONG).show();
         Intent i = new Intent(this, ObservationListActivity.class);
         startActivity(i);

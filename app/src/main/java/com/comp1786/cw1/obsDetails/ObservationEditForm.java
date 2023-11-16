@@ -33,13 +33,13 @@ import java.util.Locale;
 public class ObservationEditForm extends AppCompatActivity {
     public long obsID;
     final Calendar myCalendar = Calendar.getInstance();
-    EditText editObvDescription;
-    EditText editDate;
-    EditText editLocation;
-    EditText editComment;
-    Spinner spinnerObvType;
-    Button saveButton;
+    EditText editObsName;
     EditText editTime;
+    EditText editDate;
+    Spinner spinnerObvType;
+    EditText editComment;
+    EditText editLocation;
+    Button saveButton;
     private HikeDbHelper hikeDbHelper;
     private Observation observation;
     ImageView btnBack;
@@ -48,8 +48,14 @@ public class ObservationEditForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_observation_edit_form);
+        editObsName= findViewById(R.id.editObsName);
         editLocation = findViewById(R.id.editObsLocation);
+        editTime = findViewById(R.id.editTime);
         editDate = (EditText) findViewById(R.id.editDate);
+        editComment = findViewById(R.id.editObsComment);
+        spinnerObvType = findViewById(R.id.spinType);
+        saveButton = findViewById(R.id.btnSave);
+        btnBack = findViewById(R.id.btnBack);
 
         int y = myCalendar.get(Calendar.YEAR);
         int m = myCalendar.get(Calendar.MONTH);
@@ -58,6 +64,11 @@ public class ObservationEditForm extends AppCompatActivity {
         int mi = myCalendar.get(Calendar.MINUTE);
 
         editDate.setText(d + "/" + (m + 1) + "/" + y);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            obsID = extras.getLong("DATA");
+        }
 
         //get Obs from database
         hikeDbHelper = new HikeDbHelper(getApplicationContext());
@@ -68,7 +79,7 @@ public class ObservationEditForm extends AppCompatActivity {
         }
 
         editLocation.setText(observation.getLocation());
-        editObvDescription.setText(observation.getName());
+        editObsName.setText(observation.getName());
         editTime.setText(observation.getTime());
         editDate.setText(observation.getDate());
         editComment.setText(observation.getComment());
@@ -97,7 +108,7 @@ public class ObservationEditForm extends AppCompatActivity {
                         .show();
             }
         });
-        editTime = findViewById(R.id.editTime);
+
         editTime.setText(h + ":" + mi);
 
         TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener() {
@@ -118,7 +129,7 @@ public class ObservationEditForm extends AppCompatActivity {
                         .show();
             }
         });
-        spinnerObvType = findViewById(R.id.spinType);
+
         ObservationType[] items = ObservationType.values();
         String[] obvTypeStrings = new String[items.length];
         for (int i = 0; i < items.length; i++) {
@@ -128,7 +139,7 @@ public class ObservationEditForm extends AppCompatActivity {
         spinnerObvType.setAdapter(adapter);
 
 
-        saveButton = findViewById(R.id.btnSave);
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -146,43 +157,46 @@ public class ObservationEditForm extends AppCompatActivity {
 
     private void saveDetails() throws ParseException, IllegalAccessException {
 
-        HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
-        Observation observation = new Observation();
 
-        editObvDescription = findViewById(R.id.editObsName);
-        editDate = findViewById(R.id.editDate);
-        editTime = findViewById(R.id.editTime);
-        editComment = findViewById(R.id.editObsComment);
+        Observation ob = new Observation();
 
-        observation.setName(editObvDescription.getText().toString());
-        observation.setDate(editDate.getText().toString());
-        observation.setTime(editTime.getText().toString());
-        observation.setComment(editComment.getText().toString());
+        ob.setHikeId(observation.getHikeId());
+        ob.setId(observation.getId());
+        ob.setName(editObsName.getText().toString());
+        ob.setDate(editDate.getText().toString());
+        ob.setTime(editTime.getText().toString());
+        ob.setComment(editComment.getText().toString());
+        ob.setLocation(editLocation.getText().toString());
 
         boolean hasError = false;
 
-        if (!verifyBlankEditText(editObvDescription, editDate, editTime, editComment)) {
+        if (!verifyBlankEditText(editObsName, editDate, editTime, editComment)) {
             hasError = true;
         }
 
         if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Animal_Sighting.toString().replace("_", " "))) {
-            observation.setType(ObservationType.Animal_Sighting);
+            ob.setType(ObservationType.Animal_Sighting);
         } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Vegetation_Sighting.toString().replace("_", " "))) {
-            observation.setType(ObservationType.Vegetation_Sighting);
+            ob.setType(ObservationType.Vegetation_Sighting);
         } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Weather_Condition.toString().replace("_", " "))) {
-            observation.setType(ObservationType.Weather_Condition);
+            ob.setType(ObservationType.Weather_Condition);
         } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Trail_Condition.toString().replace("_", " "))) {
-            observation.setType(ObservationType.Trail_Condition);
+            ob.setType(ObservationType.Trail_Condition);
         } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Other.toString().replace("_", " "))) {
-            observation.setType(ObservationType.Other);
+            ob.setType(ObservationType.Other);
         } else {
             Toast.makeText(this, "Please select at least an option for Observation Type", Toast.LENGTH_LONG).show();
             hasError = true;
         }
 
         if (!hasError) {
-            long id = hikeDbHelper.insertObservationDetails(observation);
-            Toast.makeText(this, "Added successfully with id: " + id, Toast.LENGTH_LONG).show();
+            long id = hikeDbHelper.updateObservation(ob);
+            if(id >0 ){
+                Intent intent = new Intent(this, ObservationListActivity.class);
+                intent.putExtra("DATA", observation.getHikeId());
+                startActivity(intent);
+                Toast.makeText(this, "Added successfully with id: " + id, Toast.LENGTH_LONG).show();
+            }
         }
     }
 

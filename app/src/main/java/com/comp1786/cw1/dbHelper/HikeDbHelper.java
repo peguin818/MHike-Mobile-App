@@ -237,7 +237,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
         Cursor results = database.query("observation",
                 new String[]{"id", "hike_id", "type", "name", "date", "time", "comment", "location", "created_at", "updated_at"},
-                "hike_id=?", new String[]{String.valueOf(observationId)}, null, null, "created_at", "1");
+                "id=?", new String[]{String.valueOf(observationId)}, null, null, "created_at", "1");
 
         results.moveToFirst();
 
@@ -255,6 +255,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         Observation ob = new Observation(id, hike_id, type, name, date, time, comment, location, created_at, updated_at);
         return ob;
     }
+
 
     public boolean updateHike(Hike hike) {
 
@@ -289,6 +290,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
         // on below line we are passing all values
         // along with its key and value pair.
+        rowValues.put(ID_COLUMN_NAME, observation.getId());
         rowValues.put(OBSERVATION_TABLE_HIKE_ID, observation.getHikeId());
         rowValues.put(OBSERVATION_TABLE_TYPE, observation.getType().toString());
         rowValues.put(OBSERVATION_TABLE_NAME, observation.getName());
