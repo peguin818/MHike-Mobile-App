@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.comp1786.cw1.HikeList.HikeListActivity;
-import com.comp1786.cw1.ObservationList.ObservationListActivity;
+import com.comp1786.cw1.hikeList.HikeListActivity;
+import com.comp1786.cw1.obsList.ObservationListActivity;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 import com.comp1786.cw1.hikeDetails.HikeAddForm;
 import com.comp1786.cw1.obsDetails.ObservationAddForm;

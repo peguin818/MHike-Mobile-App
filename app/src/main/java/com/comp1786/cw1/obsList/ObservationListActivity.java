@@ -1,4 +1,4 @@
-package com.comp1786.cw1.ObservationList;
+package com.comp1786.cw1.obsList;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.comp1786.cw1.Entity.Observation;
+import com.comp1786.cw1.object.Observation;
 
 import com.comp1786.cw1.hikeDetails.HikeDetailsForm;
 import com.comp1786.cw1.obsDetails.ObservationDetailsForm;

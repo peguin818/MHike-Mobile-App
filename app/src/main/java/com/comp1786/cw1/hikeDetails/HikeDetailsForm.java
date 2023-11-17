@@ -8,9 +8,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import com.comp1786.cw1.Entity.Hike;
-import com.comp1786.cw1.HikeList.HikeListActivity;
-import com.comp1786.cw1.ObservationList.ObservationListActivity;
+import com.comp1786.cw1.object.Hike;
+import com.comp1786.cw1.hikeList.HikeListActivity;
+import com.comp1786.cw1.obsList.ObservationListActivity;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 
@@ -127,7 +127,7 @@ public class HikeDetailsForm extends AppCompatActivity {
     }
     public void toHikeList(){
         Intent intent = new Intent(this, HikeListActivity.class);
-
+        intent.putExtra("DATA", hikeID);
         startActivity(intent);
     }
 }

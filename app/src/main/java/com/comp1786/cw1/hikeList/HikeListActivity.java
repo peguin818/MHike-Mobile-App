@@ -1,4 +1,4 @@
-package com.comp1786.cw1.HikeList;
+package com.comp1786.cw1.hikeList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
-import com.comp1786.cw1.Entity.Hike;
+import com.comp1786.cw1.object.Hike;
 import com.comp1786.cw1.Homepage_Activity;
 import com.comp1786.cw1.hikeDetails.HikeAddForm;
 import com.comp1786.cw1.R;

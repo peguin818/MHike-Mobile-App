@@ -1,20 +1,13 @@
-package com.comp1786.cw1.HikeList;
+package com.comp1786.cw1.hikeList;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.comp1786.cw1.Entity.Hike;
-import com.comp1786.cw1.Homepage_Activity;
+import com.comp1786.cw1.object.Hike;
 import com.comp1786.cw1.R;
 
 import java.util.ArrayList;

@@ -17,13 +17,11 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.comp1786.cw1.Entity.Observation;
-import com.comp1786.cw1.HikeList.HikeListActivity;
-import com.comp1786.cw1.ObservationList.ObservationListActivity;
+import com.comp1786.cw1.object.Observation;
+import com.comp1786.cw1.obsList.ObservationListActivity;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.ObservationType;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
-import com.comp1786.cw1.hikeDetails.HikeEditForm;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -96,7 +94,7 @@ public class ObservationEditForm extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                toObsDetails();
             }
         });
         editDate.setOnClickListener(new View.OnClickListener() {
@@ -153,6 +151,12 @@ public class ObservationEditForm extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void toObsDetails() {
+        Intent intent = new Intent(this, ObservationDetailsForm.class);
+        intent.putExtra("DATA", obsID);
+        startActivity(intent);
     }
 
     private void saveDetails() throws ParseException, IllegalAccessException {

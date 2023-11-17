@@ -10,8 +10,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.comp1786.cw1.Entity.Observation;
-import com.comp1786.cw1.ObservationList.ObservationListActivity;
+import com.comp1786.cw1.object.Observation;
+import com.comp1786.cw1.obsList.ObservationListActivity;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
 

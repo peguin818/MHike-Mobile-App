@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.comp1786.cw1.Entity.Hike;
-import com.comp1786.cw1.HikeList.HikeListActivity;
+import com.comp1786.cw1.object.Hike;
+import com.comp1786.cw1.hikeList.HikeListActivity;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;
@@ -48,6 +48,7 @@ public class HikeEditForm extends AppCompatActivity {
     private HikeDbHelper hikeDbHelper;
     private Hike hike;
     ImageView btnBack;
+    long id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,13 +68,12 @@ public class HikeEditForm extends AppCompatActivity {
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                toHikeList();
             }
         });
 
         //extract data form list
         Bundle extras = getIntent().getExtras();
-        long id = 0;
         if (extras != null) {
             id = extras.getLong("DATA");
         }
@@ -254,5 +254,10 @@ public class HikeEditForm extends AppCompatActivity {
             }
         }
         return result;
+    }
+    public void toHikeList(){
+        Intent intent = new Intent(this, HikeListActivity.class);
+        intent.putExtra("DATA", id);
+        startActivity(intent);
     }
 }

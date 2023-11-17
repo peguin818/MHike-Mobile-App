@@ -1,4 +1,4 @@
-package com.comp1786.cw1.ObservationList;
+package com.comp1786.cw1.obsList;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.comp1786.cw1.Entity.Observation;
+import com.comp1786.cw1.object.Observation;
 import com.comp1786.cw1.R;
 
 import java.util.List;

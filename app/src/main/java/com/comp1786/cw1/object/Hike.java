@@ -1,4 +1,4 @@
-package com.comp1786.cw1.Entity;
+package com.comp1786.cw1.object;
 
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.TrailType;

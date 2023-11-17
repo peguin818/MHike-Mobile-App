@@ -20,10 +20,10 @@
             android:name=".obsDetails.ObservationEditForm"
             android:exported="false" />
         <activity
-            android:name=".ObservationList.ObservationListActivity"
+            android:name=".obsList.ObservationListActivity"
             android:exported="false" />
         <activity
-            android:name=".ObservationList.ObservationListViewItem"
+            android:name=".obsList.ObservationListViewItem"
             android:exported="false" />
         <activity
             android:name=".obsDetails.ObservationAddForm"
@@ -35,10 +35,10 @@
             android:name=".hikeDetails.HikeDetailsForm"
             android:exported="false" />
         <activity
-            android:name=".HikeList.HikeListViewItem"
+            android:name=".hikeList.HikeListViewItem"
             android:exported="false" />
         <activity
-            android:name=".HikeList.HikeListActivity"
+            android:name=".hikeList.HikeListActivity"
             android:exported="false" />
         <activity
             android:name=".Homepage_Activity"

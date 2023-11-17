@@ -1,23 +1,24 @@
-package com.comp1786.cw1.ObservationList;
+package com.comp1786.cw1.hikeList;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.comp1786.cw1.Homepage_Activity;
 import com.comp1786.cw1.R;
 
-public class ObservationListViewItem extends AppCompatActivity {
+public class HikeListViewItem extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_observation_list_view_item);
+        setContentView(R.layout.activity_hike_list_view_item);
+
     }
     public void toHikeHomepage(View view) {
-        Intent i = new Intent(this, Homepage_Activity.class);
+        Intent i = new Intent(this,Homepage_Activity.class);
         startActivity(i);
     }
 }

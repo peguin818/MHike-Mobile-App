@@ -1,8 +1,5 @@
 package com.comp1786.cw1.obsDetails;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
@@ -23,11 +20,15 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.comp1786.cw1.Entity.Observation;
-import com.comp1786.cw1.ObservationList.ObservationListActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.ObservationType;
 import com.comp1786.cw1.dbHelper.HikeDbHelper;
+import com.comp1786.cw1.hikeDetails.HikeDetailsForm;
+import com.comp1786.cw1.object.Observation;
+import com.comp1786.cw1.obsList.ObservationListActivity;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,8 +41,9 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class ObservationAddForm extends AppCompatActivity {
-    public long id;
     final Calendar myCalendar = Calendar.getInstance();
+    private final int REQUEST_PERMISSION_FINE_LOCATION = 1;
+    public long id;
     EditText editObsName;
     EditText editDate;
     EditText editComment;
@@ -49,12 +51,12 @@ public class ObservationAddForm extends AppCompatActivity {
     Button saveButton;
     EditText editTime;
     long hikeID;
+    ImageView btnBack;
     private HikeDbHelper hikeDbHelper;
     private Observation observation;
-    ImageView btnBack;
     private TextView editLocation;
     private FusedLocationProviderClient locationClient;
-    private final int REQUEST_PERMISSION_FINE_LOCATION = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +72,7 @@ public class ObservationAddForm extends AppCompatActivity {
             showLocation();
         }
 
-        editDate = (EditText) findViewById(R.id.editDate);
+        editDate = findViewById(R.id.editDate);
 
 
         int y = myCalendar.get(Calendar.YEAR);
@@ -84,7 +86,7 @@ public class ObservationAddForm extends AppCompatActivity {
             hikeID = extras.getLong("DATA");
         }
 
-        editDate.setText(d + "/" + (m+1) + "/" +y);
+        editDate.setText(d + "/" + (m + 1) + "/" + y);
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -95,11 +97,11 @@ public class ObservationAddForm extends AppCompatActivity {
                 updateDateLabel();
             }
         };
-        btnBack= findViewById(R.id.btnBack);
+        btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                toHikeDetails();
             }
         });
         editDate.setOnClickListener(new View.OnClickListener() {
@@ -123,12 +125,12 @@ public class ObservationAddForm extends AppCompatActivity {
                 updateTimeLabel();
             }
         };
-        editTime.setOnClickListener(new View.OnClickListener(){
+        editTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new TimePickerDialog(ObservationAddForm.this, time,
                         myCalendar.get(Calendar.HOUR_OF_DAY),
-                        myCalendar.get(Calendar.MINUTE),true)
+                        myCalendar.get(Calendar.MINUTE), true)
                         .show();
             }
         });
@@ -158,18 +160,23 @@ public class ObservationAddForm extends AppCompatActivity {
 
     }
 
+    private void toHikeDetails() {
+        Intent intent = new Intent(this, HikeDetailsForm.class);
+        intent.putExtra("DATA", hikeID);
+        startActivity(intent);
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] gratRequest) {
         super.onRequestPermissionsResult(requestCode, permissions, gratRequest);
-        switch (requestCode) {
-            case REQUEST_PERMISSION_FINE_LOCATION:
-                if (gratRequest.length > 0 && gratRequest[0] == PackageManager.PERMISSION_GRANTED) {
-                    Toast.makeText(this, "Permission Granted", Toast.LENGTH_LONG).show();
-                    showLocation();
-                } else {
-                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show();
-                    editLocation.setText("Location permission not granted");
-                }
+        if (requestCode == REQUEST_PERMISSION_FINE_LOCATION) {
+            if (gratRequest.length > 0 && gratRequest[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "Permission Granted", Toast.LENGTH_LONG).show();
+                showLocation();
+            } else {
+                Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show();
+                editLocation.setText("Location permission not granted");
+            }
         }
     }
 
@@ -180,7 +187,7 @@ public class ObservationAddForm extends AppCompatActivity {
             public void onSuccess(Location location) {
                 if (location != null) {
                     editLocation.setText("Latitude: " + location.getLatitude() + "\nLongtitude: " + location.getLongitude());
-                }else{
+                } else {
                     editLocation.setText("Cannot find the location");
                 }
             }
@@ -205,11 +212,7 @@ public class ObservationAddForm extends AppCompatActivity {
         observation.setComment(editComment.getText().toString());
         observation.setLocation(editLocation.getText().toString());
 
-        boolean hasError = false;
-
-        if (!verifyBlankEditText(editObsName, editDate, editTime, editComment)) {
-            hasError = true;
-        }
+        boolean hasError = !verifyBlankEditText(editObsName, editDate, editTime, editComment);
 
         if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Animal_Sighting.toString().replace("_", " "))) {
             observation.setType(ObservationType.Animal_Sighting);
@@ -236,16 +239,18 @@ public class ObservationAddForm extends AppCompatActivity {
         }
     }
 
-        private void updateDateLabel() {
+    private void updateDateLabel() {
         String myFormat = "dd/MM/yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ROOT);
-        editDate.setText(dateFormat.format(myCalendar.getTime()).toString());
+        editDate.setText(dateFormat.format(myCalendar.getTime()));
     }
+
     private void updateTimeLabel() {
         String myFormat = "HH:mm";
         SimpleDateFormat timeFormat = new SimpleDateFormat(myFormat, Locale.ROOT);
-        editTime.setText(timeFormat.format(myCalendar.getTime()).toString());
+        editTime.setText(timeFormat.format(myCalendar.getTime()));
     }
+
     private boolean verifyBlankEditText(EditText... editText) {
         boolean result = true;
 

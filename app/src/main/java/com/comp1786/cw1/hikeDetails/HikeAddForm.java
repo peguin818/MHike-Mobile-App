@@ -17,8 +17,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.comp1786.cw1.Entity.Hike;
-import com.comp1786.cw1.HikeList.HikeListActivity;
+import com.comp1786.cw1.object.Hike;
+import com.comp1786.cw1.hikeList.HikeListActivity;
 import com.comp1786.cw1.Homepage_Activity;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.Difficulty;

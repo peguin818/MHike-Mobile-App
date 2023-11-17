@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.comp1786.cw1.Entity.Hike;
-import com.comp1786.cw1.Entity.Observation;
+import com.comp1786.cw1.object.Hike;
+import com.comp1786.cw1.object.Observation;
 import com.comp1786.cw1.constant.Difficulty;
 import com.comp1786.cw1.constant.ObservationType;
 import com.comp1786.cw1.constant.TrailType;
@@ -161,7 +161,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
             String name = results.getString(1);
             String location = results.getString(2);
             String date_of_hike = results.getString(3);
-            Boolean parking_availability = getParkingAvailability(results.getInt(4));
+            Boolean parking_availability = getIsParking(results.getInt(4));
             long hike_length = results.getLong(5);
             Difficulty difficulty = getDifficulty(results.getString(6));
             String description = results.getString(7);
@@ -190,7 +190,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         String name = results.getString(1);
         String location = results.getString(2);
         String date_of_hike = results.getString(3);
-        Boolean parking_availability = getParkingAvailability(results.getInt(4));
+        Boolean parking_availability = getIsParking(results.getInt(4));
         long hike_length = results.getLong(5);
         Difficulty difficulty = getDifficulty(results.getString(6));
         String description = results.getString(7);
@@ -354,8 +354,12 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    private Boolean getParkingAvailability(int isParkingAvailability) {
-        return isParkingAvailability == 1;
+    private Boolean getIsParking(int isParkingAvailability) {
+        if (isParkingAvailability == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     //for Observation
