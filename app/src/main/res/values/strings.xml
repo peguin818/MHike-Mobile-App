@@ -1,32 +1,32 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!--App-->
     <string name="app_name" tools:ignore="Typos">CW1</string>
-    <string name="app_title">M-Hike</string>
-    <string name="app_desc">Hike more, worry less.</string>
+    <string name="app_title">Hike Buddy</string>
+    <string name="app_desc">Take only memories, leave only footprints.</string>
 
     <!--Homepage-->
     <string name="homepage_new_hike">New Hike</string>
-    <string name="homepage_hike_list">Hike\'s List</string>
+    <string name="homepage_hike_list">Your Hikes</string>
     <string name="homepage_obs_list">Observation List</string>
     <string name="homepage_voice_call">Voice Call</string>
     <string name="homepage_mail">Mail</string>
     <string name="homepage_messages">Messages</string>
 
     <!--Form-->
-    <string name="hike_form">Hike Creating</string>
-    <string name="hike_form_edit">Hike Editing</string>
-    <string name="obs_form_edit">Observation Editing</string>
+    <string name="hike_form_title">New Hike</string>
+    <string name="hike_form_edit">Edit Hike</string>
+    <string name="obs_form_edit">Edit Observation</string>
     <string name="hike_form_details">Hike Details</string>
-    <string name="obs_form">Observation Creating</string>
-    <string name="hike_form_desc">Another day, another hike.</string>
-    <string name="obs_form_desc">Hike more, observe more.</string>
+    <string name="obs_form">New Observation</string>
+    <string name="hike_form_desc">Sun above, earth below</string>
+    <string name="obs_form_desc">We are blessed by nature</string>
     <string name="hike_list">List of Hikes</string>
     <string name="obs_list">List of Observations</string>
-    <string name="hike_list_desc">Where your journeys remain.</string>
-    <string name="obs_list_desc">Traces of your journey.</string>
+    <string name="hike_list_desc">Where all your conquests lie</string>
+    <string name="obs_list_desc">Wonders that you\'ve stumble upon</string>
 
     <!--TextView-->
-    <string name="hike_form_title">Hike Details</string>
+    <string name="hike_details_title">Hike Details</string>
     <string name="hike_name">Hike name:</string>
     <string name="location">Location:</string>
     <string name="date">Date:</string>
@@ -55,15 +55,6 @@
     <!--Description-->
     <string name="description_btnBack">Click to go back.</string>
     <string name="description_search_bar">Type to search.</string>
-
-    <!--Hint-->
-    <string name="hint_hike_name">E.g. "Snowdon", "Trosley Country park", etc.</string>
-    <string name="hint_location">E.g. "Lazarus pit", "Son Doong Cave"</string>
-    <string name="hint_date">E.g. "10/10/2023"</string>
-    <string name="hint_length">E.g. "1024"</string>
-    <string name="hint_e_contact">E.g. "0945493333"</string>
-    <string name="hint_description">E.g. "This lazarus pit is known for its mystery"</string>
-    <string name="hint_search_bar">Search for your desired hikes.</string>
 
     <!--Menu-->
     <string name="menuHome">Home</string>

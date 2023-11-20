@@ -11,18 +11,17 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
-import com.comp1786.cw1.object.Hike;
 import com.comp1786.cw1.Homepage_Activity;
-import com.comp1786.cw1.hikeDetails.HikeAddForm;
 import com.comp1786.cw1.R;
-import com.comp1786.cw1.dbHelper.HikeDbHelper;
-import com.comp1786.cw1.hikeDetails.HikeDetailsForm;
-
+import com.comp1786.cw1.database.DatabaseHelper;
+import com.comp1786.cw1.hikeLayouts.HikeDetails;
+import com.comp1786.cw1.hikeLayouts.NewHike;
+import com.comp1786.cw1.object.Hike;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HikeListActivity extends AppCompatActivity {
+public class HikeList extends AppCompatActivity {
     List<Hike> hikeList = new ArrayList<>();
     ArrayList<Hike> filteredHikeList = new ArrayList<>();
     ListView listView;
@@ -36,11 +35,11 @@ public class HikeListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hike_list);
 
-        HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
-        btnBack= findViewById(R.id.btnBack);
-        btnAdd= findViewById(R.id.hikeListAdd);
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+        btnBack = findViewById(R.id.btnBack);
+        btnAdd = findViewById(R.id.hikeListAdd);
         try {
-            hikeList = hikeDbHelper.getHikeList();
+            hikeList = databaseHelper.getHikeList();
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -72,7 +71,7 @@ public class HikeListActivity extends AppCompatActivity {
                 long data = listView.getAdapter().getItemId(position);
 
                 // Create an Intent to start the ViewDetailsActivity
-                Intent intent = new Intent(HikeListActivity.this, HikeDetailsForm.class);
+                Intent intent = new Intent(HikeList.this, HikeDetails.class);
 
                 // Pass the data to the ViewDetailsActivity
                 intent.putExtra("DATA", data);
@@ -107,10 +106,11 @@ public class HikeListActivity extends AppCompatActivity {
     }
 
     public void toHikeAddForm() {
-        Intent i = new Intent(this, HikeAddForm.class);
+        Intent i = new Intent(this, NewHike.class);
         startActivity(i);
     }
-    private void toHomePage(){
+
+    private void toHomePage() {
         Intent i = new Intent(this, Homepage_Activity.class);
         startActivity(i);
     }

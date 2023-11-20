@@ -11,17 +11,17 @@ import android.widget.ListView;
 
 import com.comp1786.cw1.object.Observation;
 
-import com.comp1786.cw1.hikeDetails.HikeDetailsForm;
-import com.comp1786.cw1.obsDetails.ObservationDetailsForm;
+import com.comp1786.cw1.hikeLayouts.HikeDetails;
+import com.comp1786.cw1.obsDetails.ObservationDetails;
 import com.comp1786.cw1.R;
-import com.comp1786.cw1.dbHelper.HikeDbHelper;
-import com.comp1786.cw1.obsDetails.ObservationAddForm;
+import com.comp1786.cw1.database.DatabaseHelper;
+import com.comp1786.cw1.obsDetails.NewObservation;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ObservationListActivity extends AppCompatActivity {
+public class ObservationList extends AppCompatActivity {
     List<Observation> observationList = new ArrayList<>();
 /*    ArrayList<Observation> filteredObservationList = new ArrayList<>();
     SearchView searchView;*/
@@ -36,7 +36,7 @@ public class ObservationListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_observation_list);
 
-        HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
         btnBack= findViewById(R.id.btnBack);
         btnAdd= findViewById(R.id.obsListAdd);
 
@@ -47,7 +47,7 @@ public class ObservationListActivity extends AppCompatActivity {
         }
 
         try {
-            observationList = hikeDbHelper.getObservationList(hikeID);
+            observationList = databaseHelper.getObservationList(hikeID);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         } catch (ParseException e) {
@@ -77,7 +77,7 @@ public class ObservationListActivity extends AppCompatActivity {
                 long data = listView.getAdapter().getItemId(position);
 
                 // Create an Intent to start the ViewDetailsActivity
-                Intent intent = new Intent(ObservationListActivity.this, ObservationDetailsForm.class);
+                Intent intent = new Intent(ObservationList.this, ObservationDetails.class);
 
                 // Pass the data to the ViewDetailsActivity
                 intent.putExtra("DATA", data);
@@ -111,12 +111,12 @@ public class ObservationListActivity extends AppCompatActivity {
     }
 
     public void toObsAdd() {
-        Intent i = new Intent(this, ObservationAddForm.class);
+        Intent i = new Intent(this, NewObservation.class);
         i.putExtra("DATA", hikeID);
         startActivity(i);
     }
     private void toHikeDetailsPage(){
-        Intent intent = new Intent(this, HikeDetailsForm.class);
+        Intent intent = new Intent(this, HikeDetails.class);
         intent.putExtra("DATA", hikeID);
         startActivity(intent);
     }

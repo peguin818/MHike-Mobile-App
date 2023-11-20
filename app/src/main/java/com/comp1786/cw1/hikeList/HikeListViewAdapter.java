@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.comp1786.cw1.object.Hike;
 import com.comp1786.cw1.R;
+import com.comp1786.cw1.object.Hike;
 
 import java.util.ArrayList;
 import java.util.List;

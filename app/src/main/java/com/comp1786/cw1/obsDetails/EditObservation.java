@@ -1,12 +1,10 @@
 package com.comp1786.cw1.obsDetails;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -16,64 +14,46 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
+import com.comp1786.cw1.object.Observation;
+import com.comp1786.cw1.obsList.ObservationList;
 import com.comp1786.cw1.R;
 import com.comp1786.cw1.constant.ObservationType;
-import com.comp1786.cw1.dbHelper.HikeDbHelper;
-import com.comp1786.cw1.hikeDetails.HikeDetailsForm;
-import com.comp1786.cw1.object.Observation;
-import com.comp1786.cw1.obsList.ObservationListActivity;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
-
-import org.jetbrains.annotations.NotNull;
+import com.comp1786.cw1.database.DatabaseHelper;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class ObservationAddForm extends AppCompatActivity {
+public class EditObservation extends AppCompatActivity {
+    public long obsID;
     final Calendar myCalendar = Calendar.getInstance();
-    private final int REQUEST_PERMISSION_FINE_LOCATION = 1;
-    public long id;
     EditText editObsName;
-    EditText editDate;
-    EditText editComment;
-    Spinner spinnerObvType;
-    Button saveButton;
     EditText editTime;
-    long hikeID;
-    ImageView btnBack;
-    private HikeDbHelper hikeDbHelper;
+    EditText editDate;
+    Spinner spinnerObvType;
+    EditText editComment;
+    EditText editLocation;
+    Button saveButton;
+    private DatabaseHelper databaseHelper;
     private Observation observation;
-    private TextView editLocation;
-    private FusedLocationProviderClient locationClient;
+    ImageView btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_observation_add_form);
-
-
-        //location
-        editLocation = findViewById(R.id.addObsLocation);
-        locationClient = LocationServices.getFusedLocationProviderClient(this);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSION_FINE_LOCATION);
-        } else {
-            showLocation();
-        }
-
-        editDate = findViewById(R.id.editDate);
-
+        setContentView(R.layout.activity_observation_edit_form);
+        editObsName= findViewById(R.id.editObsName);
+        editLocation = findViewById(R.id.editObsLocation);
+        editTime = findViewById(R.id.editTime);
+        editDate = (EditText) findViewById(R.id.editDate);
+        editComment = findViewById(R.id.editObsComment);
+        spinnerObvType = findViewById(R.id.spinType);
+        saveButton = findViewById(R.id.btnSave);
+        btnBack = findViewById(R.id.btnBack);
 
         int y = myCalendar.get(Calendar.YEAR);
         int m = myCalendar.get(Calendar.MONTH);
@@ -81,12 +61,26 @@ public class ObservationAddForm extends AppCompatActivity {
         int h = myCalendar.get(Calendar.HOUR_OF_DAY);
         int mi = myCalendar.get(Calendar.MINUTE);
 
+        editDate.setText(d + "/" + (m + 1) + "/" + y);
+
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            hikeID = extras.getLong("DATA");
+            obsID = extras.getLong("DATA");
         }
 
-        editDate.setText(d + "/" + (m + 1) + "/" + y);
+        //get Obs from database
+        databaseHelper = new DatabaseHelper(getApplicationContext());
+        try {
+            observation = databaseHelper.getObservationByID(obsID);
+        } catch (IllegalAccessException | ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+        editLocation.setText(observation.getLocation());
+        editObsName.setText(observation.getName());
+        editTime.setText(observation.getTime());
+        editDate.setText(observation.getDate());
+        editComment.setText(observation.getComment());
         DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int day) {
@@ -97,23 +91,22 @@ public class ObservationAddForm extends AppCompatActivity {
                 updateDateLabel();
             }
         };
-        btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                toHikeDetails();
+                toObsDetails();
             }
         });
         editDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(ObservationAddForm.this, date, myCalendar.get(Calendar.YEAR),
+                new DatePickerDialog(EditObservation.this, date, myCalendar.get(Calendar.YEAR),
                         myCalendar.get(Calendar.MONTH),
                         myCalendar.get(Calendar.DAY_OF_MONTH))
                         .show();
             }
         });
-        editTime = findViewById(R.id.editTime);
+
         editTime.setText(h + ":" + mi);
 
         TimePickerDialog.OnTimeSetListener time = new TimePickerDialog.OnTimeSetListener() {
@@ -128,13 +121,13 @@ public class ObservationAddForm extends AppCompatActivity {
         editTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new TimePickerDialog(ObservationAddForm.this, time,
+                new TimePickerDialog(EditObservation.this, time,
                         myCalendar.get(Calendar.HOUR_OF_DAY),
                         myCalendar.get(Calendar.MINUTE), true)
                         .show();
             }
         });
-        spinnerObvType = findViewById(R.id.spinType);
+
         ObservationType[] items = ObservationType.values();
         String[] obvTypeStrings = new String[items.length];
         for (int i = 0; i < items.length; i++) {
@@ -144,7 +137,7 @@ public class ObservationAddForm extends AppCompatActivity {
         spinnerObvType.setAdapter(adapter);
 
 
-        saveButton = findViewById(R.id.btnSave);
+
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -160,97 +153,67 @@ public class ObservationAddForm extends AppCompatActivity {
 
     }
 
-    private void toHikeDetails() {
-        Intent intent = new Intent(this, HikeDetailsForm.class);
-        intent.putExtra("DATA", hikeID);
+    private void toObsDetails() {
+        Intent intent = new Intent(this, ObservationDetails.class);
+        intent.putExtra("DATA", obsID);
         startActivity(intent);
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] gratRequest) {
-        super.onRequestPermissionsResult(requestCode, permissions, gratRequest);
-        if (requestCode == REQUEST_PERMISSION_FINE_LOCATION) {
-            if (gratRequest.length > 0 && gratRequest[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Permission Granted", Toast.LENGTH_LONG).show();
-                showLocation();
-            } else {
-                Toast.makeText(this, "Permission Denied", Toast.LENGTH_LONG).show();
-                editLocation.setText("Location permission not granted");
-            }
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    private void showLocation() {
-        locationClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-            @Override
-            public void onSuccess(Location location) {
-                if (location != null) {
-                    editLocation.setText("Latitude: " + location.getLatitude() + "\nLongtitude: " + location.getLongitude());
-                } else {
-                    editLocation.setText("Cannot find the location");
-                }
-            }
-        });
     }
 
     private void saveDetails() throws ParseException, IllegalAccessException {
 
-        HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
-        Observation observation = new Observation();
 
-        editObsName = findViewById(R.id.editObsName);
-        editDate = findViewById(R.id.editDate);
-        editTime = findViewById(R.id.editTime);
-        editComment = findViewById(R.id.editObsLocation);
-        editLocation = findViewById(R.id.addObsLocation);
+        Observation ob = new Observation();
 
-        observation.setHikeId(hikeID);
-        observation.setName(editObsName.getText().toString());
-        observation.setDate(editDate.getText().toString());
-        observation.setTime(editTime.getText().toString());
-        observation.setComment(editComment.getText().toString());
-        observation.setLocation(editLocation.getText().toString());
+        ob.setHikeId(observation.getHikeId());
+        ob.setId(observation.getId());
+        ob.setName(editObsName.getText().toString());
+        ob.setDate(editDate.getText().toString());
+        ob.setTime(editTime.getText().toString());
+        ob.setComment(editComment.getText().toString());
+        ob.setLocation(editLocation.getText().toString());
 
-        boolean hasError = !verifyBlankEditText(editObsName, editDate, editTime, editComment);
+        boolean hasError = false;
+
+        if (!verifyBlankEditText(editObsName, editDate, editTime, editComment)) {
+            hasError = true;
+        }
 
         if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Animal_Sighting.toString().replace("_", " "))) {
-            observation.setType(ObservationType.Animal_Sighting);
+            ob.setType(ObservationType.Animal_Sighting);
         } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Vegetation_Sighting.toString().replace("_", " "))) {
-            observation.setType(ObservationType.Vegetation_Sighting);
+            ob.setType(ObservationType.Vegetation_Sighting);
         } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Weather_Condition.toString().replace("_", " "))) {
-            observation.setType(ObservationType.Weather_Condition);
+            ob.setType(ObservationType.Weather_Condition);
         } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Trail_Condition.toString().replace("_", " "))) {
-            observation.setType(ObservationType.Trail_Condition);
+            ob.setType(ObservationType.Trail_Condition);
         } else if (spinnerObvType.getSelectedItem().toString().equals(ObservationType.Other.toString().replace("_", " "))) {
-            observation.setType(ObservationType.Other);
+            ob.setType(ObservationType.Other);
         } else {
             Toast.makeText(this, "Please select at least an option for Observation Type", Toast.LENGTH_LONG).show();
             hasError = true;
         }
 
         if (!hasError) {
-            long id = hikeDbHelper.insertObservationDetails(observation);
-            Toast.makeText(this, "Added successfully with id: " + id, Toast.LENGTH_LONG).show();
-            Intent i = new Intent(this, ObservationListActivity.class);
-            // Pass the data to the ViewDetailsActivity
-            i.putExtra("DATA", hikeID);
-            startActivity(i);
+            long id = databaseHelper.updateObservation(ob);
+            if(id >0 ){
+                Intent intent = new Intent(this, ObservationList.class);
+                intent.putExtra("DATA", observation.getHikeId());
+                startActivity(intent);
+                Toast.makeText(this, "Added successfully with id: " + id, Toast.LENGTH_LONG).show();
+            }
         }
     }
 
     private void updateDateLabel() {
         String myFormat = "dd/MM/yyyy";
         SimpleDateFormat dateFormat = new SimpleDateFormat(myFormat, Locale.ROOT);
-        editDate.setText(dateFormat.format(myCalendar.getTime()));
+        editDate.setText(dateFormat.format(myCalendar.getTime()).toString());
     }
-
     private void updateTimeLabel() {
         String myFormat = "HH:mm";
         SimpleDateFormat timeFormat = new SimpleDateFormat(myFormat, Locale.ROOT);
-        editTime.setText(timeFormat.format(myCalendar.getTime()));
+        editTime.setText(timeFormat.format(myCalendar.getTime()).toString());
     }
-
     private boolean verifyBlankEditText(EditText... editText) {
         boolean result = true;
 

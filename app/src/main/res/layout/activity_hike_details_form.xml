@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".hikeDetails.HikeDetailsForm">
+    android:background="@color/colorBackground"
+    tools:context=".hikeLayouts.HikeDetails">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_header"
         android:padding="10dp"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -73,6 +73,8 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/hike_name"
                     android:textSize="20sp"
+                    android:textColor="@color/white"
+
                     android:textStyle="bold" />
 
                 <TextView
@@ -81,9 +83,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
-                    android:autofillHints=""
                     android:ems="11"
-                    android:hint="@string/hint_hike_name"
+                    android:textColor="@color/white"
+
                     android:inputType="text"
                     android:textStyle="italic" />
             </LinearLayout>
@@ -100,6 +102,8 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/location"
+                    android:textColor="@color/white"
+
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -110,7 +114,8 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
                     android:ems="11"
-                    android:hint="@string/hint_location"
+                    android:textColor="@color/white"
+
                     android:inputType="text"
                     android:textStyle="italic" />
             </LinearLayout>
@@ -128,6 +133,8 @@
                     android:layout_marginTop="10dp"
                     android:text="@string/date"
                     android:textSize="20sp"
+                    android:textColor="@color/white"
+
                     android:textStyle="bold" />
 
                 <TextView
@@ -138,10 +145,11 @@
                     android:layout_marginTop="10dp"
                     android:clickable="true"
                     android:cursorVisible="false"
+                    android:textColor="@color/white"
+
                     android:ems="11"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
-                    android:hint="@string/hint_date"
                     android:inputType="text"
                     android:textStyle="italic" />
             </LinearLayout>
@@ -157,6 +165,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
+                    android:textColor="@color/white"
+
                     android:text="@string/park"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -167,8 +177,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+
                     android:ems="11"
-                    android:hint="@string/hint_location"
                     android:inputType="text"
                     android:textStyle="italic" />
             </LinearLayout>
@@ -183,6 +194,8 @@
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
+                    android:textColor="@color/white"
+
                     android:layout_marginTop="10dp"
                     android:text="@string/length"
                     android:textSize="20sp"
@@ -194,8 +207,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+
                     android:ems="11"
-                    android:hint="@string/hint_length"
                     android:inputType="number"
                     android:textStyle="italic" />
             </LinearLayout>
@@ -212,6 +226,8 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/type"
+                    android:textColor="@color/white"
+
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -221,8 +237,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+
                     android:ems="11"
-                    android:hint="@string/type"
                     android:inputType="number"
                     android:textStyle="italic" />
             </LinearLayout>
@@ -239,6 +256,8 @@
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="20dp"
                     android:text="@string/difficulty"
+                    android:textColor="@color/white"
+
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -248,8 +267,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+
                     android:ems="11"
-                    android:hint="@string/type"
                     android:inputType="number"
                     android:textStyle="italic" />
 
@@ -266,6 +286,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+
                     android:text="@string/e_contact"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -276,8 +298,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+
                     android:ems="11"
-                    android:hint="@string/hint_e_contact"
                     android:inputType="phone"
                     android:textStyle="italic" />
             </LinearLayout>
@@ -293,6 +316,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+
                     android:text="@string/description"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -303,8 +328,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="10dp"
+                    android:textColor="@color/white"
+
                     android:ems="11"
-                    android:hint="@string/hint_e_contact"
                     android:inputType="phone"
                     android:textStyle="italic" />
             </LinearLayout>

@@ -6,11 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.comp1786.cw1.hikeList.HikeListActivity;
-import com.comp1786.cw1.obsList.ObservationListActivity;
-import com.comp1786.cw1.dbHelper.HikeDbHelper;
-import com.comp1786.cw1.hikeDetails.HikeAddForm;
-import com.comp1786.cw1.obsDetails.ObservationAddForm;
+import com.comp1786.cw1.hikeList.HikeList;
+import com.comp1786.cw1.obsList.ObservationList;
+import com.comp1786.cw1.database.DatabaseHelper;
+import com.comp1786.cw1.hikeLayouts.NewHike;
+import com.comp1786.cw1.obsDetails.NewObservation;
 
 public class Homepage_Activity extends AppCompatActivity {
 
@@ -19,24 +19,24 @@ public class Homepage_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-        HikeDbHelper hikeDbHelper = new HikeDbHelper(getApplicationContext());
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
     }
 
     public void toHikeList(View view) {
-        Intent i = new Intent(this, HikeListActivity.class);
+        Intent i = new Intent(this, HikeList.class);
         startActivity(i);
     }
     public void toHikeForm(View view) {
-        Intent i = new Intent(this, HikeAddForm.class);
+        Intent i = new Intent(this, NewHike.class);
         startActivity(i);
     }
     public void toObvForm (View view)
     {
-        Intent i = new Intent(this, ObservationAddForm.class);
+        Intent i = new Intent(this, NewObservation.class);
         startActivity(i);
     }
     public void toObvList(View view) {
-        Intent i = new Intent(this, ObservationListActivity.class);
+        Intent i = new Intent(this, ObservationList.class);
         startActivity(i);
     }
 }

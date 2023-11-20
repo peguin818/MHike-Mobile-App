@@ -1,4 +1,4 @@
-package com.comp1786.cw1.dbHelper;
+package com.comp1786.cw1.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,37 +18,37 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class HikeDbHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteOpenHelper {
     //General
-    private static final String DATABASE_NAME = "mhike";
-    private static final String ID_COLUMN_NAME = "id";
-    private static final String CREATEDAT_COLUMN = "created_at";
-    private static final String UPDATEDAT_COLUMN = "updated_at";
+    private static final String DATABASE_NAME = "HikeBuddy";
+    private static final String ID_COLUMN = "id";
+    private static final String CREATED_AT = "created_at";
+    private static final String UPDATED_AT = "updated_at";
 
     // HIKE TABLE
     private static final String HIKE_TABLE = "hike";
-    private static final String HIKE_TABLE_NAME = "name";
-    private static final String HIKE_TABLE_LOCATION = "location";
-    private static final String HIKE_TABLE_DATEOFHIKE = "date_of_hike";
-    private static final String HIKE_TABLE_PARKINGAVAILABILITY = "parking_availability";
-    private static final String HIKE_TABLE_HIKELENGTH = "hike_length";
-    private static final String HIKE_TABLE_DIFFICULTY = "difficulty";
-    private static final String HIKE_TABLE_DESCRIPTION = "description";
-    private static final String HIKE_TABLE_TRAILTYPE = "trail_type";
-    private static final String HIKE_TABLE_EMERGENCY = "emergency_contact";
+    private static final String HIKE_NAME = "name";
+    private static final String HIKE_LOCATION = "location";
+    private static final String START_DATE = "start_date";
+    private static final String PARKING_AVAILABILITY = "parking_availability";
+    private static final String LENGTH = "hike_length";
+    private static final String DIFFICULTY = "difficulty";
+    private static final String HIKE_DESCRIPTION = "description";
+    private static final String TRAIL_TYPE = "trail_type";
+    private static final String EMERGENCY_CONTACT = "emergency_contact";
 
 
     // OBSERVATION TABLE
-    private static final String OBSERVATION_TABLE_HIKE_ID = "hike_id";
     private static final String OBSERVATION_TABLE = "observation";
-    private static final String OBSERVATION_TABLE_TYPE = "type";
-    private static final String OBSERVATION_TABLE_NAME = "name";
-    private static final String OBSERVATION_TABLE_DATE = "date";
-    private static final String OBSERVATION_TABLE_TIME = "time";
-    private static final String OBSERVATION_TABLE_COMMENT = "comment";
-    private static final String OBSERVATION_TABLE_LOCATION = "location";
+    private static final String OBSERVATION_HIKE_ID = "hike_id";
+    private static final String OBSERVATION_TYPE = "type";
+    private static final String OBSERVATION_NAME = "name";
+    private static final String OBSERVATION_DATE = "date";
+    private static final String OBSERVATION_TIME = "time";
+    private static final String OBSERVATION_COMMENT = "comment";
+    private static final String OBSERVATION_LOCATION = "location";
 
-    private static final String CREATE_TABLE_HIKE = String.format(
+    private static final String CREATE_HIKE_TABLE = String.format(
             "CREATE TABLE %s (" +
                     "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "%s TEXT NOT NULL, " +
@@ -62,13 +62,11 @@ public class HikeDbHelper extends SQLiteOpenHelper {
                     "%s TEXT NOT NULL, " +
                     "%s TEXT NOT NULL, " +
                     "%s TEXT NOT NULL)",
-            HIKE_TABLE, ID_COLUMN_NAME, HIKE_TABLE_NAME, HIKE_TABLE_LOCATION, HIKE_TABLE_DATEOFHIKE, //5 biến mỗi hàng
-            HIKE_TABLE_PARKINGAVAILABILITY, HIKE_TABLE_HIKELENGTH, HIKE_TABLE_DIFFICULTY, HIKE_TABLE_DESCRIPTION, HIKE_TABLE_TRAILTYPE,
-            HIKE_TABLE_EMERGENCY, CREATEDAT_COLUMN, UPDATEDAT_COLUMN
-            //Create Database query
+            HIKE_TABLE, ID_COLUMN, HIKE_NAME, HIKE_LOCATION, START_DATE,
+            PARKING_AVAILABILITY, LENGTH, DIFFICULTY, HIKE_DESCRIPTION, TRAIL_TYPE,
+            EMERGENCY_CONTACT, CREATED_AT, UPDATED_AT
     );
-    //SQLiteDatabase: a built-in class to represent a database, to help database manipulation
-    private static final String CREATE_TABLE_OBSERVATION = String.format(
+    private static final String CREATE_HIKE_OBSERVATION = String.format(
             "CREATE TABLE %s (" +
                     "%s INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     "%s INTEGER NOT NULL, " +
@@ -81,14 +79,14 @@ public class HikeDbHelper extends SQLiteOpenHelper {
                     "%s TEXT NOT NULL, " +
                     "%s TEXT NOT NULL, " +
                     "FOREIGN KEY (%s) REFERENCES %s (%s) )",
-            OBSERVATION_TABLE, ID_COLUMN_NAME, OBSERVATION_TABLE_HIKE_ID, OBSERVATION_TABLE_TYPE, OBSERVATION_TABLE_NAME,
-            OBSERVATION_TABLE_DATE, OBSERVATION_TABLE_TIME, OBSERVATION_TABLE_COMMENT, OBSERVATION_TABLE_LOCATION, CREATEDAT_COLUMN, UPDATEDAT_COLUMN,
-            OBSERVATION_TABLE_HIKE_ID, HIKE_TABLE, ID_COLUMN_NAME
+            OBSERVATION_TABLE, ID_COLUMN, OBSERVATION_HIKE_ID, OBSERVATION_TYPE, OBSERVATION_NAME,
+            OBSERVATION_DATE, OBSERVATION_TIME, OBSERVATION_COMMENT, OBSERVATION_LOCATION, CREATED_AT, UPDATED_AT,
+            OBSERVATION_HIKE_ID, HIKE_TABLE, ID_COLUMN
             //Create Observation query
     );
     private final SQLiteDatabase database;
 
-    public HikeDbHelper(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
         database = this.getWritableDatabase();
         //get database object
@@ -96,8 +94,8 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREATE_TABLE_HIKE);
-        db.execSQL(CREATE_TABLE_OBSERVATION);
+        db.execSQL(CREATE_HIKE_TABLE);
+        db.execSQL(CREATE_HIKE_OBSERVATION);
         //create DB by executing query
     }
 
@@ -117,17 +115,17 @@ public class HikeDbHelper extends SQLiteOpenHelper {
     public long insertHikeDetails(Hike hike) {
         ContentValues rowValues = new ContentValues(); //Create a new row
 
-        rowValues.put(HIKE_TABLE_NAME, hike.getHikeName());
-        rowValues.put(HIKE_TABLE_LOCATION, hike.getLocation());
-        rowValues.put(HIKE_TABLE_DATEOFHIKE, hike.getDate());
-        rowValues.put(HIKE_TABLE_PARKINGAVAILABILITY, hike.isParking());
-        rowValues.put(HIKE_TABLE_HIKELENGTH, hike.getLength());
-        rowValues.put(HIKE_TABLE_DIFFICULTY, hike.getDifficulty().toString());
-        rowValues.put(HIKE_TABLE_DESCRIPTION, hike.getDescription());
-        rowValues.put(HIKE_TABLE_TRAILTYPE, hike.getType().toString());
-        rowValues.put(HIKE_TABLE_EMERGENCY, hike.getContact());
-        rowValues.put(CREATEDAT_COLUMN, new Date().toString());
-        rowValues.put(UPDATEDAT_COLUMN, new Date().toString());
+        rowValues.put(HIKE_NAME, hike.getHikeName());
+        rowValues.put(HIKE_LOCATION, hike.getLocation());
+        rowValues.put(START_DATE, hike.getDate());
+        rowValues.put(PARKING_AVAILABILITY, hike.isParking());
+        rowValues.put(LENGTH, hike.getLength());
+        rowValues.put(DIFFICULTY, hike.getDifficulty().toString());
+        rowValues.put(HIKE_DESCRIPTION, hike.getDescription());
+        rowValues.put(TRAIL_TYPE, hike.getType().toString());
+        rowValues.put(EMERGENCY_CONTACT, hike.getContact());
+        rowValues.put(CREATED_AT, new Date().toString());
+        rowValues.put(UPDATED_AT, new Date().toString());
 
         return database.insertOrThrow(HIKE_TABLE, null, rowValues); //insert row into database
     }
@@ -135,24 +133,24 @@ public class HikeDbHelper extends SQLiteOpenHelper {
     public long insertObservationDetails(Observation observation) {
         ContentValues rowValues = new ContentValues(); //Create a new row
 
-        rowValues.put(OBSERVATION_TABLE_HIKE_ID, observation.getHikeId());
-        rowValues.put(OBSERVATION_TABLE_TYPE, observation.getType().toString());
-        rowValues.put(OBSERVATION_TABLE_NAME, observation.getName());
-        rowValues.put(OBSERVATION_TABLE_DATE, observation.getDate());
-        rowValues.put(OBSERVATION_TABLE_TIME, observation.getTime());
-        rowValues.put(OBSERVATION_TABLE_COMMENT, observation.getComment());
-        rowValues.put(OBSERVATION_TABLE_LOCATION, observation.getLocation());
-        rowValues.put(CREATEDAT_COLUMN, new Date().toString());
-        rowValues.put(UPDATEDAT_COLUMN, new Date().toString());
+        rowValues.put(OBSERVATION_HIKE_ID, observation.getHikeId());
+        rowValues.put(OBSERVATION_TYPE, observation.getType().toString());
+        rowValues.put(OBSERVATION_NAME, observation.getName());
+        rowValues.put(OBSERVATION_DATE, observation.getDate());
+        rowValues.put(OBSERVATION_TIME, observation.getTime());
+        rowValues.put(OBSERVATION_COMMENT, observation.getComment());
+        rowValues.put(OBSERVATION_LOCATION, observation.getLocation());
+        rowValues.put(CREATED_AT, new Date().toString());
+        rowValues.put(UPDATED_AT, new Date().toString());
 
         return database.insertOrThrow(OBSERVATION_TABLE, null, rowValues); //insert row into database
     }
 
     public List<Hike> getHikeList() throws IllegalAccessException {
         Cursor results = database.query("hike",
-                new String[]{"id", "name", "location", "date_of_hike", "parking_availability", "hike_length", "difficulty",
+                new String[]{"id", "name", "location", "start_date", "parking_availability", "hike_length", "difficulty",
                         "description", "trail_type", "emergency_contact", "created_at", "updated_at"},
-                null, null, null, null, "date_of_hike");
+                null, null, null, null, "start_date");
 
         List<Hike> hikeList = new ArrayList<>();
         results.moveToFirst();
@@ -160,7 +158,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
             long id = results.getLong(0);
             String name = results.getString(1);
             String location = results.getString(2);
-            String date_of_hike = results.getString(3);
+            String start_date = results.getString(3);
             Boolean parking_availability = getIsParking(results.getInt(4));
             long hike_length = results.getLong(5);
             Difficulty difficulty = getDifficulty(results.getString(6));
@@ -171,7 +169,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
             Date updated_at = new Date(results.getString(11));
 
 
-            Hike hike = new Hike(id, name, location, date_of_hike, parking_availability, hike_length, difficulty, description, trail_type, emergency_contact, created_at, updated_at);
+            Hike hike = new Hike(id, name, location, start_date, parking_availability, hike_length, difficulty, description, trail_type, emergency_contact, created_at, updated_at);
 
             hikeList.add(hike);
             results.moveToNext();
@@ -181,7 +179,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
     public Hike getHikeById(long hike_id) throws IllegalAccessException {
         Cursor results = database.query("hike",
-                new String[]{"id", "name", "location", "date_of_hike", "parking_availability", "hike_length", "difficulty",
+                new String[]{"id", "name", "location", "start_date", "parking_availability", "hike_length", "difficulty",
                         "description", "trail_type", "emergency_contact", "created_at", "updated_at"},
                 "id =?", new String[]{String.valueOf(hike_id)}, null, null, null, "1");
         results.moveToFirst();
@@ -189,7 +187,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         long id = results.getLong(0);
         String name = results.getString(1);
         String location = results.getString(2);
-        String date_of_hike = results.getString(3);
+        String start_date = results.getString(3);
         Boolean parking_availability = getIsParking(results.getInt(4));
         long hike_length = results.getLong(5);
         Difficulty difficulty = getDifficulty(results.getString(6));
@@ -199,7 +197,7 @@ public class HikeDbHelper extends SQLiteOpenHelper {
         Date created_at = new Date(results.getString(10));
         Date updated_at = new Date(results.getString(11));
 
-        return new Hike(id, name, location, date_of_hike, parking_availability, hike_length, difficulty, description, trail_type, emergency_contact, created_at, updated_at);
+        return new Hike(id, name, location, start_date, parking_availability, hike_length, difficulty, description, trail_type, emergency_contact, created_at, updated_at);
 
     }
 
@@ -264,18 +262,18 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
         // on below line we are passing all values
         // along with its key and value pair.
-        rowValues.put(ID_COLUMN_NAME, hike.getId());
-        rowValues.put(HIKE_TABLE_NAME, hike.getHikeName());
-        rowValues.put(HIKE_TABLE_LOCATION, hike.getLocation());
-        rowValues.put(HIKE_TABLE_DATEOFHIKE, hike.getDate());
-        rowValues.put(HIKE_TABLE_PARKINGAVAILABILITY, hike.isParking());
-        rowValues.put(HIKE_TABLE_HIKELENGTH, hike.getLength());
-        rowValues.put(HIKE_TABLE_DIFFICULTY, hike.getDifficulty().toString());
-        rowValues.put(HIKE_TABLE_DESCRIPTION, hike.getDescription());
-        rowValues.put(HIKE_TABLE_TRAILTYPE, hike.getType().toString());
-        rowValues.put(HIKE_TABLE_EMERGENCY, hike.getContact());
-        rowValues.put(CREATEDAT_COLUMN, new Date().toString());
-        rowValues.put(UPDATEDAT_COLUMN, new Date().toString());
+        rowValues.put(ID_COLUMN, hike.getId());
+        rowValues.put(HIKE_NAME, hike.getHikeName());
+        rowValues.put(HIKE_LOCATION, hike.getLocation());
+        rowValues.put(START_DATE, hike.getDate());
+        rowValues.put(PARKING_AVAILABILITY, hike.isParking());
+        rowValues.put(LENGTH, hike.getLength());
+        rowValues.put(DIFFICULTY, hike.getDifficulty().toString());
+        rowValues.put(HIKE_DESCRIPTION, hike.getDescription());
+        rowValues.put(TRAIL_TYPE, hike.getType().toString());
+        rowValues.put(EMERGENCY_CONTACT, hike.getContact());
+        rowValues.put(CREATED_AT, new Date().toString());
+        rowValues.put(UPDATED_AT, new Date().toString());
 
         // on below line we are calling a update method to update our database and passing our values.
         // and we are comparing it with name of our course which is stored in original name variable.
@@ -290,16 +288,16 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
         // on below line we are passing all values
         // along with its key and value pair.
-        rowValues.put(ID_COLUMN_NAME, observation.getId());
-        rowValues.put(OBSERVATION_TABLE_HIKE_ID, observation.getHikeId());
-        rowValues.put(OBSERVATION_TABLE_TYPE, observation.getType().toString());
-        rowValues.put(OBSERVATION_TABLE_NAME, observation.getName());
-        rowValues.put(OBSERVATION_TABLE_DATE, observation.getDate());
-        rowValues.put(OBSERVATION_TABLE_TIME, observation.getTime());
-        rowValues.put(OBSERVATION_TABLE_COMMENT, observation.getComment());
-        rowValues.put(OBSERVATION_TABLE_LOCATION, observation.getLocation());
-        rowValues.put(CREATEDAT_COLUMN, new Date().toString());
-        rowValues.put(UPDATEDAT_COLUMN, new Date().toString());
+        rowValues.put(ID_COLUMN, observation.getId());
+        rowValues.put(OBSERVATION_HIKE_ID, observation.getHikeId());
+        rowValues.put(OBSERVATION_TYPE, observation.getType().toString());
+        rowValues.put(OBSERVATION_NAME, observation.getName());
+        rowValues.put(OBSERVATION_DATE, observation.getDate());
+        rowValues.put(OBSERVATION_TIME, observation.getTime());
+        rowValues.put(OBSERVATION_COMMENT, observation.getComment());
+        rowValues.put(OBSERVATION_LOCATION, observation.getLocation());
+        rowValues.put(CREATED_AT, new Date().toString());
+        rowValues.put(UPDATED_AT, new Date().toString());
 
         // on below line we are calling a update method to update our database and passing our values.
         // and we are comparing it with name of our course which is stored in original name variable.
@@ -327,16 +325,16 @@ public class HikeDbHelper extends SQLiteOpenHelper {
 
     //for Hike
     private TrailType getTrailType(String type) throws IllegalAccessException {
-        if (type.equals(TrailType.RETURN.toString())) {
-            return TrailType.RETURN;
-        } else if (type.equals(TrailType.LOOP.toString())) {
-            return TrailType.LOOP;
-        } else if (type.equals(TrailType.PACK_CARRY.toString())) {
-            return TrailType.PACK_CARRY;
-        } else if (type.equals(TrailType.STAGE.toString())) {
-            return TrailType.STAGE;
-        } else if (type.equals(TrailType.POINT_TO_POINT.toString())) {
-            return TrailType.POINT_TO_POINT;
+        if (type.equals(TrailType.Boardwalks.toString())) {
+            return TrailType.Boardwalks;
+        } else if (type.equals(TrailType.Bikeways.toString())) {
+            return TrailType.Bikeways;
+        } else if (type.equals(TrailType.No_Trail.toString())) {
+            return TrailType.No_Trail;
+        } else if (type.equals(TrailType.Foot.toString())) {
+            return TrailType.Foot;
+        } else if (type.equals(TrailType.Nature.toString())) {
+            return TrailType.Nature;
         } else {
             throw new IllegalAccessException("Unknown type");
         }
@@ -345,8 +343,8 @@ public class HikeDbHelper extends SQLiteOpenHelper {
     private Difficulty getDifficulty(String difficulty) throws IllegalAccessException {
         if (difficulty.equals(Difficulty.HARD.toString())) {
             return Difficulty.HARD;
-        } else if (difficulty.equals(Difficulty.NORMAL.toString())) {
-            return Difficulty.NORMAL;
+        } else if (difficulty.equals(Difficulty.MEDIUM.toString())) {
+            return Difficulty.MEDIUM;
         } else if (difficulty.equals(Difficulty.EASY.toString())) {
             return Difficulty.EASY;
         } else {

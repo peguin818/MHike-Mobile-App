@@ -15,22 +15,23 @@
 
         <TextView
             android:id="@+id/mhikeSlogan"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="365dp"
+            android:layout_height="103dp"
+            android:layout_marginStart="24dp"
             android:text="@string/app_desc"
-            android:textColor="@color/sky_blue_accent"
+            android:textColor="@color/royal_blue"
             android:textSize="40sp"
             android:textStyle="italic"
-            tools:layout_editor_absoluteX="29dp"
-            tools:layout_editor_absoluteY="-2dp" />
+            app:layout_constraintBottom_toTopOf="@+id/mhikeImage"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/mhikeImage"
             android:layout_width="403dp"
             android:layout_height="397dp"
             android:src="@drawable/hikebuddy"
-            tools:layout_editor_absoluteX="4dp"
-            tools:layout_editor_absoluteY="130dp" />
+            tools:layout_editor_absoluteX="-8dp"
+            tools:layout_editor_absoluteY="219dp" />
 
         <LinearLayout
             android:id="@+id/row1"

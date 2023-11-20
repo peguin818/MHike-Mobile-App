@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!--Theme colour-->
-    <color name="colorPrimary">#2BCC6F</color>
+    <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#2BCC6F</color>
     <color name="colorPrimaryLight">#E9F8F1</color>
-    <color name="colorBackground">#EBEBEB</color>
+    <color name="colorBackground">#166fb0</color>
     <color name="colorDivider">#D6D6D6</color>
     <color name="colorAccent">#333333</color>
 

@@ -5,14 +5,13 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="visible"
-    tools:context=".obsList.ObservationListActivity">
+    android:background="@color/colorBackground"
+    android:visibility="visible">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_header"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/layoutDivider"
         app:layout_constraintEnd_toEndOf="parent"
@@ -83,7 +82,7 @@
                 android:textSize="15sp"
                 android:textStyle="italic"
                 app:iconifiedByDefault="false"
-                app:queryHint="@string/hint_search_bar" />
+ />
 
         </LinearLayout>
 
@@ -160,9 +159,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
-            android:background="@drawable/bg_button"
-            android:onClick="toObsAddForm"
-            android:src="@drawable/icon_add_2"
+            android:src="@drawable/add"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.444"
             app:layout_constraintStart_toStartOf="parent" />
@@ -182,12 +179,15 @@
         android:id="@+id/menuBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/colorBackground"
         app:itemIconSize="30dp"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/nav_menu" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.comp1786.cw1.hikeDetails;
+package com.comp1786.cw1.hikeLayouts;
 
 import android.content.Intent;
 import android.view.View;
@@ -9,14 +9,14 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.comp1786.cw1.object.Hike;
-import com.comp1786.cw1.hikeList.HikeListActivity;
-import com.comp1786.cw1.obsList.ObservationListActivity;
+import com.comp1786.cw1.hikeList.HikeList;
+import com.comp1786.cw1.obsList.ObservationList;
 import com.comp1786.cw1.R;
-import com.comp1786.cw1.dbHelper.HikeDbHelper;
+import com.comp1786.cw1.database.DatabaseHelper;
 
-public class HikeDetailsForm extends AppCompatActivity {
+public class HikeDetails extends AppCompatActivity {
 
-    private HikeDbHelper hikeDbHelper;
+    private DatabaseHelper databaseHelper;
     private Hike hike;
     TextView hikeName;
     TextView location;
@@ -72,9 +72,9 @@ public class HikeDetailsForm extends AppCompatActivity {
             hikeID = extras.getLong("DATA");
         }
         //get Hike from database
-        hikeDbHelper = new HikeDbHelper(getApplicationContext());
+        databaseHelper = new DatabaseHelper(getApplicationContext());
         try {
-            hike = hikeDbHelper.getHikeById(hikeID);
+            hike = databaseHelper.getHikeById(hikeID);
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -110,23 +110,23 @@ public class HikeDetailsForm extends AppCompatActivity {
     }
 
     public void deleteHike(){
-        hikeDbHelper.deleteHikeById(hike.getId());
+        databaseHelper.deleteHikeById(hike.getId());
         Toast.makeText(this, "Deleted HIKE successfully with id: " + hike.getId(), Toast.LENGTH_LONG).show();
-        Intent i = new Intent(this, HikeListActivity.class);
+        Intent i = new Intent(this, HikeList.class);
         startActivity(i);
     }
     public void editHike(){
-        Intent intent = new Intent(this, HikeEditForm.class);
+        Intent intent = new Intent(this, EditHike.class);
         intent.putExtra("DATA", hikeID);
         startActivity(intent);
     }
     public void toObsList(){
-        Intent intent = new Intent(this, ObservationListActivity.class);
+        Intent intent = new Intent(this, ObservationList.class);
         intent.putExtra("DATA", hikeID);
         startActivity(intent);
     }
     public void toHikeList(){
-        Intent intent = new Intent(this, HikeListActivity.class);
+        Intent intent = new Intent(this, HikeList.class);
         intent.putExtra("DATA", hikeID);
         startActivity(intent);
     }

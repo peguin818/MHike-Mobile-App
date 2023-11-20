@@ -5,13 +5,14 @@
     android:id="@+id/LayoutConstraints"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".obsDetails.ObservationAddForm">
+    android:background="@color/colorBackground"
+    android:spinnerDropDownItemStyle="@style/mySpinnerItemStyle"
+    tools:context=".obsDetails.NewObservation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_header"
         android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/svObsForm"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +83,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/bg_white_rectangle"
                 android:gravity="center"
                 android:orientation="vertical"
                 app:layout_constraintDimensionRatio="H,1:1"
@@ -96,12 +96,45 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/tvDescription"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="30dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/obs_name"
+                        android:textColor="@color/white"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <EditText
+                        android:id="@+id/editObsName"
+                        android:layout_width="230dp"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:ems="11"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="false"
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        app:backgroundTint="@color/white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:orientation="horizontal">
+
+                    <TextView
                         android:id="@+id/tvDate"
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/date"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -116,9 +149,10 @@
                         android:ems="11"
                         android:focusable="true"
                         android:focusableInTouchMode="false"
-                        android:hint="@string/hint_date"
                         android:inputType="text"
-                        android:textStyle="italic" />
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        app:backgroundTint="@color/white"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -133,6 +167,7 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/time"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -147,9 +182,10 @@
                         android:ems="11"
                         android:focusable="false"
                         android:focusableInTouchMode="false"
-                        android:hint="@string/hint_time"
                         android:inputType="text"
-                        android:textStyle="italic" />
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        app:backgroundTint="@color/white" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -164,6 +200,7 @@
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="20dp"
                         android:text="@string/type"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -182,41 +219,12 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/tvDescription"
-                        android:layout_width="120dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/obs_name"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:id="@+id/editObsName"
-                        android:layout_width="230dp"
-                        android:layout_height="44dp"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:ems="11"
-                        android:hint="@string/hint_description"
-                        android:inputType="textMultiLine"
-                        android:lines="4"
-                        android:selectAllOnFocus="true"
-                        android:singleLine="false"
-                        android:textStyle="italic" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:orientation="horizontal">
-
-                    <TextView
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
                         android:text="@string/comment"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -227,17 +235,18 @@
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:ems="11"
-                        android:hint="@string/hint_comment"
                         android:inputType="textMultiLine"
                         android:lines="4"
                         android:selectAllOnFocus="true"
                         android:singleLine="false"
-                        android:textStyle="italic" />
+                        android:textColor="@color/white"
+                        android:textStyle="italic"
+                        app:backgroundTint="@color/white" />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="73dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -248,6 +257,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
                         android:text="Location"
+                        android:textColor="@color/white"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -255,10 +265,15 @@
                         android:id="@+id/addObsLocation"
                         android:layout_width="252dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="30dp"
+                        android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:ems="11"
+                        android:inputType="textMultiLine"
+                        android:lines="4"
+                        android:textColor="@color/white"
+                        android:selectAllOnFocus="true"
+                        android:singleLine="false"
+                        android:textStyle="italic" />
 
                 </LinearLayout>
 
@@ -281,26 +296,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/menuBottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        app:itemIconSize="30dp"
-        app:labelVisibilityMode="unlabeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/nav_menu" />
-
-    <View
-        android:id="@+id/viewDivider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/colorDivider"
-        app:layout_constraintBottom_toTopOf="@id/menuBottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

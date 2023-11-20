@@ -11,13 +11,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.comp1786.cw1.object.Observation;
-import com.comp1786.cw1.obsList.ObservationListActivity;
+import com.comp1786.cw1.obsList.ObservationList;
 import com.comp1786.cw1.R;
-import com.comp1786.cw1.dbHelper.HikeDbHelper;
+import com.comp1786.cw1.database.DatabaseHelper;
 
 import java.text.ParseException;
 
-public class ObservationDetailsForm extends AppCompatActivity {
+public class ObservationDetails extends AppCompatActivity {
     public long obsID;
     TextView textObsName;
     TextView textDate;
@@ -28,7 +28,7 @@ public class ObservationDetailsForm extends AppCompatActivity {
     ImageView btnBack;
     Button deleteObsButton;
     Button editObsButton;
-    private HikeDbHelper hikeDbHelper;
+    private DatabaseHelper databaseHelper;
     private Observation observation;
     private TextView textLocation;
 
@@ -58,9 +58,9 @@ public class ObservationDetailsForm extends AppCompatActivity {
             obsID = extras.getLong("DATA");
         }
 
-        hikeDbHelper = new HikeDbHelper(getApplicationContext());
+        databaseHelper = new DatabaseHelper(getApplicationContext());
         try {
-            observation = hikeDbHelper.getObservationByID(obsID);
+            observation = databaseHelper.getObservationByID(obsID);
         } catch (IllegalAccessException | ParseException e) {
             throw new RuntimeException(e);
         }
@@ -91,20 +91,20 @@ public class ObservationDetailsForm extends AppCompatActivity {
     }
 
     private void toObsList() {
-        Intent intent = new Intent(this, ObservationListActivity.class);
+        Intent intent = new Intent(this, ObservationList.class);
         intent.putExtra("DATA", obsID);
         startActivity(intent);
     }
 
     public void deleteObs() {
-        hikeDbHelper.deleteObservationById(observation.getId());
+        databaseHelper.deleteObservationById(observation.getId());
         Toast.makeText(this, "Deleted Observation successfully with id: " + observation.getId(), Toast.LENGTH_LONG).show();
-        Intent i = new Intent(this, ObservationListActivity.class);
+        Intent i = new Intent(this, ObservationList.class);
         startActivity(i);
     }
 
     public void editObs() {
-        Intent intent = new Intent(this, ObservationEditForm.class);
+        Intent intent = new Intent(this, EditObservation.class);
         intent.putExtra("DATA", obsID);
         startActivity(intent);
     }
