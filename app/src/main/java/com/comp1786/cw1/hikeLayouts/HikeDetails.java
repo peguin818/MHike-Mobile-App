@@ -37,7 +37,7 @@ public class HikeDetails extends AppCompatActivity {
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hike_details_form);
+        setContentView(R.layout.activity_hike_details);
 
         hikeName = findViewById(R.id.hikeName);
         location = findViewById(R.id.hikeLocation);

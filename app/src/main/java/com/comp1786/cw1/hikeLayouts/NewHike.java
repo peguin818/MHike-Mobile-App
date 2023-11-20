@@ -56,7 +56,7 @@ public class NewHike extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hike_add_form);
+        setContentView(R.layout.activity_new_hike);
 
         editDate = (EditText) findViewById(R.id.editDate);
         btnBack = findViewById(R.id.btnBack);

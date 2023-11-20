@@ -17,20 +17,22 @@
             android:id="@+id/mhikeSlogan"
             android:layout_width="365dp"
             android:layout_height="103dp"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginBottom="60dp"
             android:text="@string/app_desc"
             android:textColor="@color/royal_blue"
             android:textSize="40sp"
             android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@+id/mhikeImage"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/mhikeImage"
             android:layout_width="403dp"
             android:layout_height="397dp"
-            android:src="@drawable/hikebuddy"
-            tools:layout_editor_absoluteX="-8dp"
+            android:src="@drawable/logo"
+            tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="219dp" />
 
         <LinearLayout

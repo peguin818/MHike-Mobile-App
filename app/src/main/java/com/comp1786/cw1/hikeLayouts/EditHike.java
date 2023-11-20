@@ -53,7 +53,7 @@ public class EditHike extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hike_edit_form);
+        setContentView(R.layout.activity_edit_hike);
 
         editHikeName = findViewById(R.id.btnEditHike);
         editLocation = findViewById(R.id.editLocation);
